@@ -1,0 +1,64 @@
+#import aliases and functions
+if [ -f $HOME/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+#bash parameters
+shopt -s histappend
+shopt -s checkwinsize
+
+#i am lazy
+export c=$HOME/derek/configs
+export s=$HOME/derek/scripts
+
+#for tmux
+case "$TERM" in
+*-256color)
+    alias ssh='TERM=${TERM%-256color} ssh'
+    ;;
+*)
+    POTENTIAL_TERM=${TERM}-256color
+    POTENTIAL_TERMINFO=${TERM:0:1}/$POTENTIAL_TERM
+
+    # better to check $(toe -a | awk '{print $1}') maybe?
+    BOX_TERMINFO_DIR=/usr/share/terminfo
+    [[ -f $BOX_TERMINFO_DIR/$POTENTIAL_TERMINFO ]] && \
+        export TERM=$POTENTIAL_TERM
+
+    HOME_TERMINFO_DIR=$HOME/.terminfo
+    [[ -f $HOME_TERMINFO_DIR/$POTENTIAL_TERMINFO ]] && \
+        export TERM=$POTENTIAL_TERM
+    ;;
+esac
+
+#enable vi mode
+set -o vi
+set editing-mode vi
+set keymap vi
+
+#set colors for command prompt
+function EXT_COLOR   { echo -ne "\e[38;5;$1m"; }
+function BOLD_EXT_COLOR   { echo -ne "\e[38;1;$1m"; }
+function CLOSE_COLOR { echo -ne '\e[m'; }
+
+#command prompt
+PROMPT_COMMAND="gen_short_date && gen_short_pwd"
+
+if is_buildfarm; then
+    if [[ ${EUID} == 0 ]]; then
+        export PS1="\[`EXT_COLOR 11`\][\h@\${short_date}\[`CLOSE_COLOR`\]\[`EXT_COLOR 13`\] \${short_pwd}\$(parse_git_branch)\[`EXT_COLOR 11`\]]\$\[`CLOSE_COLOR`\] "
+    else
+        export PS1="\[`EXT_COLOR 11`\][\h@\${short_date}\[`CLOSE_COLOR`\]\[`EXT_COLOR 9`\] \${short_pwd}\$(parse_git_branch)\[`EXT_COLOR 11`\]]\$\[`CLOSE_COLOR`\] "
+    fi
+else
+    if [[ ${EUID} == 0 ]]; then
+        export PS1="\[`EXT_COLOR 11`\][local@\${short_date}\[`CLOSE_COLOR`\]\[`EXT_COLOR 13`\] \${short_pwd}\$(parse_git_branch)\[`EXT_COLOR 11`\]]\$\[`CLOSE_COLOR`\] "
+    else
+        export PS1="\[`EXT_COLOR 10`\][local@\${short_date}\[`CLOSE_COLOR`\]\[`EXT_COLOR 9`\] \${short_pwd}\$(parse_git_branch)\[`EXT_COLOR 10`\]]\$\[`CLOSE_COLOR`\] "
+    fi
+fi
+
+export LS_COLORS='di=38;5;108:fi=00:*svn-commit.tmp=31:ln=38;5;116:ex=38;5;186'

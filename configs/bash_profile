@@ -1,0 +1,67 @@
+function is_buildfarm {
+    local HOSTNAME=`hostname`
+    if [[ "$HOSTNAME" == ws* ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
+#path (replace system defaults)
+export PATH=/opt/local/libexec/gnubin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=$HOME/derek/toolchain/tmux-1.8-x86/bin:$PATH #newer than ubuntu 12.04
+export PATH=$HOME/derek/toolchain/cppcheck-1.60.1:$PATH
+export PATH=$HOME/derek/toolchain/qvim-20140109/bin:$PATH
+
+#path (NOT replace system defaults)
+export PATH=$PATH:$HOME/derek/scripts
+export PATH=$PATH:$HOME/derek/toolchain/cts/CtsRdTool/android-cts-4.1_r1-linux_x86-arm/android-cts/tools
+export PATH=$PATH:$HOME/derek/toolchain/arm-linux-androideabi-4.6/bin
+export PATH=$PATH:$HOME/derek/toolchain/test-apks
+export PATH=$PATH:$HOME/derek/toolchain/scs
+if is_buildfarm; then
+    export PATH=$PATH:$HOME/derek/toolchain/andreafrancia-trash-cli-a87fcf4/bin
+    export PYTHONPATH=$PYTHONPATH:$HOME/derek/toolchain/andreafrancia-trash-cli-a87fcf4/lib/python2.7/site-packages:$PYTHONPATH
+else
+    export PATH=$PATH:$HOME/derek/toolchain/adt-bundle-linux-x86_64-20130514/sdk/tools
+    export PATH=$PATH:$HOME/derek/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools
+fi
+
+#for macport
+export MANPATH=/opt/local/share/man:$MANPATH
+
+#for tmux
+export LD_LIBRARY_PATH=/home/ufoderek/derek/toolchain/libevent-2.0.21-stable/lib
+
+#ccache
+if is_buildfarm; then
+    export USE_CCACHE=1
+else
+    export USE_CCACHE=1
+#(ccache -M 100G &) > /dev/null 2>&1 #using subshell to hide background response
+fi
+export CCACHE_COMPRESS=0
+export CCACHE_DIR=~/wk/ccache
+
+#if ! is_buildfarm; then
+    #for ibus
+    #export GTK_IM_MODULE=ibus
+    #export XMODIFIERS=@im=ibus
+    #export QT_IM_MODULE=ibus-qt4
+    #export XIM_PROGRAM=/usr/bin/ibus-daemon
+#fi
+
+#bash parameters
+export HISTSIZE=1000000
+export HISTFILESIZE=1000000
+export EDITOR=vim
+export HISTCONTROL=ignoreboth
+
+#tell AOSP lunch don't touch my PROMPT_COMMAND
+export STAY_OFF_MY_LAWN=true
+
+#For interactive shell, load bashrc
+case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
+#but Kubuntu's .profile load bashrc too
+#if [ -r ~/.profile ]; then . ~/.profile; fi

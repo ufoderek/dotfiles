@@ -1,0 +1,9 @@
+set bell-style none
+$if mode=vi
+    set keymap vi-insert
+    "jj": vi-movement-mode
+$endif
+
+set completion-query-items 10000
+set completion-ignore-case On
+

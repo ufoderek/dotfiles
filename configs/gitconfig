@@ -1,0 +1,19 @@
+[user]
+	name = derek.liu
+    email = derek.liu@acer.com
+[color]
+    ui = auto
+    status = auto
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+[commit]
+	template = ~/.gittemplate
+[alias]
+    type = cat-file -t
+    dump = cat-file -p
+	co = checkout
+	br = branch
+	cp = cherry-pick
+	logf = log --pretty=fuller
+	wc = whatchanged -p

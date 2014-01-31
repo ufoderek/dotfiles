@@ -1,0 +1,176 @@
+"" set to passive, :SyntasticCheck to enable
+"" disable java checks for syntastic
+"let g:syntastic_mode_map = { 'mode': 'passive',
+"                           \ 'active_filetypes': ['foo123', 'bar321'],
+"                           \ 'passive_filetypes': ['java'] }
+"
+"let g:pathogen_disabled = ['syntastic']
+"function! ActivateSyntastic() abort
+"    set rtp+=~/.vim/bundle/syntastic
+"    runtime plugin/syntastic.vim
+"endfunction  
+"nnoremap <leader>k :call ActivateSyntastic()<cr>
+
+"" enable pathogen
+execute pathogen#infect()
+Helptags
+
+"" leader key
+let mapleader = ","
+let g:mapleader = ","
+
+"" basic configs
+set nocompatible
+"set scrolloff=10 "leave 5 lines when scrolling to top or bottom
+set showmode
+set showcmd "show virtual mode selection area
+set ttyfast "fast scroll in small files
+set nobackup
+set noswapfile
+set autochdir "set dir to current file
+set wrap "wrap lines
+"set linebreak "wraps lines at sepcial charactors
+set ruler "always show current position
+set hid "change buffer without saving buffer
+set nolazyredraw "don't redraw while executing macros 
+set showmatch "show matching bracets when text indicator is over them
+set ffs=unix,dos,mac
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500 "time out length
+set colorcolumn=80
+set cursorline "highlight current line
+set shell=/bin/bash
+"set guioptions-=T
+"set guioptions-=m
+"set guioptions+=r
+set backspace=indent,eol,start "let backspace delete over line breaks, tabs...
+set whichwrap+=<,>,h,l,[,] "let h and l keys to wrap when used at beginning or end of lines
+set mouse=a "support mouse in all modes so it won't copy line numbers
+set ttymouse=xterm "for tmux
+set shiftround "indent/outdent to nearest tabstops
+syntax on
+
+
+"" encoding
+if &encoding ==# 'latin1' && has('gui_running')
+  set encoding=utf-8
+endif
+
+"" viminfo
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+
+"" some useful remappings
+map Y y$
+inoremap jj <Esc>
+cnoremap jj <C-c>
+vnoremap q <Esc>
+vnoremap v <Esc>
+
+"" reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+"" return the cursor to the original location after .
+nmap . .`[
+
+"" goto next displayed line instead of physical line when long line is wrapped
+nnoremap j gj
+nnoremap k gk
+
+"" no arrow keys, sorry
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+
+"" keep search pattern at the center of screen
+nnoremap <silent> n nzz
+nnoremap <silent> Z Zzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+"" to make scrolling horizontally a bit more useful, try this: >
+set sidescroll=5
+"set listchars+=precedes:<,extends:> "merged below
+
+"" set listchars
+nnoremap <leader>l :set list listchars=tab:»·,trail:·,extends:»,precedes<,extends:><cr>
+
+"" clear keywords highlight and list chars
+nnoremap <leader><space> :noh<cr> :set list listchars=<cr>
+
+"" paste without re-indent
+set pastetoggle=<leader>p "toggle pastmode so you can paste without auto indent in putty
+
+"" search in case-insensitive
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+"" search
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+
+"" simple statusline
+"set statusline=
+"set statusline +=%=
+"set statusline +=%l\ /\ %L
+
+"" Powerline
+set nocompatible   "Disable vi-compatibility
+set laststatus=2   "Always show the statusline
+set encoding=utf-8 "Necessary to show Unicode glyphs
+set t_Co=256       "Explicitly tell Vim that the terminal supports 256 colors
+let g:Powerline_colorscheme = 'zenburn'
+
+"" using system clipboard
+if has("gui_win32")
+    set clipboard=unnamed "Windows
+else
+    set clipboard=unnamedplus "X Window
+endif
+
+"" set font for gvim and qvim
+if has("gui_running")
+    set guifont=Consolas\ 18
+    if has("gui_win32")
+        set guifont=Consolas:h14
+    endif
+endif
+
+"" colorscheme
+colorscheme zenburn
+"let g:zenburn_hight_Contrast=1
+set t_Co=256
+
+"" indent
+"set smartindent "DON'T set this manually
+"set cindent "is automatically set when c,c++ files are opened
+set autoindent
+filetype plugin on
+filetype indent on
+set cinoptions=t0
+set tabstop=4 "width of tab
+set shiftwidth=4 "width of shift
+set softtabstop=4 "width of tab, but insert spaces
+set expandtab "use space instead of tab by default
+
+"" gitgutter
+highlight clear SignColumn
+
+"" use real tab in makefiles
+autocmd FileType make setlocal noexpandtab
+

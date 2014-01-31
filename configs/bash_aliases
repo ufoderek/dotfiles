@@ -1,0 +1,230 @@
+function cu { if [ -z "$1" ]; then
+        #no argument, cd to git root, repo root or home 
+        if [ "${PWD}" != "$HOME" ]; then
+            cd ..
+            until [ -d .git -o -d .repo -o "${PWD}" == "$HOME" ]; do
+                cd ..
+            done
+        fi
+    else
+        #argument is integer, go to top directory
+        if [ $1 -eq $1 2> /dev/null ]; then
+            for (( i=$1; i>=1; i-- )) do
+                cd ..
+            done
+        #argument is string (directory name)
+        else
+            for ((;;)) do
+                cd ..
+                if [ "$1" == "${PWD##*/}" -o "${PWD}" == "$HOME" ]; then #shell parameter expansion
+                    break
+                fi
+            done
+        fi
+    fi
+}
+
+function is_buildfarm {
+    local HOSTNAME=`hostname`
+    if [[ "$HOSTNAME" == ws* ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
+function parse_git_branch {
+    if [ -d mediatek/.git ]; then
+        (cd mediatek && git branch --no-color 2> /dev/null | \
+        sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/" && cd ..)
+    else
+        git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
+    fi
+}
+
+#function parse_git_branch_simple {
+#    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ \1/"
+#}
+
+function gen_short_date {
+    short_date="`date +%H%M`"
+}
+
+function gen_short_pwd {
+    short_pwd="${PWD/#$HOME/~}"
+    local pwdmaxlen=$((${COLUMNS-80}/4))
+    [ ${#short_pwd} -gt $pwdmaxlen ] && short_pwd="...${short_pwd:3-$pwdmaxlen}"
+}
+
+#less
+alias less="less -mRXF"
+
+#fix for sudo auto completion and PATH
+alias sudo='sudo -E env PATH=$PATH'
+
+#diff
+alias diff='colordiff --exclude=\.git --exclude=\.repo --exclude=out'
+alias more='less'
+alias mkdir='mkdir -p -v'
+
+#safty
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'
+
+#error proof
+alias ..='cd ..'
+alias cd..='cd ..'
+
+#ls
+#alias ls="ls -hFvq --color=always --group-directories-first"
+
+#ls extra
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls -hF --color=always'
+alias lr='ls -R'                    # recursive ls
+alias lx='ll -BX'                   # sort by extension
+alias lz='ll -rS'                   # sort by size
+alias lt='ll -rt'                   # sort by date
+
+#go to working directory fast
+function wk {
+    if [ -n "$2" ]; then
+        cd ~/wk/$1.$2.git
+        #if [ -d mediatek ]; then
+        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
+        #fi
+    elif [ -n "$1" ]; then
+        cd ~/wk/$1
+        #if [ -d mediatek ]; then
+        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
+        #fi
+    else
+        cd ~/wk
+        ls
+    fi
+}
+
+function nwk {
+    if [ -n "$2" ]; then
+        cd ~/nwk/$1.$2.git
+        #if [ -d mediatek ]; then
+        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
+        #fi
+    elif [ -n "$1" ]; then
+        cd ~/nwk/$1
+        #if [ -d mediatek ]; then
+        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
+        #fi
+    else
+        cd ~/nwk
+        ls
+    fi
+}
+
+#grep
+alias grep='grep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=out --color=always --binary-files=without-match'
+alias fgrep='fgrep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=out --color=always --binary-files=without-match'
+alias egrep='egrep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=out --color=always --binary-files=without-match'
+
+#reload bashrc
+alias refresh='. ~/.bashrc'
+
+#fix vim color issue inside tmux
+alias tmux='tmux -2'
+alias td='tmuxd'
+
+#to lower process priority
+alias benice='nice -n19 ionice -c3'
+
+#top
+if is_buildfarm; then
+    alias top='top -u derek_liu'
+else
+    alias top='top -u ufoderek'
+fi
+
+
+#remote command
+if is_buildfarm; then
+    alias rcmd='rcmd.sh'
+fi
+
+#aliases for trash-cli
+alias trp='trash-put'
+alias trl='trash-list'
+alias tre='( trash-empty & ) > /dev/null 2>&1'
+alias trr='restore-trash'
+
+#ssh
+alias sshmatrix='ssh derek.liu@ad@matrix.acer.com.tw'
+alias pmatrix='ssh -ND 8080 derek.liu@ad@matrix.acer.com.tw'
+#alias public_pmatrix='ssh -ND my_ip:8080 derek.liu@ad@matrix.acer.com.tw'
+
+#uart
+#alias cumtk='sudo chown uucp /dev/ttyUSB0 && sudo /usr/bin/cu -l /dev/ttyUSB0 -s 921600 --parity=none --nostop -d'
+
+#using local ccache inside MTK BSP
+alias lccache="./prebuilts/misc/linux-x86/ccache/ccache"
+
+#update
+alias lupdate='sudo tsocks apt-get update && sudo tsocks apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+
+#misc functions
+function calc() { perl -wle'print eval join "", @ARGV' $@; }
+function ip() { ifconfig "${1:-eth0}"|sed -n '2s/.* inet addr:\([0-9.]*\) .*/\1/p'; }
+
+#git
+alias gs='git status'
+alias ga='git add'
+alias grh='git reset --hard'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias go='git checkout'
+alias gob='git checkout -b'
+alias gcp='git cherry-pick'
+alias gl='git log'
+alias glp='git log -p'
+
+#MTK
+alias mku='./mk -o=TARGET_BUILD_VARIANT=user'
+alias mkud='./mk -o=TARGET_BUILD_VARIANT=userdebug'
+alias mke='./mk -o=TARGET_BUILD_VARIANT=eng'
+alias mkee='./mk -o=TARGET_BUILD_VARIANT=eng acer92_we_jb9'
+alias mkdd='./mk -o=TARGET_BUILD_VARIANT=userdebug acer92_we_jb9'
+alias mkuu='./mk -o=TARGET_BUILD_VARIANT=user acer92_we_jb9'
+alias mkl='./mk listp'
+
+#from AOSP
+alias dfind='find . -name .repo -prune -o -name .git -prune -o -type f'
+
+function jgrep()
+{
+    find . -name .repo -prune -o -name .git -prune -o -type f -name "*\.java" -print0 | xargs -0 grep --color -n "$@"
+}
+
+function cgrep()
+{
+    find . -name .repo -prune -o -name .git -prune -o -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 grep --color -n "$@"
+}
+
+function resgrep()
+{
+    for dir in `find . -name .repo -prune -o -name .git -prune -o -name res -type d`; do find $dir -type f -name '*\.xml' -print0 | xargs -0 grep --color -n "$@"; done;
+}
+
+function mangrep()
+{
+    find . -name .repo -prune -o -name .git -prune -o -path ./out -prune -o -type f -name 'AndroidManifest.xml' -print0 | xargs -0 grep --color -n "$@"
+}
+
+function sepgrep()
+{
+    find . -name .repo -prune -o -name .git -prune -o -path ./out -prune -o -name sepolicy -type d -print0 | xargs -0 grep --color -n -r --exclude-dir=\.git "$@"
+}
+

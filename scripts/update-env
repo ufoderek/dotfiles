@@ -1,0 +1,53 @@
+## update
+
+CONF_PATH=$HOME/derek/configs
+
+rm -rf ~/.vim
+cp -r $CONF_PATH/vim ~/.vim
+
+rm -rf ~/.vimrc
+cp $CONF_PATH/vimrc ~/.vimrc
+
+rm -rf ~/.gitconfig
+cp $CONF_PATH/gitconfig ~/.gitconfig
+
+rm -rf ~/.gittemplate
+cp $CONF_PATH/gittemplate ~/.gittemplate
+
+rm -rf ~/.gitignore
+cp $CONF_PATH/gittemplate ~/.gitignore
+
+rm -rf ~/.git-completion.bash
+cp $CONF_PATH/git-completion.bash ~/.git-completion.bash
+
+rm -rf ~/.tmux.conf
+cp $CONF_PATH/tmux.conf ~/.tmux.conf
+
+rm -rf ~/.bashrc
+cp $CONF_PATH/bashrc ~/.bashrc
+
+rm -rf ~/.bash_aliases
+cp $CONF_PATH/bash_aliases ~/.bash_aliases
+
+rm -rf ~/.bash_profile
+cp $CONF_PATH/bash_profile ~/.bash_profile
+
+rm -rf ~/.inputrc
+cp $CONF_PATH/inputrc ~/.inputrc
+
+rm -rf ~/.xsession
+cp $CONF_PATH/xsession ~/.xsession
+
+
+## backup
+
+BK_PATH="$HOME/derek/conf-bk"
+BK_NAME="$BK_PATH/daily-bk-`date +%Y-%m%d-%H%M`.tar"
+
+pushd $HOME/derek > /dev/null 2>&1
+rm -f $BK_NAME
+rm -f $BK_NAME.bz2
+tar cf $BK_NAME ./scripts ./configs
+popd > /dev/null 2>&1
+bzip2 $BK_NAME
+
