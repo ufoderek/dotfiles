@@ -190,14 +190,15 @@ alias gob='git checkout -b'
 alias gcp='git cherry-pick'
 alias gl='git log'
 alias glp='git log -p'
+alias gwc='git whatchanged'
 
 #MTK
-alias mku='./mk -o=TARGET_BUILD_VARIANT=user'
-alias mkud='./mk -o=TARGET_BUILD_VARIANT=userdebug'
 alias mke='./mk -o=TARGET_BUILD_VARIANT=eng'
-alias mkee='./mk -o=TARGET_BUILD_VARIANT=eng acer92_we_jb9'
-alias mkdd='./mk -o=TARGET_BUILD_VARIANT=userdebug acer92_we_jb9'
-alias mkuu='./mk -o=TARGET_BUILD_VARIANT=user acer92_we_jb9'
+alias mkud='./mk -o=TARGET_BUILD_VARIANT=userdebug'
+alias mku='./mk -o=TARGET_BUILD_VARIANT=user'
+alias mkee='./mk -o=TARGET_BUILD_VARIANT=eng mt6592lte_phone_fhd'
+alias mkdd='./mk -o=TARGET_BUILD_VARIANT=userdebug mt6592lte_phone_fhd'
+alias mkuu='./mk -o=TARGET_BUILD_VARIANT=user mt6592lte_phone_fhd'
 alias mkl='./mk listp'
 
 #from AOSP

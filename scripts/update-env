@@ -15,7 +15,7 @@ rm -rf ~/.gittemplate
 cp $CONF_PATH/gittemplate ~/.gittemplate
 
 rm -rf ~/.gitignore
-cp $CONF_PATH/gittemplate ~/.gitignore
+cp $CONF_PATH/gitignore ~/.gitignore
 
 rm -rf ~/.git-completion.bash
 cp $CONF_PATH/git-completion.bash ~/.git-completion.bash

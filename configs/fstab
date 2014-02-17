@@ -5,15 +5,11 @@
 # that works even if disks are added and removed. See fstab(5).
 #
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda1 during installation
+#UUID=001b68ee-eb37-47e8-944c-6845716ab8b2 /                 ext4 errors=remount-ro 0       1
+#/dev/sda4                    none              swap    sw             0       0
+/dev/sda1                    /                  ext4 errors=remount-ro 0       1
+/dev/sda3                    /home/ufoderek/wk  ext4 defaults          0       2
+10.36.164.156:/var/local_ref /opt/mickey_mirror nfs  defaults          0       0
 
-# / was on /dev/sda7 during installation
-/dev/sda5 /                 ext4    errors=remount-ro           0       1
-/dev/sda7 /home/ufoderek/wk ext4    defaults                    0       2
-/dev/sda1 /mnt/seven        ntfs    defaults,umask=007,gid=46   0       0
-/dev/sda2 /mnt/data         ntfs    defaults,umask=007,gid=46   0       0
-/dev/sdb1 /mnt/ph           ntfs    defaults,umask=007,gid=46   0       0
-
-# swap was on /dev/sda9 during installation
-/dev/sda8 none            swap    sw              0       0
-
-//10.36.169.70/derek_liu                 /mnt/nas   cifs credentials=/home/ufoderek/.smbcredentials,iocharset=utf8,uid=1000,gid=1000,dir_mode=0644,file_mode=0644,_netdev 0 0
+//10.36.169.15/derek_liu     /mnt/nas           cifs credentials=/home/ufoderek/.smbcredentials,iocharset=utf8,uid=1000,gid=1000,dir_mode=0644,file_mode=0644,_netdev                        0       0
