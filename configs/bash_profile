@@ -8,6 +8,11 @@ function is_buildfarm {
 }
 
 #path (replace system defaults)
+#mac
+export PATH=/opt/local/bin:$PATH
+export PATH=/opt/local/sbin:$PATH
+export PATH=/opt/local/libexec/gnubin:$PATH
+#linux
 export PATH=$HOME/derek/toolchain/tmux-1.8-x86/bin:$PATH #newer than ubuntu 12.04
 export PATH=$HOME/derek/toolchain/cppcheck-1.60.1:$PATH
 export PATH=$HOME/derek/toolchain/qvim-20140109/bin:$PATH
@@ -26,6 +31,9 @@ else
     export PATH=$PATH:$HOME/derek/toolchain/adt-bundle-linux-x86_64-20130514/sdk/tools
     export PATH=$PATH:$HOME/derek/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools
 fi
+
+#for macport
+export MANPATH=/opt/local/share/man:$MANPATH
 
 #for tmux
 export LD_LIBRARY_PATH=/home/ufoderek/derek/toolchain/libevent-2.0.21-stable/lib
