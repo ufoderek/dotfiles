@@ -133,7 +133,7 @@ alias refresh='. ~/.bashrc'
 
 #fix vim color issue inside tmux
 alias tmux='tmux -2'
-alias td='tmuxd'
+alias td='tmuxd.sh'
 
 #to lower process priority
 alias benice='nice -n19 ionice -c3'
