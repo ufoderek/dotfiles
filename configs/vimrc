@@ -1,19 +1,33 @@
-"" set to passive, :SyntasticCheck to enable
-"" disable java checks for syntastic
-"let g:syntastic_mode_map = { 'mode': 'passive',
-"                           \ 'active_filetypes': ['foo123', 'bar321'],
-"                           \ 'passive_filetypes': ['java'] }
-"
-"let g:pathogen_disabled = ['syntastic']
-"function! ActivateSyntastic() abort
-"    set rtp+=~/.vim/bundle/syntastic
-"    runtime plugin/syntastic.vim
-"endfunction  
-"nnoremap <leader>k :call ActivateSyntastic()<cr>
+"" enable vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'vim-scripts/argtextobj.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'wellle/targets.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'haya14busa/vim-easyoperator-line'
+Bundle 'haya14busa/vim-easyoperator-phrase'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'tpope/vim-surround'
+Bundle 'jnurmine/Zenburn'
+"Bundle 'FuzzyFinder'
+"Bundle 'git://git.wincent.com/command-t.git'
+"Bundle 'file:///Users/gmarik/path/to/plugin'
+filetype plugin indent on
+let g:vundle_default_git_proto='git'
 
-"" enable pathogen
-execute pathogen#infect()
-Helptags
+let first_time=expand('~/.vim/first_time')
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" For the first time starting vim, skip following to let vundle installed
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !filereadable(first_time)
+
+
 
 "" leader key
 let mapleader = ","
@@ -81,16 +95,6 @@ nmap . .`[
 nnoremap j gj
 nnoremap k gk
 
-"" no arrow keys, sorry
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-
 "" keep search pattern at the center of screen
 nnoremap <silent> n nzz
 nnoremap <silent> Z Zzz
@@ -100,7 +104,6 @@ nnoremap <silent> g* g*zz
 
 "" to make scrolling horizontally a bit more useful, try this: >
 set sidescroll=5
-"set listchars+=precedes:<,extends:> "merged below
 
 "" set listchars
 nnoremap <leader>l :set list listchars=tab:»·,trail:·,extends:»,precedes<,extends:><cr>
@@ -116,6 +119,7 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap ? ?\v
 vnoremap ? ?\v
+
 "" search
 set ignorecase
 set smartcase
@@ -123,11 +127,6 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
-
-"" simple statusline
-"set statusline=
-"set statusline +=%=
-"set statusline +=%l\ /\ %L
 
 "" Powerline
 set nocompatible   "Disable vi-compatibility
@@ -174,3 +173,13 @@ highlight clear SignColumn
 "" use real tab in makefiles
 autocmd FileType make setlocal noexpandtab
 
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" End of first time
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+else
+    :BundleInstall
+    silent !rm ~/.vim/first_time
+    :q!
+endif
