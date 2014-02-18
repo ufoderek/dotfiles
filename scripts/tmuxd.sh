@@ -4,7 +4,11 @@ if [ -n "${TMUX}" ]; then
 fi
 
 # the name of your primary tmux session
-SESSION=tmux_session_derek
+if [ -n "$1" ]; then
+    SESSION=$1
+else
+    SESSION=tmux_session_derek
+fi
 
 # if the session is already running, just attach to it.
 tmux has-session -t $SESSION
