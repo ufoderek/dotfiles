@@ -1,6 +1,6 @@
 ## update
 
-CONF_PATH=$HOME/derek/configs
+CONF_PATH=$HOME/dotfiles/configs
 
 rm -rf ~/.vim
 cp -r $CONF_PATH/vim ~/.vim
@@ -41,13 +41,13 @@ cp $CONF_PATH/xsession ~/.xsession
 
 ## backup
 
-BK_PATH="$HOME/derek/conf-bk"
-BK_NAME="$BK_PATH/daily-bk-`date +%Y-%m%d-%H%M`.tar"
+#BK_PATH="$HOME/derek/conf-bk"
+#BK_NAME="$BK_PATH/daily-bk-`date +%Y-%m%d-%H%M`.tar"
 
-pushd $HOME/derek > /dev/null 2>&1
-rm -f $BK_NAME
-rm -f $BK_NAME.bz2
-tar cf $BK_NAME ./scripts ./configs
-popd > /dev/null 2>&1
-bzip2 $BK_NAME
+#pushd $HOME/derek > /dev/null 2>&1
+#rm -f $BK_NAME
+#rm -f $BK_NAME.bz2
+#tar cf $BK_NAME ./scripts ./configs
+#popd > /dev/null 2>&1
+#bzip2 $BK_NAME
 

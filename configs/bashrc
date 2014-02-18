@@ -11,8 +11,8 @@ shopt -s histappend
 shopt -s checkwinsize
 
 #i am lazy
-export c=$HOME/derek/configs
-export s=$HOME/derek/scripts
+export c=$HOME/dotfiles/configs
+export s=$HOME/dotfiles/scripts
 
 #for tmux
 case "$TERM" in
