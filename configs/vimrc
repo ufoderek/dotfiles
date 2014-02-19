@@ -1,4 +1,6 @@
-"" enable vundle
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Vundle configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -19,11 +21,12 @@ Bundle 'jnurmine/Zenburn'
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 filetype plugin indent on
 let g:vundle_default_git_proto='git'
-
 let first_time=expand('~/.vim/first_time')
 
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" For the first time starting vim, skip following to let vundle installed
+"" Normal initialization
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !filereadable(first_time)
 
@@ -128,13 +131,6 @@ set incsearch
 set showmatch
 set hlsearch
 
-"" Powerline
-set nocompatible   "Disable vi-compatibility
-set laststatus=2   "Always show the statusline
-set encoding=utf-8 "Necessary to show Unicode glyphs
-set t_Co=256       "Explicitly tell Vim that the terminal supports 256 colors
-let g:Powerline_colorscheme = 'zenburn'
-
 "" using system clipboard
 if has("gui_win32")
     set clipboard=unnamed "Windows
@@ -176,10 +172,19 @@ autocmd FileType make setlocal noexpandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" End of first time
+"" End of normal initialization
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Beginning of Vundle installation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 else
     :BundleInstall
     silent !rm ~/.vim/first_time
     :q!
 endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" End of Vundle installation
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
