@@ -7,6 +7,24 @@ function is_buildfarm {
     fi
 }
 
+function is_osx {
+    local uname_str=`uname`
+    if [[ "$uname_str" == Darwin ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
+function is_linux {
+    local uname_str=`uname`
+    if [[ "$uname_str" == Linux ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
 #path (replace system defaults)
 #mac
 export PATH=/opt/local/bin:$PATH
