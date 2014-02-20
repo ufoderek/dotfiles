@@ -1,0 +1,199 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Lazy Mickey</title>
+
+<style type="text/css">
+    form {
+        margin: 0 auto;
+    }
+</style>
+
+<script type="text/javascript">
+    function gen_item(sub_query, value)
+    {
+        if(sub_query == "") {
+            return value;
+        }
+        else {
+            if(value == "empty") {
+                return "";
+            }
+            else {
+                return "+AND+" + value;
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function reselect()
+    {
+        var br_length = document.forms[0].br.length;
+        var st_length = document.forms[0].st.length;
+        var owner_length = document.forms[0].owner.length;
+        var rev_length = document.forms[0].rev.length;
+        var prj_length = document.forms[0].prj.length;
+
+        if(document.forms[0].br[0].checked) { //select empty
+            for(var br_i = 1; br_i < br_length; br_i++) {
+                document.forms[0].br[br_i].checked = false;
+            }
+        }
+        if(document.forms[0].st[0].checked) { //select empty
+            for(var st_i = 1; st_i < st_length; st_i++) {
+                document.forms[0].st[st_i].checked = false;
+            }
+        }
+        if(document.forms[0].owner[0].checked) { //select empty
+            for(var owner_i = 1; owner_i < owner_length; owner_i++) {
+                document.forms[0].owner[owner_i].checked = false;
+            }
+        }
+        if(document.forms[0].owner[1].checked) { //select Kernel Team
+            document.forms[0].owner[0].checked = false;
+            document.forms[0].owner[1].checked = false;
+            for(var owner_i = 2; owner_i < owner_length; owner_i++) {
+                document.forms[0].owner[owner_i].checked = true;
+            }
+        }
+        if(document.forms[0].rev[0].checked) { //select empty
+            for(var rev_i = 1; rev_i < rev_length; rev_i++) {
+                document.forms[0].rev[rev_i].checked = false;
+            }
+        }
+        if(document.forms[0].prj[0].checked) { //select empty
+            for(var prj_i = 1; prj_i < prj_length; prj_i++) {
+                document.forms[0].prj[prj_i].checked = false;
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function do_submit()
+    {
+        var prefix = "http://mickey.acer.com.tw:8080/#/q/";
+        var query = "";
+
+        var br_length = document.forms[0].br.length;
+        var st_length = document.forms[0].st.length;
+        var owner_length = document.forms[0].owner.length;
+        var rev_length = document.forms[0].rev.length;
+        var prj_length = document.forms[0].prj.length;
+
+        for(var br_i = 0; br_i < br_length; br_i++) {
+            for(var st_i = 0; st_i < st_length; st_i++) {
+                for(var owner_i = 0; owner_i < owner_length; owner_i++) {
+                    for(var rev_i = 0; rev_i < rev_length; rev_i++) {
+                        for(var prj_i = 0; prj_i < prj_length; prj_i++) {
+                            if(document.forms[0].br[br_i].checked &&
+                               document.forms[0].st[st_i].checked &&
+                               document.forms[0].rev[rev_i].checked &&
+                               document.forms[0].owner[owner_i].checked &&
+                               document.forms[0].prj[prj_i].checked)
+                            {
+                                var sub_query = "";
+                                //dirty
+                                sub_query += gen_item(sub_query, document.forms[0].br[br_i].value);
+                                sub_query += gen_item(sub_query, document.forms[0].st[st_i].value);
+                                sub_query += gen_item(sub_query, document.forms[0].rev[rev_i].value);
+                                sub_query += gen_item(sub_query, document.forms[0].owner[owner_i].value);
+                                sub_query += gen_item(sub_query, document.forms[0].prj[prj_i].value);
+                                //message
+                                if(document.forms[0].msg.value != "") {
+                                    sub_query += gen_item(sub_query, "message:\""+document.forms[0].msg.value+"\"");
+                                }
+                                //end
+                                if(query == "") {
+                                    query = sub_query;
+                                }
+                                else {
+                                    query = query + "+OR+" + sub_query;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        window.location.href = prefix + query + ",n,z";
+        return false;
+    }
+</script>
+
+</head>
+<body>
+<table align=center>
+<form action="" method="post" onsubmit="return do_submit()">
+<tr>
+    <td width=200></td>
+    <td width=200></td>
+<tr>
+    <td valign=top><p> </p><p>Branches:</p>
+        <input type="checkbox" name="br" value="empty" onclick="reselect()"         > *                <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-mt8135"              > acer/jb-mt8135   <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-astro"               > acer/jb-astro    <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-astro-3g"            > acer/jb-astro-3g <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-uran"                > acer/jb-uran     <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt8389"                  > mtk/mt-8389      <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt8389-3g"               > mtk/mt-8389-3g   <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt8135"                  > mtk/mt-8135      <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt8135-3g"               > mtk/mt-8135-3g   <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt6589"                  > mtk/mt-6589      <br>
+    </td>
+    <td valign=top><p> </p><p>Status:</p>
+        <input type="checkbox" name="st" value="empty" onclick="reselect()"   > *          <br>
+        <input type="checkbox" name="st" value="status:open"                  > open       <br>
+        <input type="checkbox" name="st" value="status:merged"                > merged     <br>
+        <input type="checkbox" name="st" value="status:abandoned"             > abandoned  <br>
+    </td>
+</tr>
+<tr>
+    <td valign=top><p> </p><p>Owners:</p>
+        <input type="checkbox" name="owner" value="empty" onclick="reselect()"      > *       <br>
+        <input type="checkbox" name="owner" value="empty" onclick="reselect()"      > Kernel Team<br>
+        <input type="checkbox" name="owner" value="owner:derek.liu"                 > Derek   <br>
+        <input type="checkbox" name="owner" value="owner:chady.hsieh"               > Chady   <br>
+        <input type="checkbox" name="owner" value="owner:jungchu.hsu"               > Jungchu <br>
+        <input type="checkbox" name="owner" value="owner:peng.chang"                > Peng    <br>
+        <input type="checkbox" name="owner" value="owner:sammi.lee"                 > Sammi   <br>
+        <input type="checkbox" name="owner" value="owner:laider.lai"                > Laider  <br>
+        <input type="checkbox" name="owner" value="owner:allan.yan"                 > Allan   <br>
+        <input type="checkbox" name="owner" value="owner:jj.ding"                   > JJ      <br>
+    </td>
+    <td valign=top><p> </p><p>Projects:</p>
+        <input type="checkbox" name="prj" value="empty" checked="1" onclick="reselect()"    > *             <br>
+        <input type="checkbox" name="prj" value="project:mtk/platform/mediatek"             > mediatek      <br>
+        <input type="checkbox" name="prj" value="project:platform/build"                    > build         <br>
+        <input type="checkbox" name="prj" value="project:kernel/mtk"                        > kernel        <br>
+        <input type="checkbox" name="prj" value="project:device/acer/common"                > acer/common   <br>
+        <input type="checkbox" name="prj" value="project:system/core"                       > system/core   <br>
+        <input type="checkbox" name="prj" value="project:kernel/lk"                         > lk            <br>
+    </td>
+</tr>
+<tr>
+    <td valign=top><p> </p><p>Code Review:</p>
+        <input type="checkbox" name="rev" value="empty" onclick="reselect()" checked="1"> *                <br>
+        <input type="checkbox" name="rev" value="label:CodeReview>=1"                   > Review>=1        <br>
+        <input type="checkbox" name="rev" value="label:CodeReview<=-1"                  > Review<=-1       <br>
+        <input type="checkbox" name="rev" value="-label:CodeReview>=1"                  > excl. Review>=1  <br>
+        <input type="checkbox" name="rev" value="-label:CodeReview<=-1"                 > excl. Review<=-1 <br>
+    </td>
+    <td valign=top><p> </p><p>Message:</p>
+        <input type="text" name="msg" value="">
+    </td>
+</tr>
+<tr>
+    <td valign=bottom><p></p><p></p>
+        <input type="submit" value="Submit">
+    </td>
+    <td>
+    </tr>
+</tr>
+</form>
+</table>
+</body>
+</html>
