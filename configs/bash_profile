@@ -33,7 +33,7 @@ export PATH=/opt/local/libexec/gnubin:$PATH
 #linux
 export PATH=$HOME/toolchain/tmux-1.8-x86/bin:$PATH #newer than ubuntu 12.04
 export PATH=$HOME/toolchain/cppcheck-1.60.1:$PATH
-export PATH=$HOME/toolchain/qvim-20140109/bin:$PATH
+export PATH=$HOME/toolchain/qvim-20140220/bin:$PATH
 
 #path (NOT replace system defaults)
 export PATH=$PATH:$HOME/dotfiles/scripts
