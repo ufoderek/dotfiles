@@ -1,5 +1,5 @@
 if [ -z "$2" ]; then
-    echo "insert-lk.sh lk.bin update.zip"
+    echo "`basename $0` lk.bin update.zip"
 else
     cp "$2" "lk_$2"
     unzip -p "lk_$2" META-INF/com/google/android/updater-script > updater-script
