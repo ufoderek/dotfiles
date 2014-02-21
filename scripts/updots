@@ -35,3 +35,6 @@ cp $CONF_PATH/inputrc ~/.inputrc
 rm -rf ~/.xsession
 cp $CONF_PATH/xsession ~/.xsession
 
+rm -rf ~/.vimrc
+cp $CONF_PATH/vimrc ~/.vimrc
+
