@@ -109,7 +109,7 @@ nnoremap <silent> g* g*zz
 set sidescroll=5
 
 "" set listchars
-nnoremap <leader>l :set list listchars=tab:»·,trail:·,extends:»,precedes<,extends:><cr>
+nnoremap <leader>l :set list listchars=tab:»·,trail:·,extends:»,precedes:<,extends:>,eol:$<cr>
 
 "" clear keywords highlight and list chars
 nnoremap <leader><space> :noh<cr> :set list listchars=<cr>
