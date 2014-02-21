@@ -1,4 +1,6 @@
-#import aliases and functions
+if [ -f $HOME/.bash_funcs ]; then
+    . ~/.bash_funcs
+fi
 if [ -f $HOME/.bash_aliases ]; then
     . ~/.bash_aliases
 fi

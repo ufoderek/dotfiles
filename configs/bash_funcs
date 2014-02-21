@@ -1,0 +1,113 @@
+function cu { if [ -z "$1" ]; then
+        #no argument, cd to git root, repo root or home 
+        if [ "${PWD}" != "$HOME" ]; then
+            cd ..
+            until [ -d .git -o -d .repo -o "${PWD}" == "$HOME" ]; do
+                cd ..
+            done
+        fi
+    else
+        #argument is integer, go to top directory
+        if [ $1 -eq $1 2> /dev/null ]; then
+            for (( i=$1; i>=1; i-- )) do
+                cd ..
+            done
+        #argument is string (directory name)
+        else
+            for ((;;)) do
+                cd ..
+                if [ "$1" == "${PWD##*/}" -o "${PWD}" == "$HOME" ]; then #shell parameter expansion
+                    break
+                fi
+            done
+        fi
+    fi
+}
+
+function is_buildfarm {
+    local HOSTNAME=`hostname`
+    if [[ "$HOSTNAME" == ws* ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
+function is_osx {
+    local uname_str=`uname`
+    if [[ "$uname_str" == Darwin ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
+function is_linux {
+    local uname_str=`uname`
+    if [[ "$uname_str" == Linux ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
+function parse_git_branch {
+    if [ -d mediatek/.git ]; then
+        (cd mediatek && git branch --no-color 2> /dev/null | \
+        sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/" && cd ..)
+    else
+        git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
+    fi
+}
+
+#function parse_git_branch_simple {
+#    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ \1/"
+#}
+
+function gen_short_date {
+    short_date="`date +%H%M`"
+}
+
+function gen_short_pwd {
+    short_pwd="${PWD/#$HOME/~}"
+    local pwdmaxlen=$((${COLUMNS-80}/4))
+    [ ${#short_pwd} -gt $pwdmaxlen ] && short_pwd="...${short_pwd:3-$pwdmaxlen}"
+}
+
+function get_ip() {
+    ifconfig "${1:-eth0}" | sed -n '2s/.* inet addr:\([0-9.]*\) .*/\1/p';
+}
+
+function wk {
+    if [ -n "$2" ]; then
+        cd ~/wk/$1.$2.git
+        #if [ -d mediatek ]; then
+        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
+        #fi
+    elif [ -n "$1" ]; then
+        cd ~/wk/$1
+        #if [ -d mediatek ]; then
+        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
+        #fi
+    else
+        cd ~/wk
+        ls
+    fi
+}
+
+function nwk {
+    if [ -n "$2" ]; then
+        cd ~/nwk/$1.$2.git
+        #if [ -d mediatek ]; then
+        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
+        #fi
+    elif [ -n "$1" ]; then
+        cd ~/nwk/$1
+        #if [ -d mediatek ]; then
+        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
+        #fi
+    else
+        cd ~/nwk
+        ls
+    fi
+}

@@ -1,71 +1,52 @@
-function is_buildfarm {
-    local HOSTNAME=`hostname`
-    if [[ "$HOSTNAME" == ws* ]]; then
-        return 0 #success
-    else
-        return 1
-    fi
-}
+if [ -f $HOME/.bash_funcs ]; then
+    . ~/.bash_funcs
+fi
 
-function is_osx {
-    local uname_str=`uname`
-    if [[ "$uname_str" == Darwin ]]; then
-        return 0 #success
-    else
-        return 1
-    fi
-}
+# path (replace system defaults)
+if is_osx; then
+    export PATH=/opt/local/bin:$PATH
+    export PATH=/opt/local/sbin:$PATH
+    export PATH=/opt/local/libexec/gnubin:$PATH
+else # linux
+    export PATH=$HOME/toolchain/cppcheck-1.60.1:$PATH
+    export PATH=$HOME/toolchain/qvim-20140220/bin:$PATH
+fi
 
-function is_linux {
-    local uname_str=`uname`
-    if [[ "$uname_str" == Linux ]]; then
-        return 0 #success
-    else
-        return 1
-    fi
-}
-
-#path (replace system defaults)
-#mac
-export PATH=/opt/local/bin:$PATH
-export PATH=/opt/local/sbin:$PATH
-export PATH=/opt/local/libexec/gnubin:$PATH
-#linux
-export PATH=$HOME/toolchain/tmux-1.8-x86/bin:$PATH #newer than ubuntu 12.04
-export PATH=$HOME/toolchain/cppcheck-1.60.1:$PATH
-export PATH=$HOME/toolchain/qvim-20140220/bin:$PATH
-
-#path (NOT replace system defaults)
+# path
 export PATH=$PATH:$HOME/dotfiles/scripts
-export PATH=$PATH:$HOME/wk/tools/cts/acer/android-cts-4.2_r4-linux_x86-arm/android-cts/tools
-export PATH=$PATH:$HOME/wk/tools/cts/android-cts/tools
 export PATH=$PATH:$HOME/toolchain/arm-linux-androideabi-4.6/bin
-export PATH=$PATH:$HOME/toolchain/test-apks
-export PATH=$PATH:$HOME/toolchain/scs
-if is_buildfarm; then
-    export PATH=$PATH:$HOME/toolchain/andreafrancia-trash-cli-a87fcf4/bin
-    export PYTHONPATH=$PYTHONPATH:$HOME/toolchain/andreafrancia-trash-cli-a87fcf4/lib/python2.7/site-packages:$PYTHONPATH
-else
+if ! is_buildfarm; then
+    export PATH=$PATH:$HOME/toolchain/scs
+    export PATH=$PATH:$HOME/toolchain/test-apks
+    export PATH=$PATH:$HOME/toolchain/cts/acer/android-cts-4.2_r4-linux_x86-arm/android-cts/tools
+    export PATH=$PATH:$HOME/toolchain/cts/android-cts/tools
     export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/tools
     export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools
+else
+    # tmux
+    export LD_LIBRARY_PATH=$HOME/toolchain/libevent-2.0.21-stable/lib
+    export PATH=$HOME/toolchain/tmux-1.8-x86/bin:$PATH #newer than ubuntu 12.04
+    # trash-cli
+    export PATH=$PATH:$HOME/toolchain/andreafrancia-trash-cli-a87fcf4/bin
+    export PYTHONPATH=$PYTHONPATH:$HOME/toolchain/andreafrancia-trash-cli-a87fcf4/lib/python2.7/site-packages:$PYTHONPATH
 fi
 
-#for macport
-export MANPATH=/opt/local/share/man:$MANPATH
+if is_osx; then
+    # macport
+    export MANPATH=/opt/local/share/man:$MANPATH
+fi
 
-#for tmux
-export LD_LIBRARY_PATH=$HOME/toolchain/libevent-2.0.21-stable/lib
-
-#ccache
+# ccache
+export CCACHE_COMPRESS=0
+export CCACHE_DIR=~/wk/ccache
 if is_buildfarm; then
     export USE_CCACHE=1
 else
     export USE_CCACHE=1
-#(ccache -M 100G &) > /dev/null 2>&1 #using subshell to hide background response
+    #(ccache -M 100G &) > /dev/null 2>&1 #using subshell to hide background response
 fi
-export CCACHE_COMPRESS=0
-export CCACHE_DIR=~/wk/ccache
 
+# ibus
 #if ! is_buildfarm; then
     #for ibus
     #export GTK_IM_MODULE=ibus
@@ -74,16 +55,14 @@ export CCACHE_DIR=~/wk/ccache
     #export XIM_PROGRAM=/usr/bin/ibus-daemon
 #fi
 
-#bash parameters
+# bash parameters
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 export EDITOR=vim
 export HISTCONTROL=ignoreboth
 
-#tell AOSP lunch don't touch my PROMPT_COMMAND
+# tell AOSP lunch not to touch my PROMPT_COMMAND
 export STAY_OFF_MY_LAWN=true
 
-#For interactive shell, load bashrc
+# load bashrc for interactive shell
 case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
-#but Kubuntu's .profile load bashrc too
-#if [ -r ~/.profile ]; then . ~/.profile; fi

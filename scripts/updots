@@ -26,6 +26,9 @@ cp $CONF_PATH/bash_aliases ~/.bash_aliases
 rm -rf ~/.bash_profile
 cp $CONF_PATH/bash_profile ~/.bash_profile
 
+rm -rf ~/.bash_funcs
+cp $CONF_PATH/bash_funcs ~/.bash_funcs
+
 rm -rf ~/.inputrc
 cp $CONF_PATH/inputrc ~/.inputrc
 
