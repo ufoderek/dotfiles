@@ -22,6 +22,8 @@ if ! is_buildfarm; then
     export PATH=$PATH:$HOME/toolchain/cts/android-cts/tools
     export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/tools
     export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools
+    export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools/systrace
+    export PATH=$PATH:$HOME/toolchain/android-ndk-r9c/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86_64/bin/
 else
     # tmux
     export LD_LIBRARY_PATH=$HOME/toolchain/libevent-2.0.21-stable/lib
