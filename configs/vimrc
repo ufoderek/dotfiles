@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/argtextobj.vim'
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 Bundle 'wellle/targets.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'haya14busa/vim-easyoperator-line'
