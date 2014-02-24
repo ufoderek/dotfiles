@@ -20,6 +20,7 @@ if ! is_buildfarm; then
     export PATH=$PATH:$HOME/toolchain/test-apks
     export PATH=$PATH:$HOME/toolchain/cts/acer/android-cts-4.2_r4-linux_x86-arm/android-cts/tools
     export PATH=$PATH:$HOME/toolchain/cts/android-cts/tools
+    export PATH=$PATH:$HOME/toolchain/arm-eabi-4.6/bin
     export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/tools
     export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools
     export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools/systrace
