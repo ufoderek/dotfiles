@@ -95,8 +95,7 @@ alias gob='git checkout -b'
 alias gcp='git cherry-pick'
 alias gl='git log'
 alias glp='git log -p'
-alias glo='git log --oneline'
-alias glo5='git log --oneline -5'
+alias glo='git log --oneline -10'
 alias gwc='git whatchanged'
 
 # MTK
