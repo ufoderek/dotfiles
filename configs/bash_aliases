@@ -78,7 +78,11 @@ alias pub_pmatrix='ssh -ND `my_ip`:8080 derek.liu@ad@matrix.acer.com.tw'
 alias lccache="./prebuilts/misc/linux-x86/ccache/ccache"
 
 # apt shortcut
-alias lupdate='sudo tsocks apt-get update && sudo tsocks apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+if is_osx; then
+    alias lupdate='sudo port selfupdate && sudo port update outdated'
+else
+    alias lupdate='sudo tsocks apt-get update && sudo tsocks apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+fi
 
 # git
 alias gs='git status'
