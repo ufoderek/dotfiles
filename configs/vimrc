@@ -6,8 +6,9 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+Bundle 'jnurmine/Zenburn'
 Bundle 'vim-scripts/argtextobj.vim'
-"Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'wellle/targets.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'haya14busa/vim-easyoperator-line'
@@ -15,7 +16,7 @@ Bundle 'haya14busa/vim-easyoperator-phrase'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'tpope/vim-surround'
-Bundle 'jnurmine/Zenburn'
+Bundle 'bling/vim-airline'
 "Bundle 'FuzzyFinder'
 "Bundle 'git://git.wincent.com/command-t.git'
 "Bundle 'file:///Users/gmarik/path/to/plugin'
@@ -49,7 +50,7 @@ set wrap "wrap lines
 "set linebreak "wraps lines at sepcial charactors
 set ruler "always show current position
 set hid "change buffer without saving buffer
-set nolazyredraw "don't redraw while executing macros 
+set nolazyredraw "don't redraw while executing macros
 set showmatch "show matching bracets when text indicator is over them
 set ffs=unix,dos,mac
 set noerrorbells
@@ -150,6 +151,9 @@ endif
 colorscheme zenburn
 "let g:zenburn_hight_Contrast=1
 set t_Co=256
+
+"" for vim-airline
+set laststatus=2 "always show status line
 
 "" indent
 "set smartindent "DON'T set this manually
