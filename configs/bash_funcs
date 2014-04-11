@@ -95,3 +95,25 @@ function nwk {
         ls
     fi
 }
+
+function wp {
+    if [ -n "$1" ]; then
+        if [ -d ~/wk/tmp/$1 ]; then
+            cd ~/wk/tmp/$1
+        else
+            cd ~/wk/tmp
+        fi
+        ls
+    fi
+}
+
+function nwp {
+    if [ -n "$1" ]; then
+        if [ -d ~/nwk/tmp/$1 ]; then
+            cd ~/nwk/tmp/$1
+        else
+            cd ~/nwk/tmp
+        fi
+        ls
+    fi
+}
