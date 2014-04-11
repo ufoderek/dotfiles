@@ -60,10 +60,6 @@ function parse_git_branch {
     fi
 }
 
-#function parse_git_branch_simple {
-#    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ \1/"
-#}
-
 function gen_short_date {
     short_date="`date +%H%M`"
 }
@@ -81,14 +77,8 @@ function get_ip() {
 function wk {
     if [ -n "$2" ]; then
         cd ~/wk/$1.$2.git
-        #if [ -d mediatek ]; then
-        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
-        #fi
     elif [ -n "$1" ]; then
         cd ~/wk/$1
-        #if [ -d mediatek ]; then
-        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
-        #fi
     else
         cd ~/wk
         ls
@@ -98,14 +88,8 @@ function wk {
 function nwk {
     if [ -n "$2" ]; then
         cd ~/nwk/$1.$2.git
-        #if [ -d mediatek ]; then
-        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
-        #fi
     elif [ -n "$1" ]; then
         cd ~/nwk/$1
-        #if [ -d mediatek ]; then
-        #    (cd mediatek && echo -n "mediatek branch:" && parse_git_branch_simple && cd ..)
-        #fi
     else
         cd ~/nwk
         ls
