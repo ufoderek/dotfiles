@@ -9,7 +9,14 @@ alias less="less -mRXF"
 alias sudo='sudo -E env PATH=$PATH'
 
 # diff
-alias diff='colordiff --exclude=\.git --exclude=\.repo --exclude=out'
+# alias diff='colordiff --exclude=\.git --exclude=\.repo --exclude=out'
+if [ -r `which colordiff` ]; then
+    alias diff='colordiff -r'
+    alias diff2='colordiff -r --suppress-common-lines -y'
+else
+    alias diff='diff-r '
+    alias diff2='diff -r --suppress-common-lines -y'
+fi
 alias more='less'
 alias mkdir='mkdir -p -v'
 
