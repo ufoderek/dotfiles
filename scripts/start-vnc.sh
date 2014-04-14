@@ -1,1 +1,1 @@
-tightvncserver -geometry 1440x800 -depth 16 -nolisten tcp :1
+tightvncserver -geometry 1440x800 -nolisten tcp :1
