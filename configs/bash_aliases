@@ -53,7 +53,7 @@ alias tk='tmuxk.sh'
 alias tl='tmuxl.sh'
 
 # to lower process priority
-alias benice='nice -n19 ionice -c3 nocache'
+alias benice='nice -n19 ionice -c3'
 
 # top
 if is_buildfarm; then
