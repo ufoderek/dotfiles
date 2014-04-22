@@ -98,22 +98,40 @@ function nwk {
 
 function wp {
     if [ -n "$1" ]; then
-        if [ -d ~/wk/tmp/$1 ]; then
-            cd ~/wk/tmp/$1
-        else
-            cd ~/wk/tmp
+        if [ ! -d ~/wk/tmp/$1 ]; then
+            mkdir ~/wk/tmp/$1
         fi
-        ls
+        cd ~/wk/tmp/$1
+    else
+        cd ~/wk/tmp
+    fi
+    ls
+}
+
+function wd {
+    if [ -n "$1" ]; then
+        if [ -d ~/wk/tmp/$1 ]; then
+            trash-put ~/wk/tmp/$1
+        fi
     fi
 }
 
 function nwp {
     if [ -n "$1" ]; then
-        if [ -d ~/nwk/tmp/$1 ]; then
+        if [ ! -d ~/nwk/tmp/$1 ]; then
+            mkdir ~/nwk/tmp/$1
             cd ~/nwk/tmp/$1
-        else
-            cd ~/nwk/tmp
         fi
-        ls
+    else
+        cd ~/nwk/tmp
+    fi
+    ls
+}
+
+function nwd {
+    if [ -n "$1" ]; then
+        if [ -d ~/nwk/tmp/$1 ]; then
+            trash-put ~/nwk/tmp/$1
+        fi
     fi
 }
