@@ -52,6 +52,9 @@ alias td='tmuxd.sh'
 alias tk='tmuxk.sh'
 alias tl='tmuxl.sh'
 
+# lazy build
+alias lb='lb.sh'
+
 # to lower process priority
 alias benice='nice -n19 ionice -c3'
 
