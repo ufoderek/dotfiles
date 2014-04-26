@@ -24,11 +24,11 @@ if [ -n "$1" ]; then
             #lazy build
             if [ -d ${sku_path} ]; then
                 if [ "$1" = "u" ]; then
-                    variant="u"
+                    variant="user"
                 elif [ "$1" = "ud" ]; then
-                    variant="ud"
+                    variant="userdebug"
                 else
-                    variant="e"
+                    variant="eng"
                 fi
                 if [ "$2" = "d" ]; then
                     dist="-d"
