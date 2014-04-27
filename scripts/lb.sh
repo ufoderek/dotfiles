@@ -15,29 +15,32 @@ if [ -n "$1" ]; then
         for i in "${wki[@]}"; do
             tmp_wname=$wk[wname]
             tmp_bname=$wk[bname]
+            tmp_sname=$wk[sname]
 
             dir_name=${!tmp_wname}.$i.git
+            sku_name=${!tmp_sname}
             build_name=${!tmp_bname}
 
             sku_path=${HOME}/wk/${dir_name}/mediatek/config/${sku_name}
+            current_path=`pwd`/mediatek/config/${sku_name}
 
             #lazy build
-            if [ -d ${sku_path} ]; then
-                if [ "$1" = "u" ]; then
+            if [ "${sku_path}" = "${current_path}" ]; then
+                if [ "$1" = "u" ] || [ "$1" = "user" ]; then
                     variant="user"
-                elif [ "$1" = "ud" ]; then
+                elif [ "$1" = "ud" ] || [ "$1" = "userdebug" ]; then
                     variant="userdebug"
                 else
                     variant="eng"
                 fi
-                if [ "$2" = "d" ]; then
+                if [ "$2" = "d" ] || [ "$1" = "dist" ]; then
                     dist="-d"
                 else
                     dist=""
                 fi
                 ./build.sh -s ${build_name} -v ${variant} ${dist}
-                #echo "${build_name} ${variant} ${dist}"
-                break
+                #echo "${build_name} ${variant} ${dist} ${sku_path}"
+                exit 0
             fi
         done
     done
