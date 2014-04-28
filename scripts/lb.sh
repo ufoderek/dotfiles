@@ -70,21 +70,32 @@ else
 
             if [ ${sec_state} == true ]; then
                 out_dir=${!tmp_wname}.$i.sout
+                out_dist_dir=${!tmp_wname}.$i.dist
                 img_path=${HOME}/wk/${dir_name}/out/target/product/${sku_name}/signed_bin
+                dist_path=${HOME}/wk/${dir_name}/out/dist
             else
                 out_dir=${!tmp_wname}.$i.out
+                out_dist_dir=${!tmp_wname}.$i.dist
                 img_path=${HOME}/wk/${dir_name}/out/target/product/${sku_name}
+                dist_path=${HOME}/wk/${dir_name}/out/dist
             fi 
 
             out_path=${out_base}/${out_dir}
+            out_dist_path=${out_base}/${out_dist_dir}
 
             if [ -d ${out_path} ]; then
                 rm ${out_path}
+            fi
+            if [ -d ${out_dist_path} ]; then
+                rm ${out_dist_path}
             fi
 
             #create new link if img_path exists
             if [ -d ${img_path} ]; then
                 ln -s ${img_path} ${out_path}
+            fi
+            if [ -d ${dist_path} ]; then
+                ln -s ${dist_path} ${out_dist_path}
             fi
         done
     done
