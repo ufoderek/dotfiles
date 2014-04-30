@@ -95,6 +95,9 @@ else
 fi
 
 # git
+if is_buildfarm; then
+    alias git='rcmd.sh git'
+fi
 alias gs='git status'
 alias ga='git add'
 alias grh='git reset --hard'
