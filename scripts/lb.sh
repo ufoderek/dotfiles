@@ -42,6 +42,7 @@ if [ -n "$1" ]; then
                 fi
                 ./build.sh -s ${build_name} -v ${variant} ${dist}
                 #echo "${build_name} ${variant} ${dist} ${sku_path}"
+                exec $0
                 exit 0
             fi
         done
