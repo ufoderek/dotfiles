@@ -73,7 +73,7 @@ fi
 # trash-cli
 alias trp='trash-put'
 alias trl='trash-list'
-alias tre='( trash-empty & ) > /dev/null 2>&1'
+alias tre='( benice trash-empty & ) > /dev/null 2>&1'
 alias trr='restore-trash'
 
 # ssh
