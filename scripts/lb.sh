@@ -1,6 +1,6 @@
 declare -A wk0=( [pname]=Mango [wname]=mw  [bname]=a1-810_ww_gen1 [sname]=acer89_tb_mwf_kk   [sec]=true)
 declare -A wk1=( [pname]=Mango [wname]=mg  [bname]=a1-811_ww_gen1 [sname]=acer89_tb_m3g_kk   [sec]=true)
-declare -A wk2=( [pname]=S3    [wname]=s3  [bname]=s53_ww_gen1    [sname]=acer92_lwt_kk      [sec]=false)
+declare -A wk2=( [pname]=S3    [wname]=s3  [bname]=s53_emea_gen1  [sname]=acer92_lwt_kk      [sec]=true)
 declare -A wk3=( [pname]=Prada [wname]=pd  [bname]=a5810_ww_gen1  [sname]=acer92_tb_prada_kk [sec]=false)
 declare -A wk4=( [pname]=Mango [wname]=mw  [bname]=a1-810_ww_gen1 [sname]=acer89_tb_mwf_jb2  [sec]=true)
 declare -A wk5=( [pname]=Mango [wname]=mg  [bname]=a1-811_ww_gen1 [sname]=acer89_tb_m3g_jb2  [sec]=true)
