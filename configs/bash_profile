@@ -7,8 +7,8 @@ if is_osx; then
     export PATH=/opt/local/bin:$PATH
     export PATH=/opt/local/sbin:$PATH
     export PATH=/opt/local/libexec/gnubin:$PATH
-else # linux
-    export PATH=$HOME/toolchain/cppcheck-1.60.1:$PATH
+#else # linux
+    #export PATH=$HOME/toolchain/cppcheck-1.60.1:$PATH
     #export PATH=$HOME/toolchain/qvim-20140220/bin:$PATH
 fi
 
