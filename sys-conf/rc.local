@@ -10,5 +10,5 @@
 # bits.
 #
 # By default this script does nothing.
-echo 1 > /proc/sys/vm/swappiness
+
 exit 0
