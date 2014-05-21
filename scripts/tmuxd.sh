@@ -1,5 +1,6 @@
 # if $TMUX is set the tmux is currently running
 if [ -n "${TMUX}" ]; then
+    echo "tmux is already running, now exit."
     exit 0;
 fi
 
@@ -11,10 +12,12 @@ else
 fi
 
 # if the session is already running, just attach to it.
-if [ tmux has-session -t $SESSION ]; then
-#if [ $? -eq 0 ]; then
+tmux has-session -t $SESSION
+if [ $? -eq 0 ]; then
+    echo "tmux: attach to session: $SESSION"
     tmux detach-client -a -s $SESSION #detach all other clients
 	tmux -2 attach -t $SESSION
+    echo "tmux: detatch from session: $SESSION"
 	exit 0;
 else
     # create a new session, named $SESSION, and detach from it
@@ -24,5 +27,7 @@ else
     # you may need to cycle through windows and type in passwords
     # if you don't use ssh keys
     #tmux select-window -t $SESSION:0
+    echo "tmux: attach to new session: $SESSION"
     tmux -2 attach -t $SESSION
+    echo "tmux: detatch from new session: $SESSION"
 fi
