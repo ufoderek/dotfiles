@@ -55,9 +55,9 @@ else
     if [ ! -d ${out_base} ]; then
         mkdir -p ${out_base}
     fi
-    if [ ! -L ${out_base}/pandora ]; then
-        ln -s ${HOME}/wk/tmp/win ${out_base}/pandora
-    fi
+    #if [ ! -L ${out_base}/pandora ]; then
+    #    ln -s ${HOME}/wk/tmp/win ${out_base}/pandora
+    #fi
 
     for wk in "${wks[@]}"; do
         for i in "${wki[@]}"; do
