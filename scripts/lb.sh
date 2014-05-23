@@ -50,7 +50,7 @@ if [ -n "$1" ]; then
 #update links for Flash Tool
 else
 
-    out_base=${HOME}/dl
+    out_base=${HOME}/wk/dl
 
     if [ ! -d ${out_base} ]; then
         mkdir -p ${out_base}
