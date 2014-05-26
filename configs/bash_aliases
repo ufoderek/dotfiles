@@ -45,7 +45,7 @@ alias grep='grep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=out --co
 alias refresh='. ~/.bashrc'
 
 # fix vim color issue inside tmux
-alias tmux='tmux -2'
+#alias tmux='tmux -2'
 
 # tmux shortcuts
 alias td='tmuxd.sh'

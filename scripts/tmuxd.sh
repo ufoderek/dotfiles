@@ -16,18 +16,18 @@ tmux has-session -t $SESSION
 if [ $? -eq 0 ]; then
     echo "tmux: attach to session: $SESSION"
     tmux detach-client -a -s $SESSION #detach all other clients
-	tmux -2 attach -t $SESSION
+	tmux attach -t $SESSION
     echo "tmux: detatch from session: $SESSION"
 	exit 0;
 else
     # create a new session, named $SESSION, and detach from it
-    tmux -2 new-session -d -s $SESSION
+    tmux new-session -d -s $SESSION
 
     # all done. select starting window and get to work
     # you may need to cycle through windows and type in passwords
     # if you don't use ssh keys
     #tmux select-window -t $SESSION:0
     echo "tmux: attach to new session: $SESSION"
-    tmux -2 attach -t $SESSION
+    tmux attach -t $SESSION
     echo "tmux: detatch from new session: $SESSION"
 fi

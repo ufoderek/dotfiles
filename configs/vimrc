@@ -66,7 +66,7 @@ set shell=/bin/bash
 set backspace=indent,eol,start "let backspace delete over line breaks, tabs...
 set whichwrap+=<,>,h,l,[,] "let h and l keys to wrap when used at beginning or end of lines
 set mouse=a "support mouse in all modes so it won't copy line numbers
-set ttymouse=xterm "for tmux
+"set ttymouse=xterm "for tmux
 set shiftround "indent/outdent to nearest tabstops
 syntax on
 
@@ -150,7 +150,7 @@ endif
 "" colorscheme
 colorscheme zenburn
 "let g:zenburn_hight_Contrast=1
-set t_Co=256
+"set t_Co=256
 
 "" for vim-airline
 set laststatus=2 "always show status line
