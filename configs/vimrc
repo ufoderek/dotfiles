@@ -132,19 +132,29 @@ set incsearch
 set showmatch
 set hlsearch
 
-"" using system clipboard
-if has("gui_win32")
-    set clipboard=unnamed "Windows
-else
+"" using system clipboard for vim under terminal, need +xterm_clipboard
+if has("mac")
+    set clipboard=unnamed
+elseif has("unix")
+    set clipboard=unnamedplus
+elseif has("win32")
+    set clipboard=unnamed
+endif
+
+"" using system clipboard for GUI version of vim
+if has("gui_win32") || has("gui_win64") || has("gui_mac")
+    set clipboard=unnamed "Windows and Mac
+elseif has("gui_running")
     set clipboard=unnamedplus "X Window
 endif
 
-"" set font for gvim and qvim
-if has("gui_running")
-    set guifont=Consolas\ 18
-    if has("gui_win32")
-        set guifont=Consolas:h14
-    endif
+"" set font for GUI version of vim
+if has("gui_win32") || has("gui_win64")
+    set guifont=Consolas:h14
+elseif has("gui_gtk2")
+    set guifont=Consolas\ 16
+elseif has("gui_macvim")
+    set guifont=Consolas:h14
 endif
 
 "" colorscheme
