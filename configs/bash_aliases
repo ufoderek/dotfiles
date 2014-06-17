@@ -91,7 +91,8 @@ alias lccache="./prebuilts/misc/linux-x86/ccache/ccache"
 if is_osx; then
     alias lupdate='sudo port selfupdate && sudo port update outdated'
 else
-    alias lupdate='sudo tsocks apt-get update && sudo tsocks apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+    #alias lupdate='sudo tsocks apt-get update && sudo tsocks apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+    alias lupdate='sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
 fi
 
 # git
