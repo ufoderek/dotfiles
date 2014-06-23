@@ -22,9 +22,23 @@ set editing-mode vi
 set keymap vi
 
 #set colors for command prompt
-function EXT_COLOR   { echo -ne "\e[38;5;$1m"; }
-function BOLD_EXT_COLOR   { echo -ne "\e[38;1;$1m"; }
-function CLOSE_COLOR { echo -ne '\e[m'; }
+colors=$(tput colors)
+
+if (($colors >= 256)); then
+    function EXT_COLOR      { echo -ne "\e[38;5;$1m"; }
+    function BOLD_EXT_COLOR { echo -ne "\e[38;1;$1m"; }
+    function CLOSE_COLOR    { echo -ne "\e[m"; }
+elif (($colors >= 8)); then
+    echo "bashrc: terminal only supports 8 colors"
+    function EXT_COLOR      { return; }
+    function BOLD_EXT_COLOR { return; }
+    function CLOSE_COLOR    { return; }
+else
+    echo "bashrc: terminal doesn't support colors"
+    function EXT_COLOR      { return; }
+    function BOLD_EXT_COLOR { return; }
+    function CLOSE_COLOR    { return; }
+fi
 
 #command prompt
 PROMPT_COMMAND="gen_short_date && gen_short_pwd"
