@@ -158,9 +158,13 @@ elseif has("gui_macvim")
 endif
 
 "" colorscheme
-colorscheme zenburn
-"let g:zenburn_hight_Contrast=1
-"set t_Co=256
+if has("gui_running") || &t_Co >= 256
+    colorscheme zenburn
+    "let g:zenburn_hight_Contrast=1
+elseif &t_Co >= 8
+    colorscheme zenburn
+    "let g:zenburn_hight_Contrast=1
+endif
 
 "" for vim-airline
 set laststatus=2 "always show status line
