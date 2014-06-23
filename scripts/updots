@@ -40,3 +40,6 @@ cp $CONF_PATH/vimrc ~/.vimrc
 
 rm -rf ~/.xsession
 cp $CONF_PATH/xsession ~/.xsession
+
+rm -rf ~/.terminfo
+cp -r $CONF_PATH/terminfo ~/.terminfo
