@@ -4,6 +4,9 @@ $if mode=vi
     "jj": vi-movement-mode
 $endif
 
+"\e[6~": history-search-forward
+"\e[5~": history-search-backward
+
 set completion-query-items 10000
 set completion-ignore-case On
 
