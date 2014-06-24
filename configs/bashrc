@@ -47,7 +47,6 @@ else
 fi
 
 #set command prompt
-#PROMPT_COMMAND="gen_short_date && gen_short_pwd"
 if [[ ${EUID} == 0 ]]; then
     PROMPT_SYM="#"
 else
