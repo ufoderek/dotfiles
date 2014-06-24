@@ -21,40 +21,40 @@ set -o vi
 set editing-mode vi
 set keymap vi
 
-#set colors for command prompt
-colors=$(tput colors)
+#zenburn colors
+COLOR_COUNT=$(tput colors)
+ZENBURN_RESET="\[\e[m\]"
+if ((${COLOR_COUNT} >= 256)); then
 
-if (($colors >= 256)); then
-    function EXT_COLOR      { echo -ne "\e[38;5;$1m"; }
-    function BOLD_EXT_COLOR { echo -ne "\e[38;1;$1m"; }
-    function CLOSE_COLOR    { echo -ne "\e[m"; }
-elif (($colors >= 8)); then
+    ZENBURN_YELLOW="\[\e[38;5;187m\]"
+    ZENBURN_BLUE="\[\e[38;5;116m\]"
+    ZENBURN_DARK_GREEN="\[\e[38;5;108m\]"
+
+    ZENBURN_LIGHT_ORANGE="\[\e[38;5;187m\]"
+    ZENBURN_ORANGE="\[\e[38;5;223m\]"
+    ZENBURN_DARK_ORANGE="\[\e[38;5;180m\]"
+
+    ZENBURN_RED="\[\e[38;5;174m\]"
+    ZENBURN_DARK_RED="\[\e[38;5;181m\]"
+
+    ZENBURN_LIGHT_GRAY="\[\e[38;5;251\]"
+    ZENBURN_GRAY="\[\e[38;5;249m\]"
+
+elif ((${COLOR_COUNT} >= 8)); then
     echo "bashrc: terminal only supports 8 colors"
-    function EXT_COLOR      { return; }
-    function BOLD_EXT_COLOR { return; }
-    function CLOSE_COLOR    { return; }
 else
     echo "bashrc: terminal doesn't support colors"
-    function EXT_COLOR      { return; }
-    function BOLD_EXT_COLOR { return; }
-    function CLOSE_COLOR    { return; }
 fi
 
-#command prompt
-PROMPT_COMMAND="gen_short_date && gen_short_pwd"
-
-if is_buildfarm; then
-    if [[ ${EUID} == 0 ]]; then
-        export PS1="\[`EXT_COLOR 11`\][\h@\${short_date}\[`CLOSE_COLOR`\]\[`EXT_COLOR 13`\] \${short_pwd}\$(parse_git_branch)\[`EXT_COLOR 11`\]]\$\[`CLOSE_COLOR`\] "
-    else
-        export PS1="\[`EXT_COLOR 11`\][\h@\${short_date}\[`CLOSE_COLOR`\]\[`EXT_COLOR 9`\] \${short_pwd}\$(parse_git_branch)\[`EXT_COLOR 11`\]]\$\[`CLOSE_COLOR`\] "
-    fi
+#set command prompt
+#PROMPT_COMMAND="gen_short_date && gen_short_pwd"
+if [[ ${EUID} == 0 ]]; then
+    PROMPT_SYM="#"
 else
-    if [[ ${EUID} == 0 ]]; then
-        export PS1="\[`EXT_COLOR 11`\][local@\${short_date}\[`CLOSE_COLOR`\]\[`EXT_COLOR 13`\] \${short_pwd}\$(parse_git_branch)\[`EXT_COLOR 11`\]]\$\[`CLOSE_COLOR`\] "
-    else
-        export PS1="\[`EXT_COLOR 10`\][local@\${short_date}\[`CLOSE_COLOR`\]\[`EXT_COLOR 9`\] \${short_pwd}\$(parse_git_branch)\[`EXT_COLOR 10`\]]\$\[`CLOSE_COLOR`\] "
-    fi
+    PROMPT_SYM="\$"
 fi
+export PS1="${ZENBURN_DARK_GREEN}(\D{%H%M}) [\u@\h${ZENBURN_RED} \w\$(parse_git_branch)${ZENBURN_DARK_GREEN}]\n${ZENBURN_RESET}${PROMPT_SYM} "
 
-export LS_COLORS='di=38;5;108:fi=00:*svn-commit.tmp=31:ln=38;5;116:ex=38;5;186'
+#zenburn ls color
+#export LS_COLORS='di=38;5;108:fi=00:*svn-commit.tmp=31:ln=38;5;116:ex=38;5;186'
+export LS_COLORS='di=38;5;116:fi=38;5;249:*svn-commit.tmp=31:ln=38;5;116:ex=38;5;186'
