@@ -64,7 +64,8 @@ export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 export EDITOR=vim
 export HISTCONTROL=erasedups
-export HISTIGNORE='&:ls:cd ~:cd ..:[bf]g:exit:h:history'
+#export HISTIGNORE='&:ls:cd ~:cd ..:[bf]g:exit:h:history'
+export HISTIGNORE='&:cd ~:cd ..:[bf]g:exit:h:history'
 export PROMPT_COMMAND='history -a' #update history after each command
 
 # tell AOSP lunch not to touch my PROMPT_COMMAND
