@@ -66,7 +66,7 @@ else
             sku_name=${!tmp_sname}
             sec_state=${!tmp_sec}
 
-            if [ ${sec_state} == true ]; then
+            if [ ${sec_state} = "true" ]; then
                 out_dir=${!tmp_wname}.$i.sout
                 out_dist_dir=${!tmp_wname}.$i.dist
                 img_path=${HOME}/wk/${dir_name}/out/target/product/${sku_name}/signed_bin
