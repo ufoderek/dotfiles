@@ -8,15 +8,16 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'jnurmine/Zenburn'
 Bundle 'vim-scripts/argtextobj.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'wellle/targets.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'haya14busa/vim-easyoperator-line'
-Bundle 'haya14busa/vim-easyoperator-phrase'
+"Bundle 'kien/ctrlp.vim'
+"Bundle 'wellle/targets.vim'
+"Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'haya14busa/vim-easyoperator-line'
+"Bundle 'haya14busa/vim-easyoperator-phrase'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'tpope/vim-surround'
+"Bundle 'michaeljsmith/vim-indent-object'
+"Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
+Bundle 'terryma/vim-smooth-scroll'
 "Bundle 'FuzzyFinder'
 "Bundle 'git://git.wincent.com/command-t.git'
 "Bundle 'file:///Users/gmarik/path/to/plugin'
@@ -183,6 +184,12 @@ set expandtab "use space instead of tab by default
 
 "" gitgutter
 highlight clear SignColumn
+
+"" vim smooth scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 "" use real tab in makefiles
 autocmd FileType make setlocal noexpandtab
