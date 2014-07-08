@@ -98,6 +98,9 @@ fi
 # df
 alias df='df -h'
 
+# du
+alias du='du -sh'
+
 # git
 alias gs='git status'
 alias ga='git add'
