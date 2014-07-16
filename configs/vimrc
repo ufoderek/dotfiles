@@ -3,15 +3,29 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+
+"" set vundle path depend on OS
+if has("gui_win32") || has("gui_win64")
+  "for gVimPortable
+  set rtp+=Data/settings/vimfiles/bundle/vundle/
+else
+  set rtp+=~/.vim/bundle/vundle/
+endif
+
 call vundle#rc()
 Bundle 'gmarik/vundle'
-Bundle 'jnurmine/Zenburn'
 Bundle 'vim-scripts/argtextobj.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-airline'
-Bundle 'terryma/vim-smooth-scroll'
 Bundle 'tpope/vim-sleuth'
+
+if has("gui_win32") || has("gui_win64")
+  " do nothing
+else
+  Bundle 'terryma/vim-smooth-scroll'
+  Bundle 'airblade/vim-gitgutter'
+  Bundle 'jnurmine/Zenburn'
+  Bundle 'bling/vim-airline'
+endif
+
 filetype plugin indent on
 let g:vundle_default_git_proto='git'
 let first_time=expand('~/.vim/first_time')
@@ -159,10 +173,14 @@ set expandtab "use space instead of tab by default
 highlight clear SignColumn
 
 "" vim smooth scroll
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+if has("gui_win32") || has("gui_win64")
+  " do nothing
+else
+  noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+  noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+  noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+  noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+endif
 
 "" avoid accidental mouse middle clicks
 map <MiddleMouse> <Nop>
