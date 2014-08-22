@@ -37,7 +37,7 @@ if [ -n "$1" ]; then
                 else
                     dist=""
                 fi
-                ./build.sh -s ${build_name} -v ${variant} ${dist}
+                nice -n19 ionice -c3 ./build.sh -s ${build_name} -v ${variant} ${dist}
                 #echo "${build_name} ${variant} ${dist} ${sku_path}"
                 exec $0
                 exit 0
