@@ -1,4 +1,41 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" GVIM configuration for Windows
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" From the default vimrc of GVIM Portable
+if has("gui_win32") || has("gui_win64")
+    set nocompatible
+    "source $VIMRUNTIME/vimrc_example.vim
+    "source $VIMRUNTIME/mswin.vim
+    "behave mswin
+
+    set diffexpr=MyDiff()
+    function MyDiff()
+      let opt = '-a --binary '
+      if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+      if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+      let arg1 = v:fname_in
+      if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+      let arg2 = v:fname_new
+      if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+      let arg3 = v:fname_out
+      if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+      let eq = ''
+      if $VIMRUNTIME =~ ' '
+        if &sh =~ '\<cmd'
+          let cmd = '""' . $VIMRUNTIME . '\diff"'
+          let eq = '"'
+        else
+          let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+        endif
+      else
+        let cmd = $VIMRUNTIME . '\diff'
+      endif
+      silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Vundle configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
@@ -8,22 +45,23 @@ filetype off
 if has("gui_win32") || has("gui_win64")
   "for gVimPortable
   set rtp+=Data/settings/vimfiles/bundle/vundle/
+  let path='Data/settings/vimfiles/bundle'
+  call vundle#rc(path)
 else
   set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
 endif
 
-call vundle#rc()
 Bundle 'gmarik/vundle'
-Bundle 'vim-scripts/argtextobj.vim'
+"Bundle 'vim-scripts/argtextobj.vim'
 Bundle 'tpope/vim-sleuth'
+Bundle 'bling/vim-airline'
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
 
-if has("gui_win32") || has("gui_win64")
-  " do nothing
-else
+if !has("gui_win32") && !has("gui_win64")
   Bundle 'terryma/vim-smooth-scroll'
   Bundle 'airblade/vim-gitgutter'
   Bundle 'jnurmine/Zenburn'
-  Bundle 'bling/vim-airline'
 endif
 
 filetype plugin indent on
@@ -100,7 +138,7 @@ nnoremap k gk
 set sidescroll=5
 
 "" set listchars
-nnoremap <leader>l :set list listchars=tab:>\ ,trail:-,extends:>recedes:<,nbsp:+,eol:$<cr>
+nnoremap <leader>L :set list listchars=tab:>\ ,trail:-,extends:>recedes:<,nbsp:+,eol:$<cr>
 
 "" clear keywords highlight and list chars
 nnoremap <leader><space> :noh<cr> :set nolist<cr>
@@ -162,6 +200,24 @@ endif
 "" for vim-airline
 set laststatus=2 "always show status line
 
+
+"" for MiniBufExpl
+nmap bn :enew<cr>
+nmap bh :MBEbn<cr>
+nmap bl :MBEbp<cr>
+nmap bH :MBEbf<cr>
+nmap bL :MBEbb<cr>
+nmap bd :MBEbd<cr>
+nmap bD :MBECloseAll<cr>
+let g:miniBufExplTabWrap=0
+let g:miniBufExplBRSplit=1
+let g:miniBufExplSplitBelow=1
+let g:miniBufExplShowBufNumbers=0
+let g:miniBufExplUseSingleClick=1
+let g:miniBufExplCycleArround=0
+"nmap bd :bp <BAR> bd #<cr>
+
+
 "" indent
 set autoindent
 filetype plugin on
@@ -194,6 +250,10 @@ map <3-MiddleMouse> <Nop>
 imap <3-MiddleMouse> <Nop>
 map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
+
+"" Mouse insert/paste and Ctrl C/X/V, may override above settings
+source $VIMRUNTIME/mswin.vim
+behave mswin
 
 "" use real tab in makefiles
 autocmd FileType make setlocal noexpandtab
