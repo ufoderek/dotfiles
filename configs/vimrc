@@ -202,17 +202,15 @@ set laststatus=2 "always show status line
 
 
 "" for MiniBufExpl
-nmap bn :enew<cr>
-nmap bh :MBEbn<cr>
-nmap bl :MBEbp<cr>
-nmap bH :MBEbf<cr>
-nmap bL :MBEbb<cr>
-nmap bd :MBEbd<cr>
-nmap bD :MBECloseAll<cr>
+nmap <leader>bn :enew<cr>
+nmap <leader>bl :MBEbn<cr>
+nmap <leader>bh :MBEbp<cr>
+nmap <leader>bd :MBEbd<cr>
+nmap <leader>bD :MBECloseAll<cr>
 let g:miniBufExplTabWrap=0
 let g:miniBufExplBRSplit=1
 let g:miniBufExplSplitBelow=1
-let g:miniBufExplShowBufNumbers=0
+let g:miniBufExplShowBufNumbers=1
 let g:miniBufExplUseSingleClick=1
 let g:miniBufExplCycleArround=0
 "nmap bd :bp <BAR> bd #<cr>
