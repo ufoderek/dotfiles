@@ -1,5 +1,4 @@
 ## update vim
-
 CONF_PATH=$HOME/dotfiles/configs
 
 rm -rf ~/.vim
@@ -7,7 +6,3 @@ cp -r $CONF_PATH/vim ~/.vim
 
 rm -rf ~/.vimrc
 cp $CONF_PATH/vimrc ~/.vimrc
-
-#vim +BundleInstall +qall
-vim +qall
-
