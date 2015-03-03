@@ -52,7 +52,6 @@ Plug 'techlivezheng/vim-plugin-minibufexpl'
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
-  "Plug 'jnurmine/Zenburn'
   Plug 'flazz/vim-colorschemes'
 endif
 
@@ -79,7 +78,7 @@ set wrap "wrap lines
 set ruler "always show current position
 set hid "change buffer without saving buffer
 set nolazyredraw "don't redraw while executing macros
-set showmatch "show matching bracets when text indicator is over them
+set showmatch "show matching brackets when text indicator is over them
 set ffs=unix,dos,mac
 set noerrorbells
 set novisualbell
@@ -87,7 +86,6 @@ set t_vb=
 set tm=500 "time out length
 set colorcolumn=80
 set cursorline "highlight current line
-set shell=/bin/bash
 set backspace=indent,eol,start "let backspace delete over line breaks, tabs...
 set whichwrap+=<,>,h,l,[,] "let h and l keys to wrap when used at beginning or end of lines
 set mouse=a "support mouse in all modes so it won't copy line numbers
@@ -180,15 +178,14 @@ endif
 "" colorscheme
 if has("gui_running") || &t_Co >= 256
     colorscheme zenburn
-    "let g:zenburn_hight_Contrast=1
+    let g:zenburn_hight_Contrast=1
 elseif &t_Co >= 8
     colorscheme zenburn
-    "let g:zenburn_hight_Contrast=1
+    let g:zenburn_hight_Contrast=1
 endif
 
 "" for vim-airline
 set laststatus=2 "always show status line
-
 
 "" for MiniBufExpl
 nmap <leader>bn :enew<cr>
@@ -196,14 +193,10 @@ nmap <leader>bl :MBEbn<cr>
 nmap <leader>bh :MBEbp<cr>
 nmap <leader>bd :MBEbd<cr>
 nmap <leader>bD :MBECloseAll<cr>
-let g:miniBufExplTabWrap=0
-let g:miniBufExplBRSplit=1
 let g:miniBufExplSplitBelow=1
-let g:miniBufExplShowBufNumbers=1
+let g:miniBufExplShowBufNumbers=0
 let g:miniBufExplUseSingleClick=1
 let g:miniBufExplCycleArround=0
-"nmap bd :bp <BAR> bd #<cr>
-
 
 "" indent
 set autoindent
