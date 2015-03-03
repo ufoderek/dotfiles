@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" GVIM configuration for Windows
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" From the default vimrc of GVIM Portable
+"" From the default vimrc of GVIM
 if has("gui_win32") || has("gui_win64")
     set nocompatible
     "source $VIMRUNTIME/vimrc_example.vim
@@ -39,8 +39,8 @@ endif
 "" vim-plug configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("gui_win32") || has("gui_win64")
-  "for gVimPortable
-  call plug#begin('Data/settings/vimfiles/plugged')
+  "for gVim without Cream
+  call plug#begin('vimfiles/plugged')
 else
   call plug#begin('~/.vim/plugged')
 endif
@@ -48,11 +48,11 @@ endif
 Plug 'tpope/vim-sleuth'
 Plug 'bling/vim-airline'
 Plug 'techlivezheng/vim-plugin-minibufexpl'
+Plug 'flazz/vim-colorschemes'
 
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
-  Plug 'flazz/vim-colorschemes'
 endif
 
 call plug#end()
