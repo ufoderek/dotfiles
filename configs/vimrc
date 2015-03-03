@@ -36,39 +36,28 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Vundle configuration
+"" vim-plug configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-filetype off
-
-"" set vundle path depend on OS
 if has("gui_win32") || has("gui_win64")
   "for gVimPortable
-  set rtp+=Data/settings/vimfiles/bundle/vundle/
-  let path='Data/settings/vimfiles/bundle'
-  call vundle#rc(path)
+  call plug#begin('Data/settings/vimfiles/plugged')
 else
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+  call plug#begin('~/.vim/plugged')
 endif
 
-Bundle 'gmarik/vundle'
-"Bundle 'vim-scripts/argtextobj.vim'
-Bundle 'tpope/vim-sleuth'
-Bundle 'bling/vim-airline'
-Bundle 'techlivezheng/vim-plugin-minibufexpl'
+Plug 'tpope/vim-sleuth'
+Plug 'bling/vim-airline'
+Plug 'techlivezheng/vim-plugin-minibufexpl'
 
 if !has("gui_win32") && !has("gui_win64")
-  Bundle 'terryma/vim-smooth-scroll'
-  Bundle 'airblade/vim-gitgutter'
-  Bundle 'jnurmine/Zenburn'
+  Plug 'terryma/vim-smooth-scroll'
+  Plug 'airblade/vim-gitgutter'
+  "Plug 'jnurmine/Zenburn'
+  Plug 'flazz/vim-colorschemes'
 endif
 
-filetype plugin indent on
-let g:vundle_default_git_proto='git'
-let first_time=expand('~/.vim/first_time')
+call plug#end()
 
-if !filereadable(first_time)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Normal initialization
@@ -255,19 +244,3 @@ behave mswin
 
 "" use real tab in makefiles
 autocmd FileType make setlocal noexpandtab
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" End of normal initialization
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Vundle installation
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-else
-    :BundleInstall
-    silent !rm ~/.vim/first_time
-    :q!
-endif "if !filereadable(first_time)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" End of Vundle installation
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
