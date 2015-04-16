@@ -1,0 +1,137 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Normal initialization
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"" leader key
+let mapleader = ","
+let g:mapleader = ","
+
+"" basic configs
+set nocompatible
+set showmode
+set showcmd "show virtual mode selection area
+set ttyfast "fast scroll in small files
+set nobackup
+set noswapfile
+set autochdir "set dir to current file
+set wrap "wrap lines
+set ruler "always show current position
+set hid "change buffer without saving buffer
+set nolazyredraw "don't redraw while executing macros
+set showmatch "show matching brackets when text indicator is over them
+set ffs=unix,dos,mac
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500 "time out length
+set colorcolumn=80
+set cursorline "highlight current line
+set backspace=indent,eol,start "let backspace delete over line breaks, tabs...
+set whichwrap+=<,>,h,l,[,] "let h and l keys to wrap when used at beginning or end of lines
+set mouse=a "support mouse in all modes so it won't copy line numbers
+set shiftround "indent/outdent to nearest tabstops
+set wildmenu "use wildmenu for command auto-complete
+syntax enable
+
+"" encoding
+if &encoding ==# 'latin1' && has('gui_running')
+  set encoding=utf-8
+endif
+
+"" viminfo
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+
+"" some useful remappings
+map Y y$
+inoremap jj <Esc>
+cnoremap jj <C-c>
+vnoremap q <Esc>
+vnoremap v <Esc>
+
+"" reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+"" return the cursor to the original location after .
+nmap . .`[
+
+"" goto next displayed line instead of physical line when long line is wrapped
+nnoremap j gj
+nnoremap k gk
+
+"" to make scrolling horizontally a bit more useful, try this: >
+set sidescroll=5
+
+"" set listchars
+nnoremap <leader>L :set list listchars=tab:>\ ,trail:-,extends:>recedes:<,nbsp:+,eol:$<cr>
+
+"" clear keywords highlight and list chars
+nnoremap <leader><space> :noh<cr> :set nolist<cr>
+
+"" paste without re-indent
+set pastetoggle=<leader>p "toggle pastmode so you can paste without auto indent in putty
+
+"" search in case-insensitive
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+
+"" search
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+
+"" search yanked text
+vnorem // y/<c-r>"<cr>
+
+"" using system clipboard for vim under terminal, need +xterm_clipboard
+if has("mac")
+    set clipboard=unnamed
+elseif has("unix")
+    set clipboard=unnamedplus
+elseif has("win32")
+    set clipboard=unnamed
+endif
+
+"" using system clipboard for GUI version of vim
+if has("gui_win32") || has("gui_win64") || has("gui_mac")
+    set clipboard=unnamed "Windows and Mac
+elseif has("gui_running")
+    set clipboard=unnamedplus "X Window
+endif
+
+"" indent
+set autoindent
+filetype plugin on
+filetype indent on
+set cinoptions=t0
+set tabstop=4 "width of tab
+set shiftwidth=4 "width of shift
+set softtabstop=4 "width of tab, but insert spaces
+set expandtab "use space instead of tab by default
+
+"" vim smooth scroll
+if has("gui_win32") || has("gui_win64")
+  " do nothing
+else
+  noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+  noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+  noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+  noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+endif
+
+"" avoid accidental mouse middle clicks
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+map <2-MiddleMouse> <Nop>
+imap <2-MiddleMouse> <Nop>
+map <3-MiddleMouse> <Nop>
+imap <3-MiddleMouse> <Nop>
+map <4-MiddleMouse> <Nop>
+imap <4-MiddleMouse> <Nop>
