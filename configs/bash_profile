@@ -14,16 +14,14 @@ fi
 
 # path
 export PATH=$PATH:$HOME/dotfiles/scripts
-export PATH=$PATH:$HOME/toolchain/arm-linux-androideabi-4.6/bin
 if ! is_buildfarm; then
-    export PATH=$PATH:$HOME/toolchain/scs
-    export PATH=$PATH:$HOME/toolchain/test-apks
-    export PATH=$PATH:$HOME/toolchain/cts/acer/android-cts-4.2_r4-linux_x86-arm/android-cts/tools
-    export PATH=$PATH:$HOME/toolchain/cts/android-cts/tools
-    export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/tools
-    export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools
-    export PATH=$PATH:$HOME/toolchain/adt-bundle-linux-x86_64-20130514/sdk/platform-tools/systrace
-    #export PATH=$PATH:$HOME/toolchain/android-ndk-r9c/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86_64/bin
+    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/tools
+    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools
+    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools/sys-trace
+    export PATH=$PATH:$HOME/wk/tools/scs
+    export PATH=$PATH:$HOME/wk/tools/test-apks
+    export PATH=$PATH:$HOME/wk/tools/cts/acer/android-cts-4.2_r4-linux_x86-arm/android-cts/tools
+    export PATH=$PATH:$HOME/wk/tools/cts/android-cts/tools
 else
     # tmux
     export LD_LIBRARY_PATH=$HOME/toolchain/libevent-2.0.21-stable/lib
