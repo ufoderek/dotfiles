@@ -46,3 +46,7 @@ cp $CONF_PATH/xsession ~/.xsession
 
 rm -rf ~/.terminfo
 cp -r $CONF_PATH/terminfo ~/.terminfo
+
+rm -rf ~/.config/fontconfig/conf.d/99-derek.conf
+mkdir -p ~/.config/fontconfig/conf.d
+cp $CONF_PATH/99-derek.conf ~/.config/fontconfig/conf.d/
