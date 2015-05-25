@@ -76,6 +76,9 @@ alias trl='trash-list'
 alias tre='( benice trash-empty & ) > /dev/null 2>&1'
 alias trr='restore-trash'
 
+# Konsole
+alias kwarn='notify-send -u normal -i "dialog-warning" "Konsole" "Task completed"'
+
 # ssh
 alias sshmatrix='ssh derek.liu@ad@matrix.acer.com.tw'
 alias pmatrix='ssh -ND 8080 derek.liu@ad@matrix.acer.com.tw'
