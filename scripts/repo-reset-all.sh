@@ -16,5 +16,5 @@ fi
 if [ -z "$1" ]; then
     echo "`basename $0` base_branch_name"
 else
-    repo forall -c "$prefix git branch -D _dev; $prefix git checkout -b _dev $1; $prefix git branch -D dev; $prefix git checkout -b dev $1; $prefix git branch -D _dev"
+    repo forall -c "$prefix git branch -D _dev; $prefix git reset --hard; $prefix git checkout -b _dev $1; $prefix git branch -D dev; $prefix git checkout -b dev $1; $prefix git branch -D _dev; $prefix git reset --hard"
 fi
