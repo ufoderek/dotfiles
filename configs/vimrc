@@ -232,8 +232,8 @@ map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
 
 "" Mouse insert/paste and Ctrl C/X/V, may override above settings
-source $VIMRUNTIME/mswin.vim
-behave mswin
+" source $VIMRUNTIME/mswin.vim
+" behave mswin
 
 "" use real tab in makefiles
 autocmd FileType make setlocal noexpandtab
