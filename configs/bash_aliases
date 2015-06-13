@@ -95,8 +95,12 @@ else # is_osx
     alias tre='benice trash -e'
 fi
 
-# Konsole
-alias kwarn='notify-send -u normal -i "dialog-warning" "Konsole" "Task completed"'
+# terminal notification
+if is_linux; then
+    alias kwarn='notify-send -u normal -i "dialog-warning" "Konsole" "Task completed"'
+elif is_osx; then
+    alias kwarn='terminal-notifier -title "iTerm" -message "Task Completed"'
+fi
 
 # ssh
 alias sshmatrix='ssh derek.liu@ad@matrix.acer.com.tw'
