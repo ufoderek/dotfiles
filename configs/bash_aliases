@@ -32,7 +32,11 @@ alias cd..='cd ..'
 # ls
 alias la='ls -A'
 alias ll='ls -alF'
-alias ls='ls -hF --color=always'
+if is_osx; then
+    alias ls='ls -hF -G'
+else
+    alias ls='ls -hF --color=always'
+fi
 alias lr='ls -R'                    # recursive ls
 alias lx='ll -BX'                   # sort by extension
 alias lz='ll -rS'                   # sort by size
@@ -92,7 +96,8 @@ alias lccache="./prebuilts/misc/linux-x86/ccache/ccache"
 
 # apt shortcut
 if is_osx; then
-    alias lupdate='sudo port selfupdate && sudo port update outdated'
+    #alias lupdate='sudo port selfupdate && sudo port update outdated'
+    alias lupdate='brew update && brew upgrade --all'
 else
     #alias lupdate='sudo tsocks apt-get update && sudo tsocks apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
     alias lupdate='sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
