@@ -60,7 +60,11 @@ alias tl='tmuxl.sh'
 alias lb='lb.sh'
 
 # to lower process priority
-alias benice='nice -n19 ionice -c3'
+if ! is_osx; then
+    alias benice='nice -n19 ionice -c3'
+else
+    alias benice='nice -n19'
+fi
 
 # top
 if is_buildfarm; then
@@ -75,10 +79,16 @@ if is_buildfarm; then
 fi
 
 # trash-cli
-alias trp='trash-put'
-alias trl='trash-list'
-alias tre='( benice trash-empty & ) > /dev/null 2>&1'
-alias trr='restore-trash'
+if ! is_osx; then
+    alias trp='trash-put'
+    alias trl='trash-list'
+    alias tre='( benice trash-empty & ) > /dev/null 2>&1'
+    alias trr='restore-trash'
+else # is_osx
+    alias trp='trash'
+    alias trl='trash -l'
+    alias tre='benice trash -e'
+fi
 
 # Konsole
 alias kwarn='notify-send -u normal -i "dialog-warning" "Konsole" "Task completed"'
