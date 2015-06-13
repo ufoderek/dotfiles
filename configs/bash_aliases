@@ -27,7 +27,7 @@ if ! is_osx; then
     alias rm='rm -I'
 else
     alias rm='rm -i'
-if
+fi
 
 # error-proof
 alias ..='cd ..'
