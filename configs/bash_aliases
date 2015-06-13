@@ -23,7 +23,11 @@ alias mkdir='mkdir -p -v'
 # safty
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -I'
+if ! is_osx; then
+    alias rm='rm -I'
+else
+    alias rm='rm -i'
+if
 
 # error-proof
 alias ..='cd ..'
