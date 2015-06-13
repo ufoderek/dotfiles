@@ -36,10 +36,10 @@ alias cd..='cd ..'
 # ls
 alias la='ls -A'
 alias ll='ls -alF'
-if is_osx; then
-    alias ls='ls -hF -G'
-else
+if ! is_osx; then
     alias ls='ls -hF --color=always'
+else
+    alias ls='ls -hF -G'
 fi
 alias lr='ls -R'                    # recursive ls
 alias lx='ll -BX'                   # sort by extension
@@ -60,9 +60,6 @@ alias td='tmuxd.sh'
 alias tk='tmuxk.sh'
 alias tl='tmuxl.sh'
 
-# lazy build
-alias lb='lb.sh'
-
 # to lower process priority
 if ! is_osx; then
     alias benice='nice -n19 ionice -c3'
@@ -71,10 +68,14 @@ else
 fi
 
 # top
-if is_buildfarm; then
-    alias top='top -u derek_liu'
+if ! is_buildfarm; then
+    if ! is_osx; then
+        alias top='top -u ufoderek'
+    else
+        alias top='top -user ufoderek'
+    fi
 else
-    alias top='top -u ufoderek'
+    alias top='top -u derek_liu'
 fi
 
 # remote command
@@ -102,19 +103,14 @@ alias sshmatrix='ssh derek.liu@ad@matrix.acer.com.tw'
 alias pmatrix='ssh -ND 8080 derek.liu@ad@matrix.acer.com.tw'
 alias pub_pmatrix='ssh -ND `my_ip`:8080 derek.liu@ad@matrix.acer.com.tw'
 
-# uart
-#alias cumtk='sudo chown uucp /dev/ttyUSB0 && sudo /usr/bin/cu -l /dev/ttyUSB0 -s 921600 --parity=none --nostop -d'
-
 # local ccache for Android distribution
 alias lccache="./prebuilts/misc/linux-x86/ccache/ccache"
 
-# apt shortcut
-if is_osx; then
-    #alias lupdate='sudo port selfupdate && sudo port update outdated'
-    alias lupdate='brew update && brew upgrade --all'
-else
-    #alias lupdate='sudo tsocks apt-get update && sudo tsocks apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+# update package manager
+if ! is_osx; then
     alias lupdate='sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+else
+    alias lupdate='brew update && brew upgrade --all'
 fi
 
 # df

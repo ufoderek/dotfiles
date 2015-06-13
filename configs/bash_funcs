@@ -71,7 +71,9 @@ function gen_short_pwd {
 }
 
 function get_ip() {
-    ifconfig "${1:-eth0}" | sed -n '2s/.* inet addr:\([0-9.]*\) .*/\1/p';
+    if ! is_osx; then
+        ifconfig "${1:-eth0}" | sed -n '2s/.* inet addr:\([0-9.]*\) .*/\1/p';
+    fi
 }
 
 function wk {
@@ -108,14 +110,6 @@ function wp {
     ls
 }
 
-function wd {
-    if [ -n "$1" ]; then
-        if [ -d ~/wk/tmp/$1 ]; then
-            trash-put ~/wk/tmp/$1
-        fi
-    fi
-}
-
 function nwp {
     if [ -n "$1" ]; then
         if [ ! -d ~/nwk/tmp/$1 ]; then
@@ -126,12 +120,4 @@ function nwp {
         cd ~/nwk/tmp
     fi
     ls
-}
-
-function nwd {
-    if [ -n "$1" ]; then
-        if [ -d ~/nwk/tmp/$1 ]; then
-            trash-put ~/nwk/tmp/$1
-        fi
-    fi
 }

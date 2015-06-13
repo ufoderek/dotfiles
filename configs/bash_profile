@@ -5,12 +5,12 @@ fi
 # path
 export PATH=$PATH:$HOME/dotfiles/scripts
 if ! is_buildfarm; then
-    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/tools
-    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools
-    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools/sys-trace
-    export PATH=$PATH:$HOME/wk/tools/scs
+    if is_linux; then
+        export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/tools
+        export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools
+        export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools/sys-trace
+    fi
     export PATH=$PATH:$HOME/wk/tools/test-apks
-    export PATH=$PATH:$HOME/wk/tools/cts/acer/android-cts-4.2_r4-linux_x86-arm/android-cts/tools
     export PATH=$PATH:$HOME/wk/tools/cts/android-cts/tools
 else # is_buildfarm
     # tmux
