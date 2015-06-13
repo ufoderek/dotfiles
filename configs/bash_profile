@@ -22,8 +22,6 @@ else
 fi
 
 if is_osx; then
-    # macport
-    export MANPATH=/opt/local/share/man:$MANPATH
     # to build AOSP
     ulimit -S -n 1024
 fi
