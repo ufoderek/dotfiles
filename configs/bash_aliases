@@ -9,11 +9,11 @@ alias less="less -mRXF"
 alias sudo='sudo -E env PATH=$PATH'
 
 # diff
-if [ -r `which colordiff` ]; then
+if command -v colordiff > /dev/null 2>&1; then
     alias diff='colordiff -r'
     alias diff2='colordiff -r --suppress-common-lines -y'
 else
-    alias diff='diff-r '
+    alias diff='diff -r'
     alias diff2='diff -r --suppress-common-lines -y'
 fi
 alias more='less'
