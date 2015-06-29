@@ -10,5 +10,5 @@ cp $CONF_PATH/vimrc ~/.vimrc
 rm -rf ~/.nvim
 cp -r $CONF_PATH/vim ~/.nvim
 
-rm -rf ~/.vimrc
-cp $CONF_PATH/vimrc ~/.nvimrc
+rm -rf ~/.nvimrc
+cp $CONF_PATH/nvimrc ~/.nvimrc
