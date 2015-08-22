@@ -172,7 +172,7 @@ if has("gui_win32") || has("gui_win64")
 elseif has("gui_gtk2")
     set guifont=Consolas\ 16
 elseif has("gui_macvim")
-    set guifont=Consolas:h14
+    set guifont=Monaco:h18
 endif
 
 "" colorscheme
