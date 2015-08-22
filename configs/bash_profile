@@ -20,6 +20,10 @@ else # is_buildfarm
     export PATH=$PATH:$HOME/toolchain/andreafrancia-trash-cli-a87fcf4/bin
     export PYTHONPATH=$PYTHONPATH:$HOME/toolchain/andreafrancia-trash-cli-a87fcf4/lib/python2.7/site-packages:$PYTHONPATH
 fi
+if is_osx; then
+    #for homebrew
+    export PATH="/usr/local/sbin:$PATH"
+fi
 
 if is_osx; then
     # to build AOSP
