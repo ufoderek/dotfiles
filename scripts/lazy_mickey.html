@@ -7,6 +7,7 @@
 <style type="text/css">
     form {
         margin: 0 auto;
+        font-family: serif;
     }
 </style>
 
@@ -28,7 +29,7 @@
 </script>
 
 <script type="text/javascript">
-    function reselect()
+    function resel()
     {
         var br_length = document.forms[0].br.length;
         var st_length = document.forms[0].st.length;
@@ -46,16 +47,16 @@
                 document.forms[0].st[st_i].checked = false;
             }
         }
-        if(document.forms[0].owner[0].checked) { //select empty
-            for(var owner_i = 1; owner_i < owner_length; owner_i++) {
-                document.forms[0].owner[owner_i].checked = false;
-            }
-        }
         if(document.forms[0].owner[1].checked) { //select Kernel Team
             document.forms[0].owner[0].checked = false;
             document.forms[0].owner[1].checked = false;
             for(var owner_i = 2; owner_i < owner_length; owner_i++) {
                 document.forms[0].owner[owner_i].checked = true;
+            }
+        }
+        if(document.forms[0].owner[0].checked) { //select empty
+            for(var owner_i = 1; owner_i < owner_length; owner_i++) {
+                document.forms[0].owner[owner_i].checked = false;
             }
         }
         if(document.forms[0].rev[0].checked) { //select empty
@@ -133,44 +134,49 @@
     <td width=200></td>
 <tr>
     <td valign=top><p> </p><p>Branches:</p>
-        <input type="checkbox" name="br" value="empty" onclick="reselect()"              > *                <br>
-        <input type="checkbox" name="br" value="branch:acer/kk-heero"                    > acer/kk-heero    <br>
-        <input type="checkbox" name="br" value="branch:acer/kk-atlas"                    > acer/kk-atlas    <br>
-        <input type="checkbox" name="br" value="branch:acer/kk-miliardo"                 > acer/kk-miliardo <br>
-        <input type="checkbox" name="br" value="branch:acer/jb-tenma"                    > acer/jb-tenma    <br>
-        <input type="checkbox" name="br" value="branch:acer/jb-astro"                    > acer/jb-astro    <br>
-        <input type="checkbox" name="br" value="branch:acer/jb-astro-3g"                 > acer/jb-astro-3g <br>
-        <input type="checkbox" name="br" value="branch:acer/jb-uran"                     > acer/jb-uran     <br>
+        <input type="checkbox" name="br" value="empty" onclick="resel()"       > *           <br>
+        <input type="checkbox" name="br" value="branch:acer/lp-caterpie"       > lp-caterpie <br>
+        <input type="checkbox" name="br" value="branch:acer/lp-kuroko"         > lp-kuroko   <br>
+        <input type="checkbox" name="br" value="branch:acer/lp-charmander"     > lp-charmander<br>
+        <input type="checkbox" name="br" value="branch:acer/kk-ducati2"        > kk-ducati2  <br>
+        <input type="checkbox" name="br" value="branch:acer/kk-atlas"          > kk-atlas    <br>
+        <input type="checkbox" name="br" value="branch:acer/kk-miliardo"       > kk-miliardo <br>
     </td>
     <td valign=top><p> </p><p>Status:</p>
-        <input type="checkbox" name="st" value="empty" onclick="reselect()"              > *          <br>
-        <input type="checkbox" name="st" value="status:open"                             > open       <br>
-        <input type="checkbox" name="st" value="status:merged"                           > merged     <br>
-        <input type="checkbox" name="st" value="status:abandoned"                        > abandoned  <br>
+        <input type="checkbox" name="st" value="empty" onclick="resel()"       > *         <br>
+        <input type="checkbox" name="st" value="status:merged" checked="1"     > merged    <br>
+        <input type="checkbox" name="st" value="status:open"                   > open      <br>
+        <input type="checkbox" name="st" value="status:abandoned"              > abandoned <br>
     </td>
 </tr>
 <tr>
     <td valign=top><p> </p><p>Owners:</p>
-        <input type="checkbox" name="owner" value="empty" onclick="reselect()"           > *       <br>
-        <input type="checkbox" name="owner" value="empty" onclick="reselect()"           > Kernel Team<br>
-        <input type="checkbox" name="owner" value="owner:derek.liu"                      > Derek   <br>
-        <input type="checkbox" name="owner" value="owner:chady.hsieh"                    > Chady   <br>
-        <input type="checkbox" name="owner" value="owner:eddie.sun"                      > Eddie   <br>
-        <input type="checkbox" name="owner" value="owner:daniel.tao"                     > Daniel  <br>
-        <input type="checkbox" name="owner" value="owner:jungchu.hsu"                    > Jungchu <br>
-        <input type="checkbox" name="owner" value="owner:allan.yan"                      > Allan   <br>
-        <input type="checkbox" name="owner" value="owner:sammi.lee"                      > Sammi   <br>
-        <input type="checkbox" name="owner" value="owner:jack.huang"                     > Jack    <br>
+        <input type="checkbox" name="owner" value="empty" onclick="resel()"    > *       <br>
+        <input type="checkbox" name="owner" value="empty" onclick="resel()"    > Kernel Team<br>
+        <input type="checkbox" name="owner" value="owner:derek.liu"            > Derek   <br>
+        <input type="checkbox" name="owner" value="owner:eddie.sun"            > Eddie   <br>
+        <input type="checkbox" name="owner" value="owner:chady.hsieh"          > Chady   <br>
+        <input type="checkbox" name="owner" value="owner:adonis.wei"           > Adonis  <br>
+        <input type="checkbox" name="owner" value="owner:laider.lai"           > Laider  <br>
+        <input type="checkbox" name="owner" value="owner:jungchu.hsu"          > Jungchu <br>
+        <input type="checkbox" name="owner" value="owner:jj.ding"              > JJ      <br>
+        <input type="checkbox" name="owner" value="owner:andrew.chen"          > Andrew  <br>
+        <input type="checkbox" name="owner" value="owner:ethan.hsu"            > Ethan   <br>
+        <input type="checkbox" name="owner" value="owner:daniel.tao"           > Daniel  <br>
+        <input type="checkbox" name="owner" value="owner:sammi.lee"            > Sammi   <br>
     </td>
     <td valign=top><p> </p><p>Projects:</p>
-        <input type="checkbox" name="prj" value="empty" checked="1" onclick="reselect()" > *             <br>
-        <input type="checkbox" name="prj" value="project:mtk/platform/mediatek"          > mediatek      <br>
-        <input type="checkbox" name="prj" value="project:platform/build"                 > build         <br>
-        <input type="checkbox" name="prj" value="project:kernel/mtk"                     > kernel        <br>
-        <input type="checkbox" name="prj" value="project:device/acer/common"             > acer/common   <br>
-        <input type="checkbox" name="prj" value="project:system/core"                    > system/core   <br>
-        <input type="checkbox" name="prj" value="project:kernel/lk"                      > lk            <br>
-        <input type="checkbox" name="prj" value="project:platform/bootable/recovery"     > recovery      <br>
+        <input type="checkbox" name="prj" value="empty" checked="1" onclick="resel()"   > *             <br>
+        <input type="checkbox" name="prj" value="project:device/acer/common"            > acer/common   <br>
+        <input type="checkbox" name="prj" value="project:acer/device/acer/ducati2fhd"   > acer/ducati2fhd<br>
+        <input type="checkbox" name="prj" value="project:mtk/platform/mediatek"         > mediatek      <br>
+        <input type="checkbox" name="prj" value="project:platform/build"                > build         <br>
+        <input type="checkbox" name="prj" value="project:hardware/intel/linux-2.6"      > kernel (Intel)<br>
+        <input type="checkbox" name="prj" value="project:system/core"                   > system/core   <br>
+        <input type="checkbox" name="prj" value="project:platform/bootable/recovery"    > recovery      <br>
+        <input type="checkbox" name="prj" value="project:bootable/droidboot"            > droidboot     <br>
+        <input type="checkbox" name="prj" value="project:kernel/lk"                     > lk            <br>
+        <input type="checkbox" name="prj" value="project:kernel/mtk"                    > kernel        <br>
     </td>
 </tr>
 <tr>
@@ -178,40 +184,50 @@
         <input type="text" name="msg" value="">
     </td>
     <td valign=top><p> </p><p>&nbsp;</p>
-        <input type="submit" value="Submit">
+        <input type="submit" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
     </td>
 </tr>
-<tr height=50></tr>
+<tr height=30></tr>
 <tr>
-    <td valign=top><p> </p><p>Non-MTK Owners:</p>
-        <input type="checkbox" name="owner" value="owner:laider.lai"                     > Laider  <br>
-        <input type="checkbox" name="owner" value="owner:jj.ding"                        > JJ      <br>
-        <input type="checkbox" name="owner" value="owner:peng.chang"                     > Peng    <br>
+    <td valign=top><p> </p><p>Less-used Owners:</p>
+        <input type="checkbox" name="owner" value="owner:peng.chang"           > Peng    <br>
+        <input type="checkbox" name="owner" value="owner:erix.cheng"           > Erix    <br>
+        <input type="checkbox" name="owner" value="owner:jack.huang"           > Jack    <br>
+        <input type="checkbox" name="owner" value="owner:allan.yan"            > Allan   <br>
+        <input type="checkbox" name="owner" value="owner:wenchung.chiu"        > WenChung<br>
     </td>
-    <td valign=top><p> </p><p>Less-used Branches:</p>
-        <input type="checkbox" name="br" value="branch:mtk/kk_mt6592"                    > mtk/kk_mt6592    <br>
-        <input type="checkbox" name="br" value="branch:mtk/kk_mt8151"                    > mtk/kk_mt8151    <br>
-        <input type="checkbox" name="br" value="branch:mtk/mt6589"                       > mtk/mt-6589      <br>
-        <input type="checkbox" name="br" value="branch:mtk/mt8389"                       > mtk/mt-8389      <br>
-        <input type="checkbox" name="br" value="branch:mtk/mt8389-3g"                    > mtk/mt-8389-3g   <br>
-        <input type="checkbox" name="br" value="branch:mtk/mt8135"                       > mtk/mt-8135      <br>
-        <input type="checkbox" name="br" value="branch:mtk/mt8135-3g"                    > mtk/mt-8135-3g   <br>
-        <input type="checkbox" name="br" value="branch:acer/jb-mt8135"                   > acer/jb-mt8135   <br>
-    </td>
-</tr>
-<tr>
     <td valign=top><p> </p><p>Code Review:</p>
-        <input type="checkbox" name="rev" value="empty" onclick="reselect()" checked="1" > *                <br>
-        <input type="checkbox" name="rev" value="label:CodeReview>=1"                    > Review>=1        <br>
-        <input type="checkbox" name="rev" value="label:CodeReview<=-1"                   > Review<=-1       <br>
-        <input type="checkbox" name="rev" value="-label:CodeReview>=1"                   > excl. Review>=1  <br>
-        <input type="checkbox" name="rev" value="-label:CodeReview<=-1"                  > excl. Review<=-1 <br>
+        <input type="checkbox" name="rev" value="empty" onclick="resel()" checked="1" > *                <br>
+        <input type="checkbox" name="rev" value="label:CodeReview>=1"                 > Review>=1        <br>
+        <input type="checkbox" name="rev" value="label:CodeReview<=-1"                > Review<=-1       <br>
+        <input type="checkbox" name="rev" value="-label:CodeReview>=1"                > excl. Review>=1  <br>
+        <input type="checkbox" name="rev" value="-label:CodeReview<=-1"               > excl. Review<=-1 <br>
+    </td>
+</tr>
+<tr>
+    <td valign=top><p> </p><p>Less-used Branches:</p>
+        <input type="checkbox" name="br" value="branch:acer/kk-otto-3g"        > kk-otto-3g  <br>
+        <input type="checkbox" name="br" value="branch:acer/kk-epsilon"        > kk-epsilon  <br>
+        <input type="checkbox" name="br" value="branch:acer/kk-heero"          > kk-heero    <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-tenma"          > jb-tenma    <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-astro"          > jb-astro    <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-astro-3g"       > jb-astro-3g <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-uran"           > jb-uran     <br>
+        <input type="checkbox" name="br" value="branch:mtk/kk_mt8389"          > kk_mt8389   <br>
+        <input type="checkbox" name="br" value="branch:mtk/kk_mt6592"          > kk_mt6592   <br>
+        <input type="checkbox" name="br" value="branch:mtk/kk_mt8151"          > kk_mt8151   <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt6589"             > mt-6589     <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt8389"             > mt-8389     <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt8389-3g"          > mt-8389-3g  <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt8135"             > mt-8135     <br>
+        <input type="checkbox" name="br" value="branch:mtk/mt8135-3g"          > mt-8135-3g  <br>
+        <input type="checkbox" name="br" value="branch:acer/jb-mt8135"         > jb-mt8135   <br>
     </td>
     <td valign=top><p> </p><p></p>
     </td>
 </tr>
 </form>
 </table>
-<p align=right>Lazy Mickey</br>Derek Liu, 2014</p>
+<p align=right>Lazy Mickey</br>Derek Liu, 2015</p>
 </body>
 </html>
