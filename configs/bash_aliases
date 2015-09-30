@@ -125,12 +125,3 @@ alias gl='git log'
 alias glp='git log -p'
 alias glo='git log --oneline -10'
 alias gwc='git whatchanged'
-
-# MTK
-alias mke='./mk -o=TARGET_BUILD_VARIANT=eng'
-alias mkud='./mk -o=TARGET_BUILD_VARIANT=userdebug'
-alias mku='./mk -o=TARGET_BUILD_VARIANT=user'
-alias mkee='./mk -o=TARGET_BUILD_VARIANT=eng mt6592lte_phone_fhd'
-alias mkdd='./mk -o=TARGET_BUILD_VARIANT=userdebug mt6592lte_phone_fhd'
-alias mkuu='./mk -o=TARGET_BUILD_VARIANT=user mt6592lte_phone_fhd'
-alias mkl='./mk listp'
