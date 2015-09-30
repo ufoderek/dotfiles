@@ -23,6 +23,10 @@ fi
 if is_osx; then
     #for homebrew
     export PATH="/usr/local/sbin:$PATH"
+    #for android-sdk installed from homebrew
+    export ANDROID_HOME="/usr/local/opt/android-sdk"
+    export PATH=$PATH:/usr/local/opt/android-sdk/tools
+    export PATH=$PATH:/usr/local/opt/android-sdk/platform-tools
 fi
 
 if is_osx; then
