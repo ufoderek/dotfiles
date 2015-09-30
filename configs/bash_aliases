@@ -67,19 +67,10 @@ else
 fi
 
 # top
-if ! is_buildfarm; then
-    if ! is_osx; then
-        alias top='top -u ufoderek'
-    else
-        alias top='top -user ufoderek'
-    fi
+if ! is_osx; then
+    alias top='top -u ufoderek'
 else
-    alias top='top -u derek_liu'
-fi
-
-# remote command
-if is_buildfarm; then
-    alias rcmd='rcmd.sh'
+    alias top='top -user ufoderek'
 fi
 
 # trash-cli
@@ -100,11 +91,6 @@ if is_linux; then
 elif is_osx; then
     alias kwarn='terminal-notifier -title "iTerm" -message "Task Completed"'
 fi
-
-# ssh
-alias sshmatrix='ssh derek.liu@ad@matrix.acer.com.tw'
-alias pmatrix='ssh -ND 8080 derek.liu@ad@matrix.acer.com.tw'
-alias pub_pmatrix='ssh -ND `my_ip`:8080 derek.liu@ad@matrix.acer.com.tw'
 
 # local ccache for Android distribution
 alias lccache="./prebuilts/misc/linux-x86/ccache/ccache"
