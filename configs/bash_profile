@@ -8,6 +8,8 @@ if is_linux; then
     export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/tools
     export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools
     export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools/sys-trace
+    #for trash-cli
+    export PATH=$PATH:$HOME/.local/bin
 fi
 export PATH=$PATH:$HOME/wk/tools/test-apks
 export PATH=$PATH:$HOME/wk/tools/cts/android-cts/tools
