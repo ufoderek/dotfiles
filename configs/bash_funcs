@@ -42,6 +42,19 @@ function is_linux {
     fi
 }
 
+function is_nvt {
+    local my_host=`hostname`
+    if [[ "$my_host" == oalnx1 ]]; then
+        return 0 #success
+    elif [[ "$my_host" == oaalnx3 ]]; then
+        return 0 #success
+    elif [[ "$my_host" == oaplnx7 ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
 function parse_git_branch {
     if [ -d mediatek/.git ]; then
         (cd mediatek && git branch --no-color 2> /dev/null | \
