@@ -41,9 +41,6 @@ cp $CONF_PATH/inputrc ~/.inputrc
 rm -rf ~/.vimrc
 cp $CONF_PATH/vimrc ~/.vimrc
 
-rm -rf ~/.ideavimrc
-cp $CONF_PATH/ideavimrc ~/.ideavimrc
-
 if ! is_osx; then
     rm -rf ~/.xsession
     cp $CONF_PATH/xsession ~/.xsession
