@@ -1,14 +1,22 @@
-## update vim
-CONF_PATH=$HOME/dotfiles/configs
+#!/bin/bash
 
-rm -rf ~/.vim
-cp -r $CONF_PATH/vim ~/.vim
+source ~/.bash_funcs
+
+CONF_PATH=$HOME/dotfiles/configs
 
 rm -rf ~/.vimrc
 cp $CONF_PATH/vimrc ~/.vimrc
 
-rm -rf ~/.nvim
-cp -r $CONF_PATH/vim ~/.nvim
+if ! is_nvt; then
+    rm -rf ~/.vim
+    cp -r $CONF_PATH/vim ~/.vim
 
-rm -rf ~/.nvimrc
-cp $CONF_PATH/nvimrc ~/.nvimrc
+    rm -rf ~/.nvim
+    cp -r $CONF_PATH/vim ~/.nvim
+
+    rm -rf ~/.nvimrc
+    cp $CONF_PATH/nvimrc ~/.nvimrc
+else
+    rm -rf ~/.vim
+    cp -r $HOME/dotfiles/vim-snapshot ~/.vim
+fi
