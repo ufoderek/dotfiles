@@ -44,7 +44,7 @@ function is_linux {
 
 function is_nvt {
     local my_host=`hostname`
-    if [[ "$my_host" == oalnx1 ]]; then
+    if [[ "$my_host" == oalnx* ]]; then
         return 0 #success
     elif [[ "$my_host" == oaalnx3 ]]; then
         return 0 #success
