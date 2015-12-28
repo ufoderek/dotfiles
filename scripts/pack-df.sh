@@ -1,2 +1,2 @@
-FILE_NAME=dotfiles-`date +%Y-%m%d-%H%M%S`.tar
-tar -cf ~/$FILE_NAME ~/dotfiles
+MY_DATE=`date +%Y-%m%d-%H%M%S`
+tar -C ~ -cf ~/dotfiles-$MY_DATE.tar dotfiles
