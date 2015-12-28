@@ -203,9 +203,9 @@ set autoindent
 filetype plugin on
 filetype indent on
 set cinoptions=t0
-set tabstop=4 "width of tab
-set shiftwidth=4 "width of shift
-set softtabstop=4 "width of tab, but insert spaces
+set tabstop=8 "width of tab
+set shiftwidth=8 "width of shift
+set softtabstop=8 "width of tab, but insert spaces
 set expandtab "use space instead of tab by default
 
 "" gitgutter
