@@ -28,6 +28,10 @@ if is_osx; then
     ulimit -S -n 1024
 fi
 
+if is_nvt; then
+    export PATH=$PATH:/opt/VDLinux-mipsel-24kv3r0.20120412/bin
+fi
+
 # ccache
 export CCACHE_COMPRESS=0
 export CCACHE_DIR=~/wk/ccache
