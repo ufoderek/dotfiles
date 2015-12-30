@@ -45,7 +45,7 @@ else
   call plug#begin('~/.vim/plugged')
 endif
 
-Plug 'tpope/vim-sleuth'
+"Plug 'tpope/vim-sleuth'
 Plug 'bling/vim-airline'
 Plug 'techlivezheng/vim-plugin-minibufexpl'
 Plug 'flazz/vim-colorschemes'
@@ -74,7 +74,7 @@ set ttyfast "fast scroll in small files
 set nobackup
 set noswapfile
 set autochdir "set dir to current file
-set wrap "wrap lines
+"set wrap "wrap lines
 set ruler "always show current position
 set hid "change buffer without saving buffer
 set nolazyredraw "don't redraw while executing macros
@@ -89,7 +89,6 @@ set cursorline "highlight current line
 set backspace=indent,eol,start "let backspace delete over line breaks, tabs...
 set whichwrap+=<,>,h,l,[,] "let h and l keys to wrap when used at beginning or end of lines
 set mouse=a "support mouse in all modes so it won't copy line numbers
-set shiftround "indent/outdent to nearest tabstops
 set wildmenu "use wildmenu for command auto-complete
 syntax enable
 
@@ -125,13 +124,26 @@ nnoremap k gk
 set sidescroll=5
 
 "" set listchars
-nnoremap <leader>L :set list listchars=tab:>\ ,trail:-,extends:>recedes:<,nbsp:+,eol:$<cr>
+nnoremap <leader>L :set list listchars=tab:»·,trail:·,nbsp:+,eol:$,precedes:<,extends:><cr>
 
 "" clear keywords highlight and list chars
 nnoremap <leader><space> :noh<cr> :set nolist<cr>
 
+"" remove all trailing whitespaces
+nnoremap <leader>T :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+"" convert to UNIX format
+nnoremap <leader>ffu :update<CR>:e ++fileformat=dos<CR>:setlocal fileformat=unix<CR>:w<CR>
+
+"" convert to DOS format
+nnoremap <leader>ffd :update<CR>:e ++fileformat=dos<CR>:w<CR>
+
 "" paste without re-indent
 set pastetoggle=<leader>p "toggle pastmode so you can paste without auto indent in putty
+
+"" display as much as possible of the last line in a window will be displayed.
+"" when not included, a last line that doesn't fit is replaced with "@" lines.
+set display+=lastline
 
 "" search in case-insensitive
 nnoremap / /\v
@@ -199,20 +211,43 @@ let g:miniBufExplUseSingleClick=1
 let g:miniBufExplCycleArround=0
 
 "" indent
-set autoindent
+set autoindent "copy the indentation from the previous line
+set nosmartindent
+set nocindent
+"set cinoptions=t0
+"set shiftround "indent/outdent to nearest tabstops
 filetype plugin on
 filetype indent on
-set cinoptions=t0
-set tabstop=8 "width of tab
+
+"" indent (default, real tab width = 8)
+set noexpandtab "don't use space to replace tab
 set shiftwidth=8 "width of shift
-set softtabstop=8 "width of tab, but insert spaces
-set expandtab "use space instead of tab by default
+set tabstop=8 "width of tab
+set softtabstop=0 "width of tab, but insert spaces
+
+function TabToggle()
+  if &expandtab
+    "real tab width = 8
+    set noexpandtab "don't use space to replace tab
+    set shiftwidth=8 "width of shift
+    set tabstop=8 "width of tab
+    set softtabstop=0 "width of tab, but insert spaces
+  else
+    " virtual tab width = 4
+    set expandtab "use space to replace tab
+    set shiftwidth=4 "width of shift
+    set tabstop=4 "width of tab
+    set softtabstop=4 "width of tab, but insert spaces
+  endif
+endfunction
+
+nmap <leader>t :execute TabToggle()<cr>
 
 "" gitgutter
 highlight clear SignColumn
 
 "" vim smooth scroll
-if has("gui_win32") || has("gui_win64")
+if has("gui_win32") || has("gui_win64") || has("gui_mac")
   " do nothing
 else
   noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
