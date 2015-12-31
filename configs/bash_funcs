@@ -1,7 +1,7 @@
 function cu { if [ -z "$1" ]; then
-        #no argument, cd to git root, repo root or home 
-        if [ "${PWD}" != "$HOME" ]; then
-            cd ..
+    #no argument, cd to git root, repo root or home
+    if [ "${PWD}" != "$HOME" ]; then
+        cd ..
             until [ -d .git -o -d .repo -o "${PWD}" == "$HOME" ]; do
                 cd ..
             done
@@ -84,22 +84,15 @@ function wk {
     if [ -n "$2" ]; then
         cd ~/wk/$1.$2.git
     elif [ -n "$1" ]; then
-        cd ~/wk/$1
+        if [ "$2" == d ] && [ -L ~/wk/.d ] && [ -d ~/wk/.d ]; then
+            cd `readlink -f ~/wk/.d`
+        else
+            cd ~/wk/$1
+        fi
     else
         cd ~/wk
-        ls
     fi
-}
-
-function nwk {
-    if [ -n "$2" ]; then
-        cd ~/nwk/$1.$2.git
-    elif [ -n "$1" ]; then
-        cd ~/nwk/$1
-    else
-        cd ~/nwk
-        ls
-    fi
+    ls
 }
 
 function wp {
@@ -110,18 +103,6 @@ function wp {
         cd ~/wk/tmp/$1
     else
         cd ~/wk/tmp
-    fi
-    ls
-}
-
-function nwp {
-    if [ -n "$1" ]; then
-        if [ ! -d ~/nwk/tmp/$1 ]; then
-            mkdir ~/nwk/tmp/$1
-            cd ~/nwk/tmp/$1
-        fi
-    else
-        cd ~/nwk/tmp
     fi
     ls
 }
