@@ -1,10 +1,10 @@
 function cu { if [ -z "$1" ]; then
-    #no argument, cd to git root, repo root or home
+    #no argument, cd to git root, repo root or svn root or home
     if [ "${PWD}" != "$HOME" ]; then
         cd ..
-            until [ -d .git -o -d .repo -o "${PWD}" == "$HOME" ]; do
-                cd ..
-            done
+        until [ -d .git -o -d .repo -o -d .svn -o "${PWD}" == "$HOME" ]; do
+            cd ..
+        done
         fi
     else
         #argument is integer, go to top directory
@@ -57,10 +57,30 @@ function is_nvt {
 
 function parse_git_branch {
     if [ -d mediatek/.git ]; then
-        (cd mediatek && git branch --no-color 2> /dev/null | \
-        sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/" && cd ..)
+        (cd mediatek && \
+        git branch --no-color 2> /dev/null | \
+        sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/" && \
+        cd ..)
     else
-        git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
+        git branch --no-color 2> /dev/null | \
+        sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
+    fi
+}
+
+function parse_svn_rev {
+    svn info 2> /dev/null | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p'
+}
+
+function get_vcs_info {
+    local ii=`parse_git_branch`
+
+    if [ -n "$ii" ]; then
+        echo -n "$ii"
+    else
+        ii=`parse_svn_rev`
+        if [ -n "$ii" ]; then
+            echo -n " (r$ii)"
+        fi
     fi
 }
 
@@ -84,7 +104,7 @@ function wk {
     if [ -n "$2" ]; then
         cd ~/wk/$1.$2.git
     elif [ -n "$1" ]; then
-        if [ "$2" == d ] && [ -L ~/wk/.d ] && [ -d ~/wk/.d ]; then
+        if [ $1 == d ] && [ -L ~/wk/.d ] && [ -d ~/wk/.d ]; then
             cd `readlink -f ~/wk/.d`
         else
             cd ~/wk/$1
