@@ -125,3 +125,9 @@ alias gl='git log'
 alias glp='git log -p'
 alias glo='git log --oneline -10'
 alias gwc='git whatchanged'
+
+# svn
+alias ss='svn status'
+alias sa='svn add'
+alias sl='svn log -l 10'
+alias slp='svn log --diff -l 10'
