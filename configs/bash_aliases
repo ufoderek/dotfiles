@@ -46,7 +46,7 @@ alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
 
 # grep
-alias grep='grep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=out --color=always --binary-files=without-match'
+alias grep='grep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=\.svn --exclude-dir=out --color=always --binary-files=without-match'
 
 # reload bashrc
 alias refresh='. ~/.bashrc'
