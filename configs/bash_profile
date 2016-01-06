@@ -30,6 +30,8 @@ fi
 
 if is_nvt; then
     export PATH=$PATH:/opt/VDLinux-mipsel-24kv3r0.20120412/bin
+    #for 658
+    export PATH=$PATH:/opt/arm/sourcery_codebench_lite_for_arm_eabi/bin
 fi
 
 # ccache
