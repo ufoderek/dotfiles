@@ -90,6 +90,8 @@ set backspace=indent,eol,start "let backspace delete over line breaks, tabs...
 set whichwrap+=<,>,h,l,[,] "let h and l keys to wrap when used at beginning or end of lines
 set mouse=a "support mouse in all modes so it won't copy line numbers
 set wildmenu "use wildmenu for command auto-complete
+set splitbelow "more natural
+set splitright "more natural
 syntax enable
 
 "" encoding
@@ -265,6 +267,12 @@ map <3-MiddleMouse> <Nop>
 imap <3-MiddleMouse> <Nop>
 map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
+
+"" easier moving around split windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "" Increase/decrease font size
 if has("gui_running")
