@@ -50,6 +50,16 @@ Plug 'bling/vim-airline'
 Plug 'techlivezheng/vim-plugin-minibufexpl'
 Plug 'flazz/vim-colorschemes'
 
+"some tests
+Plug 'vim-scripts/DirDiff.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'chrisbra/vim-diff-enhanced'
+Plug 'tpope/vim-commentary'
+Plug 'scrooloose/syntastic'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'godlygeek/tabular'
+Plug 'nelstrom/vim-visual-star-search'
+
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
