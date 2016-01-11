@@ -47,7 +47,7 @@ endif
 
 "Plug 'tpope/vim-sleuth'
 Plug 'bling/vim-airline'
-Plug 'techlivezheng/vim-plugin-minibufexpl'
+"Plug 'techlivezheng/vim-plugin-minibufexpl'
 Plug 'flazz/vim-colorschemes'
 
 "some tests
@@ -63,6 +63,7 @@ Plug 'nelstrom/vim-visual-star-search'
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
+  Plug 'christoomey/vim-tmux-navigator'
 endif
 
 call plug#end()
@@ -212,15 +213,15 @@ endif
 set laststatus=2 "always show status line
 
 "" for MiniBufExpl
-nmap <leader>bn :enew<cr>
-nmap <leader>bl :MBEbn<cr>
-nmap <leader>bh :MBEbp<cr>
-nmap <leader>bd :MBEbd<cr>
-nmap <leader>bD :MBECloseAll<cr>
-let g:miniBufExplSplitBelow=1
-let g:miniBufExplShowBufNumbers=0
-let g:miniBufExplUseSingleClick=1
-let g:miniBufExplCycleArround=0
+"nmap <leader>bn :enew<cr>
+"nmap <leader>bl :MBEbn<cr>
+"nmap <leader>bh :MBEbp<cr>
+"nmap <leader>bd :MBEbd<cr>
+"nmap <leader>bD :MBECloseAll<cr>
+"let g:miniBufExplSplitBelow=1
+"let g:miniBufExplShowBufNumbers=0
+"let g:miniBufExplUseSingleClick=1
+"let g:miniBufExplCycleArround=0
 
 "" indent
 set autoindent "copy the indentation from the previous line
@@ -279,10 +280,10 @@ map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
 
 "" easier moving around split windows
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
 "" Increase/decrease font size
 if has("gui_running")
