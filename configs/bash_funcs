@@ -55,6 +55,15 @@ function is_nvt {
     fi
 }
 
+function is_nvt_tmux18 {
+    local my_host=`hostname`
+    if [[ "$my_host" == oaplnx7 ]]; then
+        return 0 #success
+    else
+        return 1
+    fi
+}
+
 function parse_git_branch {
     if [ -d mediatek/.git ]; then
         (cd mediatek && \
