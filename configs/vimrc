@@ -45,25 +45,24 @@ else
   call plug#begin('~/.vim/plugged')
 endif
 
-"Plug 'tpope/vim-sleuth'
 Plug 'bling/vim-airline'
 "Plug 'techlivezheng/vim-plugin-minibufexpl'
 Plug 'flazz/vim-colorschemes'
+Plug 'chrisbra/vim-diff-enhanced'
+Plug 'nelstrom/vim-visual-star-search'
 
 "some tests
 Plug 'vim-scripts/DirDiff.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'chrisbra/vim-diff-enhanced'
 Plug 'tpope/vim-commentary'
-"Plug 'scrooloose/syntastic'
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 Plug 'godlygeek/tabular'
-Plug 'nelstrom/vim-visual-star-search'
 
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+  Plug 'Shougo/unite.vim'
 endif
 
 call plug#end()
@@ -286,12 +285,6 @@ if &term =~ '^screen'
   set ttymouse=xterm2
 endif
 
-"" easier moving around split windows
-"nnoremap <C-J> <C-W><C-J>
-"nnoremap <C-K> <C-W><C-K>
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
-
 "" Increase/decrease font size
 if has("gui_running")
 nnoremap <C-kPlus> :silent! let &guifont = substitute(
@@ -306,31 +299,33 @@ nnoremap <C-kMinus> :silent! let &guifont = substitute(
 \ '')<cr>
 endif
 
-
-"" CtrlP
-let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-let g:ctrlp_user_command = {
-\ 'types': {
-\ 1: ['.git', 'cd %s && git ls-files'],
-\ 2: ['.hg', 'hg --cwd %s locate -I .'],
-\ },
-\ 'fallback': 'find %s -type f'
-\ }
-"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-"let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files = 0
-let g:ctrlp_open_multiple_files = 'v'
-let g:ctrlp_prompt_mappings = {
-\ 'PrtClearCache()':      ['<NOP>'],
-\ 'PrtDeleteEnt()':       ['<NOP>'],
-\ }
+"" Unite
+let g:unite_data_directory='~/.cache/unite'
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" limit of cached files
+let g:unite_source_rec_max_cache_files = 0
+call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
+" match by filename
+call unite#custom#source(
+\ 'buffer,file_rec/async,file_rec', 'matchers',
+\ ['converter_tail', 'matcher_default'])
+call unite#custom#source(
+\ 'file_rec/async,file_rec', 'converters',
+\ ['converter_file_directory'])
+" overwrite unite key mapping
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+  imap <buffer> jj    <Plug>(unite_insert_leave)
+  nmap <buffer> Q     <plug>(unite_exit)
+  nmap <buffer> <esc> <plug>(unite_exit)
+  imap <buffer> <esc> <plug>(unite_exit)
+endfunction"}}}
+" advanced key bindings: <Space>f|p|b
+nmap <space> [unite]
+nnoremap [unite] <nop>
+nnoremap <silent> [unite]f :<C-u>Unite -start-insert -toggle file file_rec/async<cr>
+nnoremap <silent> [unite]p :<C-u>UniteWithProjectDir -start-insert -toggle file_rec/async<cr>
+nnoremap <silent> [unite]b :<C-u>Unite buffer<cr>
 
 "" Mouse insert/paste and Ctrl C/X/V, may override above settings
 " source $VIMRUNTIME/mswin.vim
