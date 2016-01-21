@@ -110,6 +110,7 @@ alias du='du -sh'
 
 # git
 alias gs='git status'
+alias gss='git status --untracked-files=no'
 alias ga='git add'
 alias grh='git reset --hard'
 alias gb='git branch'
