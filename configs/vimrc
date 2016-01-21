@@ -324,7 +324,7 @@ endfunction"}}}
 nmap <space> [unite]
 nnoremap [unite] <nop>
 nnoremap <silent> [unite]f :<C-u>Unite -start-insert -toggle file file_rec/async<cr>
-nnoremap <silent> [unite]p :<C-u>UniteWithProjectDir -start-insert -toggle file_rec/async<cr>
+nnoremap <silent> [unite]p :<C-u>UniteWithProjectDir -start-insert -toggle file file_rec/async<cr>
 nnoremap <silent> [unite]b :<C-u>Unite buffer<cr>
 
 "" Mouse insert/paste and Ctrl C/X/V, may override above settings
