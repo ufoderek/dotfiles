@@ -36,8 +36,8 @@ if is_nvt; then
     export PATH=$PATH:/vd-linux-tool/bin
     #for 658
     export PATH=$PATH:/opt/arm/gcc-linaro-arm-linux-gnueabihf-4.9-2014.08_linux/bin
-    #export PATH=$PATH:/opt/arm-v7a8v3r1-20121018/bin
-    #export PATH=$PATH:/opt/arm/sourcery_codebench_lite_for_arm_eabi/bin
+    #for CVT
+    export PATH=$PATH:/opt/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin
 fi
 
 # ccache
