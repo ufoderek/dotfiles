@@ -1,0 +1,1 @@
+astyle --suffix=none --lineend=linux --style=linux --indent=force-tab=8 --indent-classes --indent-switches --indent-namespaces --max-instatement-indent=40 --pad-oper --pad-header --align-pointer=name --align-reference=name --break-closing-brackets --max-code-length=80 --break-after-logical $@
