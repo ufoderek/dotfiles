@@ -106,7 +106,7 @@ fi
 alias df='df -h'
 
 # du
-alias du='du -sh'
+alias du='du -hd 1'
 
 # git
 alias gs='git status'
