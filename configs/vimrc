@@ -50,6 +50,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'weynhamz/vim-plugin-minibufexpl'
+Plug 'wikitopian/hardmode'
 
 "some tests
 Plug 'vim-scripts/DirDiff.vim'
@@ -299,10 +300,14 @@ nnoremap <C-kMinus> :silent! let &guifont = substitute(
 \ '')<cr>
 endif
 
-" vim-diff-enhanced
+"" vim-diff-enhanced
 if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
+
+"" HardMode
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 "" use real tab in makefiles
 autocmd FileType make setlocal noexpandtab
