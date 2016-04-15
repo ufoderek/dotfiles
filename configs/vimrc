@@ -45,7 +45,8 @@ else
   call plug#begin('~/.vim/plugged')
 endif
 
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'techlivezheng/vim-plugin-minibufexpl'
 Plug 'flazz/vim-colorschemes'
 Plug 'chrisbra/vim-diff-enhanced'
