@@ -47,23 +47,18 @@ endif
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'techlivezheng/vim-plugin-minibufexpl'
 Plug 'flazz/vim-colorschemes'
 Plug 'chrisbra/vim-diff-enhanced'
-Plug 'nelstrom/vim-visual-star-search'
+Plug 'weynhamz/vim-plugin-minibufexpl'
 
 "some tests
 Plug 'vim-scripts/DirDiff.vim'
 Plug 'tpope/vim-commentary'
-"Plug 'terryma/vim-multiple-cursors'
-Plug 'godlygeek/tabular'
 
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-  Plug 'Shougo/unite.vim'
 endif
 
 call plug#end()
@@ -119,6 +114,8 @@ endif
 map Y y$
 inoremap jj <Esc>
 cnoremap jj <C-c>
+inoremap jk <Esc>
+cnoremap jk <C-c>
 vnoremap q <Esc>
 vnoremap v <Esc>
 
@@ -220,8 +217,10 @@ set laststatus=2 "always show status line
 "nmap <leader>bD :MBECloseAll<cr>
 "let g:miniBufExplSplitBelow=1
 "let g:miniBufExplShowBufNumbers=0
-"let g:miniBufExplUseSingleClick=1
 "let g:miniBufExplCycleArround=0
+let g:miniBufExplorerHideWhenDiff=1
+let g:miniBufExplStatusLineText=0
+let g:miniBufExplUseSingleClick=1
 
 "" indent
 set autoindent "copy the indentation from the previous line
@@ -300,37 +299,10 @@ nnoremap <C-kMinus> :silent! let &guifont = substitute(
 \ '')<cr>
 endif
 
-"" Unite
-let g:unite_data_directory='~/.cache/unite'
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" limit of cached files
-let g:unite_source_rec_max_cache_files = 0
-call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
-" match by filename
-call unite#custom#source(
-\ 'buffer,file_rec/async,file_rec', 'matchers',
-\ ['converter_tail', 'matcher_default'])
-call unite#custom#source(
-\ 'file_rec/async,file_rec', 'converters',
-\ ['converter_file_directory'])
-" overwrite unite key mapping
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()"{{{
-  imap <buffer> jj    <Plug>(unite_insert_leave)
-  nmap <buffer> Q     <plug>(unite_exit)
-  nmap <buffer> <esc> <plug>(unite_exit)
-  imap <buffer> <esc> <plug>(unite_exit)
-endfunction"}}}
-" advanced key bindings: <Space>f|p|b
-nmap <space> [unite]
-nnoremap [unite] <nop>
-nnoremap <silent> [unite]f :<C-u>Unite -start-insert -toggle file file_rec/async<cr>
-nnoremap <silent> [unite]p :<C-u>UniteWithProjectDir -start-insert -toggle file file_rec/async<cr>
-nnoremap <silent> [unite]b :<C-u>Unite buffer<cr>
-
-"" Mouse insert/paste and Ctrl C/X/V, may override above settings
-" source $VIMRUNTIME/mswin.vim
-" behave mswin
+" vim-diff-enhanced
+if &diff
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+endif
 
 "" use real tab in makefiles
 autocmd FileType make setlocal noexpandtab
