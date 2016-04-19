@@ -208,6 +208,10 @@ elseif &t_Co >= 8
 endif
 
 "" for vim-airline
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_detect_iminsert=0
+let g:airline_theme='zenburn'
 set laststatus=2 "always show status line
 
 "" for MiniBufExpl
