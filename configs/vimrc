@@ -47,7 +47,7 @@ endif
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
+Plug 'jnurmine/Zenburn'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'weynhamz/vim-plugin-minibufexpl'
 Plug 'wikitopian/hardmode'
