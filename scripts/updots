@@ -5,7 +5,11 @@ source ~/.bash_funcs
 CONF_PATH=$HOME/dotfiles/configs
 
 rm -rf ~/.gitconfig
-cp $CONF_PATH/gitconfig ~/.gitconfig
+if is_nvt; then
+	cp $CONF_PATH/gitconfig.nvt ~/.gitconfig
+else
+	cp $CONF_PATH/gitconfig ~/.gitconfig
+fi
 
 rm -rf ~/.gittemplate
 cp $CONF_PATH/gittemplate ~/.gittemplate

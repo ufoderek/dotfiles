@@ -1,20 +1,35 @@
-#NOTE: Do not uncomment lines begins w/ "#", these lines will be
-#      ignored by GIT when it's marked
-#Summary format:
-#- Project: A1, A3, A4 or mutiple if it's shared between projects
-#- Branch:  a4075, Froyo, 1240 ... etc
-#- Component: The component which patch is related to, for ex: GMS
-#- BugID(optional): The bug # of the patch submitted for.
-[Project][Branch][Component][BugID(optional)] Summary
-#Please leave the second line(below) in blank
 
-#Description format:
-#- Why: Why do you make this modification?
-#- How: The logic/algorithm behinds the patch. Please write down
-#       the thinking instead of the file you modified!
-#- Verify steps: steps to verify the patch
-#- Possible effects: The affected area. Please write it down if any
-Why:
-How:
-Verify steps: N/A
-Possible effects:
+
+[Name]
+ChienTe Liu
+[Issue Description]
+N/A
+[Root Cause]
+N/A
+[Solution]
+N/A
+[Side Effect]
+N/A
+[Where happened]
+N/A
+[Possible Side Effect]
+N/A
+[Tested Project Code]
+N/A
+[Note]
+N/A
+
+[Description]
+N/A
+[Root cause]
+N/A
+[Solution]
+N/A
+[Test case]
+N/A
+[Base version of SS source code]
+N/A
+[Author]
+ChienTe Liu
+
+Signed-off-by: ChienTe Liu <ChienTe_Liu@novatek.com.tw>
