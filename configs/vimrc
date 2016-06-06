@@ -48,13 +48,9 @@ endif
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jnurmine/Zenburn'
-Plug 'chrisbra/vim-diff-enhanced'
-Plug 'weynhamz/vim-plugin-minibufexpl'
-Plug 'wikitopian/hardmode'
-
-"some tests
-Plug 'vim-scripts/DirDiff.vim'
+Plug 'fholgado/minibufexpl.vim'
 Plug 'tpope/vim-commentary'
+"Plug 'wikitopian/hardmode'
 
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
@@ -215,14 +211,6 @@ let g:airline_theme='zenburn'
 set laststatus=2 "always show status line
 
 "" for MiniBufExpl
-"nmap <leader>bn :enew<cr>
-"nmap <leader>bl :MBEbn<cr>
-"nmap <leader>bh :MBEbp<cr>
-"nmap <leader>bd :MBEbd<cr>
-"nmap <leader>bD :MBECloseAll<cr>
-"let g:miniBufExplSplitBelow=1
-"let g:miniBufExplShowBufNumbers=0
-"let g:miniBufExplCycleArround=0
 let g:miniBufExplorerHideWhenDiff=1
 let g:miniBufExplStatusLineText=0
 let g:miniBufExplUseSingleClick=1
@@ -242,23 +230,24 @@ set shiftwidth=8 "width of shift
 set tabstop=8 "width of tab
 set softtabstop=0 "width of tab, but insert spaces
 
-function TabToggle()
-  if &expandtab
-    "real tab width = 8
+function Tab8()
     set noexpandtab "don't use space to replace tab
     set shiftwidth=8 "width of shift
     set tabstop=8 "width of tab
     set softtabstop=0 "width of tab, but insert spaces
-  else
-    " virtual tab width = 4
-    set expandtab "use space to replace tab
+endfunction
+
+function Tab4()
+    set noexpandtab "don't use space to replace tab
     set shiftwidth=4 "width of shift
     set tabstop=4 "width of tab
     set softtabstop=4 "width of tab, but insert spaces
-  endif
 endfunction
 
-nmap <leader>t :execute TabToggle()<cr>
+:execute Tab8()
+
+nmap <leader>t8 :execute Tab8()<cr>
+nmap <leader>t4 :execute Tab4()<cr>
 
 "" gitgutter
 highlight clear SignColumn
@@ -303,15 +292,6 @@ nnoremap <C-kMinus> :silent! let &guifont = substitute(
 \ '\=eval(submatch(0)-1)',
 \ '')<cr>
 endif
-
-"" vim-diff-enhanced
-if &diff
-    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
-endif
-
-"" HardMode
-"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 "" use real tab in makefiles
 autocmd FileType make setlocal noexpandtab

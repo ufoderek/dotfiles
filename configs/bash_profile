@@ -40,6 +40,8 @@ if is_nvt; then
     export PATH=$PATH:/opt/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin
     #for CVT 2.0
     export PATH=$PATH:/opt/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin
+	#for SS onboot
+	export PATH=$PATH:/opt/arm-v7a8v3r1-20121018/bin
 fi
 
 # ccache
