@@ -132,3 +132,7 @@ alias ss='svn status'
 alias sa='svn add'
 alias sl='svn log -l 10'
 alias slp='svn log --diff -l 10'
+
+#misc
+alias fda='dastyle.sh nt72*.c include/nt72*.h"
+alias fga='git add nt72*.c include/nt72*.h"
