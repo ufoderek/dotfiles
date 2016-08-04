@@ -50,12 +50,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jnurmine/Zenburn'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'tpope/vim-commentary'
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'wikitopian/hardmode'
 
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
-  Plug 'christoomey/vim-tmux-navigator'
 endif
 
 call plug#end()

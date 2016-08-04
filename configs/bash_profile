@@ -7,18 +7,19 @@ export PATH=$PATH:$HOME/dotfiles/bin
 export PATH=$PATH:$HOME/dotfiles/bin64
 export PATH=$PATH:$HOME/dotfiles/scripts
 if is_linux; then
-    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/tools
-    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools
-    export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools/sys-trace
     #for trash-cli
     export PATH=$PATH:$HOME/.local/bin
 fi
-export PATH=$PATH:$HOME/wk/tools/test-apks
-export PATH=$PATH:$HOME/wk/tools/cts/android-cts/tools
+
+#export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/tools
+#export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools
+#export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools/sys-trace
+#export PATH=$PATH:$HOME/wk/tools/test-apks
+#export PATH=$PATH:$HOME/wk/tools/cts/android-cts/tools
 
 if is_osx; then
     #for homebrew
-    export PATH="/usr/local/sbin:$PATH"
+    export PATH=/usr/local/sbin:$PATH
     #for android-sdk installed from homebrew
     export ANDROID_HOME="/usr/local/opt/android-sdk"
     export PATH=$PATH:/usr/local/opt/android-sdk/tools
@@ -37,17 +38,19 @@ if is_nvt; then
     #for 658
     export PATH=$PATH:/opt/arm/gcc-linaro-arm-linux-gnueabihf-4.9-2014.08_linux/bin
     #for CVT
-    export PATH=$PATH:/opt/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin
-    #for CVT 2.0
+    export PATH=$PATH:/opt/arm/sourcery_codebench_lite_for_arm_eabi/bin
+    #for CVT 64-bit
     export PATH=$PATH:/opt/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin
-	#for SS onboot
-	export PATH=$PATH:/opt/arm-v7a8v3r1-20121018/bin
+    #for Linux 64-bit
+    export PATH=$PATH:/opt/arm/gcc-linaro-6.2.0-20161123-x86_64_aarch64-linux-gnu/bin
+    #for SS onboot
+    export PATH=$PATH:/opt/arm/arm-v7a8v3r1-20121018/bin
 fi
 
 # ccache
-export CCACHE_COMPRESS=0
-export CCACHE_DIR=~/wk/ccache
-export USE_CCACHE=1
+#export CCACHE_COMPRESS=0
+#export CCACHE_DIR=~/wk/ccache
+#export USE_CCACHE=1
 #(ccache -M 100G &) > /dev/null 2>&1 #using subshell to hide background response
 
 # ibus
@@ -64,7 +67,6 @@ export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 export EDITOR=vim
 export HISTCONTROL=erasedups
-#export HISTIGNORE='&:ls:cd ~:cd ..:[bf]g:exit:h:history'
 export HISTIGNORE='&:cd ~:cd ..:[bf]g:exit:h:history'
 export PROMPT_COMMAND='history -a' #update history after each command
 

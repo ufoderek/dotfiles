@@ -50,6 +50,8 @@ function is_nvt {
         return 0 #success
     elif [[ "$my_host" == oaplnx7 ]]; then
         return 0 #success
+    elif [[ "$my_host" == oaplnx7vm ]]; then
+        return 0 #success
     else
         return 1
     fi
@@ -58,6 +60,8 @@ function is_nvt {
 function is_nvt_tmux18 {
     local my_host=`hostname`
     if [[ "$my_host" == oaplnx7 ]]; then
+        return 0 #success
+    elif [[ "$my_host" == oaplnx7vm ]]; then
         return 0 #success
     else
         return 1
@@ -142,21 +146,26 @@ function g {
 	elif [ "$1" = "dc" ]; then
 		cd ~/dotfiles/configs
 	elif [ "$1" = "b0" ]; then
-		cd ~/wk/171/onboot/bootram/nt72_nand
+		cd ~/wk/17L/onboot/bootram/nt72_nand
 	elif [ "$1" = "b1" ]; then
-		cd ~/wk/171/onboot/fsr/LLD/PND_NT171
+		cd ~/wk/17L/onboot/fsr/LLD/PND_NT171
 	elif [ "$1" = "sk" ]; then
-		echo 123
-		cd ~/wk/171/VDLinux_3.0.20/linux-3.0.20/
+		cd ~/wk/17L/VDLinux_3.0.20/linux-3.0.20/
 	elif [ "$1" = "fsr" ]; then
-		cd ~/wk/171/VDLinux_3.0.20/linux-3.0.20/drivers/fsr/LLD/PND_NT171
+		cd ~/wk/17L/VDLinux_3.0.20/linux-3.0.20/drivers/fsr/LLD/PND_NT171
 	elif [ "$1" = "tfsr" ]; then
-		cd ~/wk/171/VDLinux_3.0.20/linux-3.0.20/drivers/tfsr/LLD/PND_NT171
+		cd ~/wk/17L/VDLinux_3.0.20/linux-3.0.20/drivers/tfsr/LLD/PND_NT171
 	elif [ "$1" = "c" ]; then
+		cd ~/wk/nvt-sample_v2.0/drivers/nand
+	elif [ "$1" = "cc" ]; then
 		cd ~/wk/nvt-sample_v2.0/drivers/nand
 	elif [ "$1" = "k" ]; then
 		cd ~/wk/linux-3.10
 	elif [ "$1" = "kn" ]; then
 		cd ~/wk/linux-3.10/drivers/mtd/nand/nt72_nand
+	elif [ "$1" = "u" ]; then
+		cd ~/wk/u-boot-2016.07
+	elif [ "$1" = "uu" ]; then
+		cd ~/wk/u-boot-2016.07/drivers/mtd/nand/nt72_nand
 	fi
 }

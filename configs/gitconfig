@@ -1,15 +1,15 @@
 [user]
-    name = Chien-Te Liu
-    email = ufoderek@gmail.com
+	name = Chien-Te Liu
+	email = ufoderek@gmail.com
 [color]
-    ui = auto
-    status = auto
+	ui = auto
+	status = auto
 [core]
-    editor = vim
-    excludesfile = ~/.gitignore
+	editor = vim
+	excludesfile = ~/.gitignore
 	pager = less -x1,5
 [commit]
-    template = ~/.gittemplate
-[alias]
+	template = ~/.gittemplate
 [pull]
 	rebase = true
+[alias]

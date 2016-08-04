@@ -1,7 +1,6 @@
 ASTYLE_OPTS="\
 --style=linux \
 --indent=force-tab=8 \
---indent-preproc-define \
 --indent-col1-comments \
 --max-instatement-indent=80 \
 --pad-oper \
