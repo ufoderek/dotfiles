@@ -57,11 +57,18 @@ function is_nvt {
     fi
 }
 
-function is_nvt_tmux18 {
+function is_tmux18 {
     local my_host=`hostname`
     if [[ "$my_host" == oaplnx7 ]]; then
         return 0 #success
-    elif [[ "$my_host" == oaplnx7vm ]]; then
+    else
+        return 1
+    fi
+}
+
+function is_tmux21 {
+    local my_host=`hostname`
+    if [[ "$my_host" == oaplnx7vm ]]; then
         return 0 #success
     else
         return 1
