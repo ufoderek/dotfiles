@@ -119,7 +119,6 @@ vnoremap v <Esc>
 
 "" about split
 nnoremap <silent> vv <C-w>v
-nnoremap <silent> hh <C-w>s
 
 "" reselect visual block after indent/outdent
 vnoremap < <gv
