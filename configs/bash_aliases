@@ -47,6 +47,7 @@ alias lt='ll -rt'                   # sort by date
 
 # grep
 alias grep='grep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=\.svn --exclude-dir=out --color=always --binary-files=without-match'
+alias grepc='grep --include="*.[c|h|cpp|hpp]"'
 
 # reload bashrc
 alias refresh='. ~/.bashrc'

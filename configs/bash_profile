@@ -11,12 +11,6 @@ if is_linux; then
     export PATH=$PATH:$HOME/.local/bin
 fi
 
-#export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/tools
-#export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools
-#export PATH=$PATH:$HOME/wk/tools/android-sdk-linux/platform-tools/sys-trace
-#export PATH=$PATH:$HOME/wk/tools/test-apks
-#export PATH=$PATH:$HOME/wk/tools/cts/android-cts/tools
-
 if is_osx; then
     #for homebrew
     export PATH=/usr/local/sbin:$PATH
@@ -33,10 +27,10 @@ fi
 
 if is_nvt; then
     #for 453 TPV
-    export PATH=$PATH:/opt/VDLinux-mipsel-24kv3r0.20120412/bin
-    export PATH=$PATH:/vd-linux-tool/bin
+    #export PATH=$PATH:/opt/VDLinux-mipsel-24kv3r0.20120412/bin
+    #export PATH=$PATH:/vd-linux-tool/bin
     #for 658
-    export PATH=$PATH:/opt/arm/gcc-linaro-arm-linux-gnueabihf-4.9-2014.08_linux/bin
+    #export PATH=$PATH:/opt/arm/gcc-linaro-arm-linux-gnueabihf-4.9-2014.08_linux/bin
     #for CVT
     export PATH=$PATH:/opt/arm/sourcery_codebench_lite_for_arm_eabi/bin
     #for CVT 64-bit
@@ -45,8 +39,6 @@ if is_nvt; then
     export PATH=$PATH:/opt/arm/gcc-linaro-6.2.0-20161123-x86_64_aarch64-linux-gnu/bin
     #for onboot
     export PATH=$PATH:/opt/arm/arm-v7a8v3r1-20121018/bin
-    #for new onboot
-    #export PATH=$PATH:/opt/tizen3.0_cross_toolchain_VD_20160520/bin
     #for ss-linux
     export PATH=$PATH:/opt/arm/tizen3.0_cross_toolchain_vd_jazzm_target_armv7l_host_x86-64_ga2.2016-09-21/bin
 fi
@@ -56,15 +48,6 @@ fi
 #export CCACHE_DIR=~/wk/ccache
 #export USE_CCACHE=1
 #(ccache -M 100G &) > /dev/null 2>&1 #using subshell to hide background response
-
-# ibus
-#if ! is_buildfarm; then
-    #for ibus
-    #export GTK_IM_MODULE=ibus
-    #export XMODIFIERS=@im=ibus
-    #export QT_IM_MODULE=ibus-qt4
-    #export XIM_PROGRAM=/usr/bin/ibus-daemon
-#fi
 
 # bash parameters
 export HISTSIZE=1000000

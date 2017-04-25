@@ -56,6 +56,9 @@ Plug 'christoomey/vim-tmux-navigator'
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
+  Plug 'vim-scripts/cscope.vim'
+  "Plug 'vim-scripts/cscope-quickfix'
+  Plug 'vim-scripts/cscope_macros.vim'
 endif
 
 call plug#end()
@@ -109,12 +112,14 @@ endif
 
 "" some useful remappings
 map Y y$
-inoremap jj <Esc>
-cnoremap jj <C-c>
 inoremap jk <Esc>
 cnoremap jk <C-c>
 vnoremap q <Esc>
 vnoremap v <Esc>
+
+"" about split
+nnoremap <silent> vv <C-w>v
+nnoremap <silent> hh <C-w>s
 
 "" reselect visual block after indent/outdent
 vnoremap < <gv

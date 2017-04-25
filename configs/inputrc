@@ -1,7 +1,7 @@
 set bell-style none
 $if mode=vi
     set keymap vi-insert
-    "jj": vi-movement-mode
+    "jk": vi-movement-mode
 $endif
 
 "\e[6~": history-search-forward
