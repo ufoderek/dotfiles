@@ -70,6 +70,8 @@ function is_tmux21 {
     local my_host=`hostname`
     if [[ "$my_host" == oaplnx7vm ]]; then
         return 0 #success
+    elif [[ "$my_host" == oaalnx3 ]]; then
+        return 0 #success
     else
         return 1
     fi
