@@ -21,14 +21,10 @@ rm -rf ~/.git-completion.bash
 cp $CONF_PATH/git-completion.bash ~/.git-completion.bash
 
 rm -rf ~/.tmux.conf
-if ! is_nvt; then
-    cp $CONF_PATH/tmux.conf ~/.tmux.conf
-elif is_tmux18; then
+if is_tmux18; then
     cp $CONF_PATH/tmux-1.8.conf ~/.tmux.conf
-elif is_tmux21; then
-    cp $CONF_PATH/tmux-2.1.conf ~/.tmux.conf
 else
-    cp $CONF_PATH/tmux-1.6.conf ~/.tmux.conf
+    cp $CONF_PATH/tmux-2.1.conf ~/.tmux.conf
 fi
 
 rm -rf ~/.bashrc

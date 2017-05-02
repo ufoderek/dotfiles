@@ -1,5 +1,6 @@
 function cu { if [ -z "$1" ]; then
     #no argument, cd to git root, repo root or svn root or home
+    pushd . > /dev/null
     if [ "${PWD}" != "$HOME" ]; then
         cd ..
         until [ -d .git -o -d .repo -o -d .svn -o "${PWD}" == "$HOME" ]; do
@@ -22,6 +23,9 @@ function cu { if [ -z "$1" ]; then
             done
         fi
     fi
+    local new_pwd=`pwd`
+    popd > /dev/null
+    cd $new_pwd
 }
 
 function is_osx {
@@ -60,17 +64,6 @@ function is_nvt {
 function is_tmux18 {
     local my_host=`hostname`
     if [[ "$my_host" == oaplnx7 ]]; then
-        return 0 #success
-    else
-        return 1
-    fi
-}
-
-function is_tmux21 {
-    local my_host=`hostname`
-    if [[ "$my_host" == oaplnx7vm ]]; then
-        return 0 #success
-    elif [[ "$my_host" == oaalnx3 ]]; then
         return 0 #success
     else
         return 1
@@ -123,9 +116,7 @@ function get_ip() {
 }
 
 function wk {
-    if [ -n "$2" ]; then
-        cd ~/wk/$1.$2.git
-    elif [ -n "$1" ]; then
+    if [ -n "$1" ]; then
         if [ $1 == d ] && [ -L ~/wk/.d ] && [ -d ~/wk/.d ]; then
             cd `readlink -f ~/wk/.d`
         else
@@ -137,12 +128,13 @@ function wk {
     ls
 }
 
-function wp {
+function wt {
     if [ -n "$1" ]; then
-        if [ ! -d ~/wk/tmp/$1 ]; then
-            mkdir ~/wk/tmp/$1
+        if [ $1 == d ] && [ -L ~/wk/tmp/.d ] && [ -d ~/wk/tmp/.d ]; then
+            cd `readlink -f ~/wk/tmp/.d`
+        else
+            cd ~/wk/tmp/$1
         fi
-        cd ~/wk/tmp/$1
     else
         cd ~/wk/tmp
     fi
