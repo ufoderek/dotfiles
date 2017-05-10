@@ -1,14 +1,15 @@
-function cu { if [ -z "$1" ]; then
-    #no argument, cd to git root, repo root or svn root or home
-    pushd . > /dev/null
-    if [ "${PWD}" != "$HOME" ]; then
-        cd ..
-        until [ -d .git -o -d .repo -o -d .svn -o "${PWD}" == "$HOME" ]; do
+function cu {
+    if [ -z "$1" ]; then
+        #no argument, cd to git root, repo root or svn root or home
+        pushd . > /dev/null
+        if [ "${PWD}" != "$HOME" ]; then
             cd ..
-        done
+            until [ -d .git -o -d .repo -o -d .svn -o "${PWD}" == "$HOME" ]; do
+                cd ..
+            done
         fi
     else
-        #argument is integer, go to top directory
+        #argument is integer, go to upper directory
         if [ $1 -eq $1 2> /dev/null ]; then
             for (( i=$1; i>=1; i-- )) do
                 cd ..
@@ -17,7 +18,8 @@ function cu { if [ -z "$1" ]; then
         else
             for ((;;)) do
                 cd ..
-                if [ "$1" == "${PWD##*/}" -o "${PWD}" == "$HOME" ]; then #shell parameter expansion
+				#shell parameter expansion
+                if [ "$1" == "${PWD##*/}" -o "${PWD}" == "$HOME" ]; then
                     break
                 fi
             done

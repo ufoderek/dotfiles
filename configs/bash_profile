@@ -42,13 +42,10 @@ if is_nvt; then
     #for ss-linux
     export PATH=$PATH:/opt/arm/tizen3.0_cross_toolchain_vd_jazzm_target_armv7l_host_x86-64_ga2.2016-09-21/bin
     #for eCos
-    #export PATH=$PATH:~/wk/ecos/tools/bin
-    #export PATH=$PATH:~/wk/ecos/gnutools/arm-eabi/bin
-    #export ECOS_REPOSITORY=~/wk/ecos/ecos-3.0/packages
+    #export ECOS_REPOSITORY=~/wk/nvt-ecos/ecos-2.0.6/packages
     export PATH=$PATH:/opt/mips/mips-sde-lite/bin
     export PATH=$PATH:/opt/mips-sde-lite/bin
     export PATH=$PATH:/opt/mips/mipsel-24kv3r1-20121018/bin
-    #export PATH=$PATH:/opt/mips/VDLinux-mipsel-24kv3r1.20120412/bin
 fi
 
 # ccache
