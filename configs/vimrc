@@ -248,10 +248,18 @@ function Tab4()
     set softtabstop=4 "width of tab, but insert spaces
 endfunction
 
+function Space4()
+    set expandtab "use space to replace tab
+    set shiftwidth=4 "width of shift
+    set tabstop=4 "width of tab
+    set softtabstop=4 "width of tab, but insert spaces
+endfunction
+
 :execute Tab8()
 
 nmap <leader>t8 :execute Tab8()<cr>
 nmap <leader>t4 :execute Tab4()<cr>
+nmap <leader>s4 :execute Space4()<cr>
 
 "" gitgutter
 highlight clear SignColumn

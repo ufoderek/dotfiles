@@ -163,12 +163,12 @@ function g {
 	elif [ "$1" = "cc" ]; then
 		cd ~/wk/nvt-sample_v2.0/drivers/nand
 	elif [ "$1" = "k" ]; then
-		cd ~/wk/linux-3.10
+		cd ~/wk/linux-4.1
 	elif [ "$1" = "kn" ]; then
-		cd ~/wk/linux-3.10/drivers/mtd/nand/nt72_nand
+		cd ~/wk/linux-4.1/drivers/mtd/nand/nt72_nand
 	elif [ "$1" = "u" ]; then
-		cd ~/wk/u-boot-2016.07
+		cd ~/wk/u-boot-2017.07
 	elif [ "$1" = "uu" ]; then
-		cd ~/wk/u-boot-2016.07/drivers/mtd/nand/nt72_nand
+		cd ~/wk/u-boot-2017.07/drivers/mtd/nand/nt72_nand
 	fi
 }

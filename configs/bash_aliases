@@ -109,6 +109,10 @@ alias df='df -h'
 # du
 alias du='du -hd 1'
 
+# find
+alias ff='find . -name'
+alias fd='find . -name -type d'
+
 # git
 alias gs='git status'
 alias gss='git status --untracked-files=no'

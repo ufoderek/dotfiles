@@ -46,6 +46,13 @@ if is_nvt; then
     export PATH=$PATH:/opt/mips/mips-sde-lite/bin
     export PATH=$PATH:/opt/mips-sde-lite/bin
     export PATH=$PATH:/opt/mips/mipsel-24kv3r1-20121018/bin
+    #for eCos: 568
+    export PATH=$PATH:/opt/mips/VDLinux-mipsel-24kv3r0.20120412/bin
+    #for nuttx
+    export PATH=$PATH:~/dotfiles/bin64/kconfig-frontends/bin
+    #for 673 xboot
+    #export PATH=/opt/arm/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin:$PATH
+    export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_arm-linux-gnueabihf/bin
 fi
 
 # ccache
