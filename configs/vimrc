@@ -47,18 +47,18 @@ endif
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-bufferline'
 Plug 'jnurmine/Zenburn'
-Plug 'fholgado/minibufexpl.vim'
 Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-sleuth'
+"Plug 'fholgado/minibufexpl.vim'
 "Plug 'wikitopian/hardmode'
 
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
   Plug 'vim-scripts/cscope.vim'
-  "Plug 'vim-scripts/cscope-quickfix'
-  Plug 'vim-scripts/cscope_macros.vim'
 endif
 
 call plug#end()
@@ -69,8 +69,8 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" leader key
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = "\<space>"
+let g:mapleader = "\<space>"
 
 "" basic configs
 set nocompatible
@@ -130,6 +130,13 @@ nmap . .`[
 "" goto next displayed line instead of physical line when long line is wrapped
 nnoremap j gj
 nnoremap k gk
+
+"" switching buffers
+set hidden "so any buffer can be hidden (keeping its changes) without first writing the buffer to a file
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+"nmap <C-K> :bhiden<CR>
+"nmap <C-K> :bdelete<CR>
 
 "" to make scrolling horizontally a bit more useful, try this: >
 set sidescroll=5
@@ -207,12 +214,54 @@ elseif &t_Co >= 8
     let g:zenburn_hight_Contrast=1
 endif
 
+"" cscope
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+cnoreabbrev <expr> csa
+  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs add'  : 'csa')
+cnoreabbrev <expr> csf
+  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs find' : 'csf')
+cnoreabbrev <expr> csk
+  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs kill' : 'csk')
+cnoreabbrev <expr> csr
+  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs reset' : 'csr')
+cnoreabbrev <expr> css
+  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs show' : 'css')
+cnoreabbrev <expr> csh
+  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs help' : 'csh')
+
+
 "" for vim-airline
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_detect_iminsert=0
-let g:airline_theme='zenburn'
+"let g:airline_theme='bubblegum'
+"let g:airline_theme='angr'
+"let g:airline_theme='base16'
+"let g:airline_theme='base16_grayscale'
+"let g:airline_symbols_ascii = 1
 set laststatus=2 "always show status line
+let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
+let g:airline#extensions#quickfix#location_text = 'Location'
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#bufferline#overwrite_variables = 1
+
+
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = ''
+let g:airline_symbols.crypt = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.spell = ''
+let g:airline_symbols.notexists = ''
+let g:airline_symbols.whitespace = ''
+
+
+"" bufferline
+let g:bufferline_echo=0
+autocmd VimEnter * let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
 
 "" for MiniBufExpl
 let g:miniBufExplorerHideWhenDiff=1
@@ -228,12 +277,7 @@ set nocindent
 filetype plugin on
 filetype indent on
 
-"" indent (default, real tab width = 8)
-set noexpandtab "don't use space to replace tab
-set shiftwidth=8 "width of shift
-set tabstop=8 "width of tab
-set softtabstop=0 "width of tab, but insert spaces
-
+"" indent (leave default setting for vim-sleuth)
 function Tab8()
     set noexpandtab "don't use space to replace tab
     set shiftwidth=8 "width of shift
@@ -254,9 +298,6 @@ function Space4()
     set tabstop=4 "width of tab
     set softtabstop=4 "width of tab, but insert spaces
 endfunction
-
-:execute Tab8()
-
 nmap <leader>t8 :execute Tab8()<cr>
 nmap <leader>t4 :execute Tab4()<cr>
 nmap <leader>s4 :execute Space4()<cr>
