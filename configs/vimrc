@@ -58,7 +58,7 @@ Plug 'tpope/vim-sleuth'
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
-  Plug 'vim-scripts/cscope.vim'
+  Plug 'brookhong/cscope.vim'
 endif
 
 call plug#end()
@@ -215,22 +215,26 @@ elseif &t_Co >= 8
 endif
 
 "" cscope
-set cscopequickfix=s-,c-,d-,i-,t-,e-
-cnoreabbrev <expr> csa
-  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs add'  : 'csa')
-cnoreabbrev <expr> csf
-  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs find' : 'csf')
-cnoreabbrev <expr> csk
-  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs kill' : 'csk')
-cnoreabbrev <expr> csr
-  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs reset' : 'csr')
-cnoreabbrev <expr> css
-  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs show' : 'css')
-cnoreabbrev <expr> csh
-  \ ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs help' : 'csh')
+nnoremap <leader>c :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>cl :call ToggleLocationList()<CR>
+"s: Find this C symbol
+nnoremap  <leader>cs :call CscopeFind('s', expand('<cword>'))<CR>
+"g: Find this definition
+nnoremap  <leader>cg :call CscopeFind('g', expand('<cword>'))<CR>
+"d: Find functions called by this function
+nnoremap  <leader>cd :call CscopeFind('d', expand('<cword>'))<CR>
+"c: Find functions calling this function
+nnoremap  <leader>cc :call CscopeFind('c', expand('<cword>'))<CR>
+"t: Find this text string
+nnoremap  <leader>ct :call CscopeFind('t', expand('<cword>'))<CR>
+"e: Find this egrepattern
+nnoremap  <leader>ce :call CscopeFind('e', expand('<cword>'))<CR>
+"f: Find this file
+nnoremap  <leader>ce :call CscopeFind('f', expand('<cword>'))<CR>
+"i: Find files #including this file
+nnoremap  <leader>ci :call CscopeFind('i', expand('<cword>'))<CR>
 
-
-"" for vim-airline
+"" vim-airline
 "let g:airline_theme='bubblegum'
 "let g:airline_theme='angr'
 "let g:airline_theme='base16'
@@ -263,10 +267,10 @@ let g:airline_symbols.whitespace = ''
 let g:bufferline_echo=0
 autocmd VimEnter * let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
 
-"" for MiniBufExpl
-let g:miniBufExplorerHideWhenDiff=1
-let g:miniBufExplStatusLineText=0
-let g:miniBufExplUseSingleClick=1
+"" MiniBufExpl
+"let g:miniBufExplorerHideWhenDiff=1
+"let g:miniBufExplStatusLineText=0
+"let g:miniBufExplUseSingleClick=1
 
 "" indent
 set autoindent "copy the indentation from the previous line
