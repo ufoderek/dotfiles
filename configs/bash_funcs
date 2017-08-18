@@ -172,3 +172,15 @@ function g {
 		cd ~/wk/u-boot-2017.07/drivers/mtd/nand/nt72_nand
 	fi
 }
+
+function gfrb {
+	git checkout --quiet --detach HEAD && git fetch origin $1:$1 ; git checkout --quiet -
+}
+
+function grbo {
+	git rebase origin/$1
+}
+
+function grbio {
+	git rebase -i origin/$1
+}
