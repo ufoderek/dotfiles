@@ -5,6 +5,8 @@ if [ -f $HOME/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+source ~/dotfiles/scripts/bashmarks.sh
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
