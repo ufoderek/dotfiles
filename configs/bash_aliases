@@ -113,6 +113,9 @@ alias du='du -hd 1'
 alias ff='find . -name'
 alias fd='find . -name -type d'
 
+# cscope
+alias csr='cscope -R'
+
 # git
 alias gs='git status'
 alias gss='git status --untracked-files=no'
