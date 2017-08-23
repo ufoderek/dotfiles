@@ -47,12 +47,11 @@ endif
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-bufferline'
 Plug 'jnurmine/Zenburn'
 Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sleuth'
-"Plug 'fholgado/minibufexpl.vim'
+Plug 'fholgado/minibufexpl.vim'
 "Plug 'wikitopian/hardmode'
 
 if !has("gui_win32") && !has("gui_win64")
@@ -69,8 +68,8 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" leader key
-let mapleader = "\<space>"
-let g:mapleader = "\<space>"
+let mapleader = ","
+let g:mapleader = ","
 
 "" basic configs
 set nocompatible
@@ -111,7 +110,6 @@ if !empty(&viminfo)
 endif
 
 "" some useful remappings
-map Y y$
 inoremap jk <Esc>
 cnoremap jk <C-c>
 vnoremap q <Esc>
@@ -243,9 +241,6 @@ nnoremap  <leader>ci :call CscopeFind('i', expand('<cword>'))<CR>
 set laststatus=2 "always show status line
 let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
 let g:airline#extensions#quickfix#location_text = 'Location'
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#bufferline#overwrite_variables = 1
-
 
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
@@ -262,15 +257,10 @@ let g:airline_symbols.spell = ''
 let g:airline_symbols.notexists = ''
 let g:airline_symbols.whitespace = ''
 
-
-"" bufferline
-let g:bufferline_echo=0
-autocmd VimEnter * let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
-
 "" MiniBufExpl
-"let g:miniBufExplorerHideWhenDiff=1
-"let g:miniBufExplStatusLineText=0
-"let g:miniBufExplUseSingleClick=1
+let g:miniBufExplorerHideWhenDiff=1
+let g:miniBufExplStatusLineText=0
+let g:miniBufExplUseSingleClick=1
 
 "" indent
 set autoindent "copy the indentation from the previous line
