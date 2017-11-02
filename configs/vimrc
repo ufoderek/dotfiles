@@ -47,11 +47,12 @@ endif
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jnurmine/Zenburn'
-Plug 'tpope/vim-commentary'
+Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sleuth'
 Plug 'fholgado/minibufexpl.vim'
+"Plug 'jnurmine/Zenburn'
+"Plug 'tpope/vim-commentary'
 "Plug 'wikitopian/hardmode'
 
 if !has("gui_win32") && !has("gui_win64")
@@ -203,14 +204,24 @@ elseif has("gui_macvim")
     set guifont=Monaco:h18
 endif
 
-"" colorscheme
 if has("gui_running") || &t_Co >= 256
-    colorscheme zenburn
-    let g:zenburn_hight_Contrast=1
+    syntax enable
+    let g:solarized_degrade=0
+    let g:solarized_termtrans=1
+    "use the precise 16 colors solarized colors from putty,
+    "instead of approx. 256 colors
+    let g:solarized_termcolors=16
+    let g:solarized_contrast="high"
 elseif &t_Co >= 8
-    colorscheme zenburn
-    let g:zenburn_hight_Contrast=1
+    syntax enable
+    let g:solarized_degrade=0
+    let g:solarized_termtrans=0
+    let g:solarized_termcolors=16
+    let g:solarized_contrast="high"
 endif
+"set background=light
+set background=dark
+colorscheme solarized
 
 "" cscope
 nnoremap <leader>c :call CscopeFindInteractive(expand('<cword>'))<CR>
@@ -233,10 +244,7 @@ nnoremap  <leader>ce :call CscopeFind('f', expand('<cword>'))<CR>
 nnoremap  <leader>ci :call CscopeFind('i', expand('<cword>'))<CR>
 
 "" vim-airline
-"let g:airline_theme='bubblegum'
-"let g:airline_theme='angr'
-"let g:airline_theme='base16'
-"let g:airline_theme='base16_grayscale'
+let g:airline_theme='solarized'
 "let g:airline_symbols_ascii = 1
 set laststatus=2 "always show status line
 let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'

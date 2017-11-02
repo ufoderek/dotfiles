@@ -48,6 +48,9 @@ cp $CONF_PATH/vimrc ~/.vimrc
 rm -rf ~/.colordiffrc
 cp $CONF_PATH/colordiffrc ~/.colordiffrc
 
+rm -rf ~/.dircolors
+cp $CONF_PATH/dircolors.ansi-dark ~/.dircolors
+
 if ! is_osx; then
     rm -rf ~/.xsession
     cp $CONF_PATH/xsession ~/.xsession
