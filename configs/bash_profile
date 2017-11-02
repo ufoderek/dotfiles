@@ -40,7 +40,7 @@ if is_nvt; then
     #for onboot
     export PATH=$PATH:/opt/arm/arm-v7a8v3r1-20121018/bin
     #for ss-linux
-    export PATH=$PATH:/opt/arm/tizen3.0_cross_toolchain_vd_jazzm_target_armv7l_host_x86-64_ga2.2016-09-21/bin
+    #export PATH=$PATH:/opt/arm/tizen3.0_cross_toolchain_vd_jazzm_target_armv7l_host_x86-64_ga2.2016-09-21/bin
     #for eCos
     #export ECOS_REPOSITORY=~/wk/nvt-ecos/ecos-2.0.6/packages
     export PATH=$PATH:/opt/mips/mips-sde-lite/bin
@@ -53,6 +53,7 @@ if is_nvt; then
     #for 673 xboot
     #export PATH=/opt/arm/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin:$PATH
     export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_arm-linux-gnueabihf/bin
+    export PATH=$PATH:/opt/arm/tizen4.0_cross_toolchain_vd_kant_target_armv7l_host_x86-64/bin
 fi
 
 # ccache
