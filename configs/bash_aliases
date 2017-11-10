@@ -59,6 +59,8 @@ alias refresh='. ~/.bashrc'
 alias td='tmuxd.sh'
 alias tk='tmuxk.sh'
 alias tl='tmuxl.sh'
+alias ttl='tmux-light.sh'
+alias ttd='tmux-dark.sh'
 
 # to lower process priority
 if ! is_osx; then
@@ -69,9 +71,9 @@ fi
 
 # top
 if ! is_osx; then
-    alias top='top -u ufoderek'
+    alias top='top -u $USER'
 else
-    alias top='top -user ufoderek'
+    alias top='top -user $USER'
 fi
 
 # trash-cli

@@ -59,6 +59,7 @@ if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
   Plug 'brookhong/cscope.vim'
+  Plug 'scrooloose/nerdtree'
 endif
 
 call plug#end()
@@ -207,7 +208,7 @@ endif
 if has("gui_running") || &t_Co >= 256
     syntax enable
     let g:solarized_degrade=0
-    let g:solarized_termtrans=1
+    let g:solarized_termtrans=0
     "use the precise 16 colors solarized colors from putty,
     "instead of approx. 256 colors
     let g:solarized_termcolors=16
@@ -219,11 +220,30 @@ elseif &t_Co >= 8
     let g:solarized_termcolors=16
     let g:solarized_contrast="high"
 endif
-"set background=light
 set background=dark
+"set background=light
 colorscheme solarized
+call togglebg#map("<leader>bg")
 
 "" cscope
+if has('cscope')
+  set cscopetag cscopeverbose
+
+  if has('quickfix')
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+  endif
+
+  "cnoreabbrev csa cs add
+  "cnoreabbrev csf cs find
+  "cnoreabbrev csk cs kill
+  "cnoreabbrev csr cs reset
+  "cnoreabbrev css cs show
+  "cnoreabbrev csh cs help
+
+  "command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+endif
+
+"" cscove
 nnoremap <leader>c :call CscopeFindInteractive(expand('<cword>'))<CR>
 nnoremap <leader>cl :call ToggleLocationList()<CR>
 "s: Find this C symbol
@@ -269,6 +289,34 @@ let g:airline_symbols.whitespace = ''
 let g:miniBufExplorerHideWhenDiff=1
 let g:miniBufExplStatusLineText=0
 let g:miniBufExplUseSingleClick=1
+
+"" NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeNaturalSort=1
+let NERDTreeMouseMode=3
+let NERDTreeQuitOnOpen=1
+let NERDTreeWinPos="right"
+let NERDTreeMinimalUI=1
+
+""cscope
+nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
+" s: Find this C symbol
+nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+" g: Find this definition
+nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+" c: Find functions calling this function
+nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+" t: Find this text string
+nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+" e: Find this egrep pattern
+nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+" f: Find this file
+nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+" i: Find files #including this file
+nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
 "" indent
 set autoindent "copy the indentation from the previous line
