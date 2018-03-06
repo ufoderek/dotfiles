@@ -34,7 +34,7 @@
 
 # setup file to store bookmarks
 if [ ! -n "$SDIRS" ]; then
-    SDIRS=~/.sdirs
+    SDIRS=~/dotfiles/configs/bashmarks.txt
 fi
 touch $SDIRS
 
@@ -59,6 +59,7 @@ function g {
     target="$(eval $(echo echo $(echo \$DIR_$1)))"
     if [ -d "$target" ]; then
         cd "$target"
+        ls
     elif [ ! -n "$target" ]; then
         echo -e "\033[${RED}WARNING: '${1}' bashmark does not exist\033[00m"
     else

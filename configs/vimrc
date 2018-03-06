@@ -164,15 +164,12 @@ set pastetoggle=<leader>p "toggle pastmode so you can paste without auto indent 
 set display+=lastline
 
 "" search in case-insensitive
-nnoremap / /\v
-vnoremap / /\v
-nnoremap ? ?\v
-vnoremap ? ?\v
+nnoremap / /\c
+vnoremap / /\c
+nnoremap ? ?\c
+vnoremap ? ?\c
 
 "" search
-set ignorecase
-set smartcase
-set gdefault
 set incsearch
 set showmatch
 set hlsearch
@@ -241,6 +238,7 @@ if has('cscope')
   "cnoreabbrev csh cs help
 
   "command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+  let g:cscope_silent=1
 endif
 
 "" cscove

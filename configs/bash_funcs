@@ -143,14 +143,19 @@ function wt {
     ls
 }
 
+function gu {
+	git fetch -p --all
+	git checkout -B $1 origin/$1
+}
+
 function gfrb {
 	git checkout --quiet --detach HEAD && git fetch origin $1:$1 ; git checkout --quiet -
 }
 
-function grbo {
-	git rebase origin/$1
-}
-
-function grbio {
-	git rebase -i origin/$1
+function en_usb {
+	echo "CONFIG_USB=y" >> .config
+	echo "CONFIG_USB_COMMON=y" >> .config
+	echo "CONFIG_USB_EHCI_HCD=y" >> .config
+	echo "CONFIG_USB_STORAGE=y" >> .config
+	echo "CONFIG_USB_SERIAL=n" >> .config
 }

@@ -54,6 +54,9 @@ if is_nvt; then
     #export PATH=/opt/arm/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin:$PATH
     export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_arm-linux-gnueabihf/bin
     export PATH=$PATH:/opt/arm/tizen4.0_cross_toolchain_vd_kant_target_armv7l_host_x86-64/bin
+    #for Leon2 Zephyr
+    export PATH=$PATH:/opt/sparc/sparc-gaisler-linux4.9/bin #ksw server
+    export PATH=$PATH:/opt/sparc-elf-3.4.4/bin #oaalnx
 fi
 
 # ccache
