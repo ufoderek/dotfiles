@@ -50,13 +50,13 @@ function is_linux {
 
 function is_nvt {
     local my_host=`hostname`
-    if [[ "$my_host" == oalnx* ]]; then
+    #if [[ "$my_host" == oalnx* ]]; then
+    #    return 0 #success
+    if [[ "$my_host" == oaalnx* ]]; then
         return 0 #success
-    elif [[ "$my_host" == oaalnx3 ]]; then
+    elif [[ "$my_host" == oaplnx* ]]; then
         return 0 #success
-    elif [[ "$my_host" == oaplnx7 ]]; then
-        return 0 #success
-    elif [[ "$my_host" == oaplnx7vm ]]; then
+    elif [[ "$my_host" == oaplnx*vm ]]; then
         return 0 #success
     else
         return 1
