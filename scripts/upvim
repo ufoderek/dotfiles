@@ -10,12 +10,6 @@ cp $CONF_PATH/vimrc ~/.vimrc
 if ! is_nvt; then
     rm -rf ~/.vim
     cp -r $CONF_PATH/vim ~/.vim
-
-    rm -rf ~/.nvim
-    cp -r $CONF_PATH/vim ~/.nvim
-
-    rm -rf ~/.nvimrc
-    cp $CONF_PATH/nvimrc ~/.nvimrc
 else
     rm -rf ~/.vim
     cp -r $HOME/dotfiles/vim-snapshot ~/.vim

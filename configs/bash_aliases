@@ -16,6 +16,7 @@ else
     alias diff='diff -r'
     alias diff2='diff -r --suppress-common-lines -y'
 fi
+
 alias more='less'
 alias mkdir='mkdir -p -v'
 

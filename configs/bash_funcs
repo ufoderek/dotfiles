@@ -130,28 +130,6 @@ function wk {
     ls
 }
 
-function wt {
-    if [ -n "$1" ]; then
-        if [ $1 == d ] && [ -L ~/wk/tmp/.d ] && [ -d ~/wk/tmp/.d ]; then
-            cd `readlink -f ~/wk/tmp/.d`
-        else
-            cd ~/wk/tmp/$1
-        fi
-    else
-        cd ~/wk/tmp
-    fi
-    ls
-}
-
-function gu {
-	git fetch -p --all
-	git checkout -B $1 origin/$1
-}
-
-function gfrb {
-	git checkout --quiet --detach HEAD && git fetch origin $1:$1 ; git checkout --quiet -
-}
-
 function en_usb {
 	echo "CONFIG_USB=y" >> .config
 	echo "CONFIG_USB_COMMON=y" >> .config
