@@ -64,12 +64,30 @@ function is_nvt {
 }
 
 function is_tmux18 {
-    local my_host=`hostname`
-    if [[ "$my_host" == oaplnx7 ]]; then
-        return 0 #success
-    else
-        return 1
-    fi
+	tmux_version="$(tmux -V | cut -c 6-)"
+	if [[ $(echo "$tmux_version >= 1.8" | bc) -eq 1 ]]; then
+		return 0 #success
+	else
+		return 1
+	fi
+}
+
+function is_tmux21 {
+	tmux_version="$(tmux -V | cut -c 6-)"
+	if [[ $(echo "$tmux_version >= 2.1" | bc) -eq 1 ]]; then
+		return 0 #success
+	else
+		return 1
+	fi
+}
+
+function is_tmux26 {
+	tmux_version="$(tmux -V | cut -c 6-)"
+	if [[ $(echo "$tmux_version >= 2.6" | bc) -eq 1 ]]; then
+		return 0 #success
+	else
+		return 1
+	fi
 }
 
 function parse_git_branch {

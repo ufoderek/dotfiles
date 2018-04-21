@@ -23,8 +23,12 @@ cp $CONF_PATH/git-completion.bash ~/.git-completion.bash
 rm -rf ~/.tmux.conf
 if is_tmux18; then
     cp $CONF_PATH/tmux-1.8.conf ~/.tmux.conf
-else
+fi
+if is_tmux21; then
     cp $CONF_PATH/tmux-2.1.conf ~/.tmux.conf
+fi
+if is_tmux26; then
+    cp $CONF_PATH/tmux-2.6.conf ~/.tmux.conf
 fi
 
 rm -rf ~/.bashrc
