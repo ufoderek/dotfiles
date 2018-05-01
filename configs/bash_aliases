@@ -6,7 +6,7 @@ fi
 alias less="less -mRXF"
 
 # fix for sudo auto completion and PATH
-alias sudo='sudo -E env PATH=$PATH'
+#alias sudo='sudo -E env PATH=$PATH'
 
 # diff
 if command -v colordiff > /dev/null 2>&1; then
