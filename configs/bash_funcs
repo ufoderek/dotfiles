@@ -50,8 +50,6 @@ function is_linux {
 
 function is_nvt {
     local my_host=`hostname`
-    #if [[ "$my_host" == oalnx* ]]; then
-    #    return 0 #success
     if [[ "$my_host" == oaalnx* ]]; then
         return 0 #success
     elif [[ "$my_host" == oaplnx* ]]; then
@@ -91,57 +89,30 @@ function is_tmux26 {
 }
 
 function parse_git_branch {
-    if [ -d mediatek/.git ]; then
-        (cd mediatek && \
-        git branch --no-color 2> /dev/null | \
-        sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/" && \
-        cd ..)
-    else
-        git branch --no-color 2> /dev/null | \
-        sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
-    fi
+    git branch --no-color 2> /dev/null | \
+    sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
 }
 
-function parse_svn_rev {
-    svn info 2> /dev/null | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p'
-}
+#function parse_svn_rev {
+#    svn info 2> /dev/null | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p'
+#}
 
 function get_vcs_info {
     local ii=`parse_git_branch`
 
     if [ -n "$ii" ]; then
         echo -n "$ii"
-    else
-        ii=`parse_svn_rev`
-        if [ -n "$ii" ]; then
-            echo -n " (r$ii)"
-        fi
-    fi
-}
-
-function gen_short_date {
-    short_date="`date +%H%M`"
-}
-
-function gen_short_pwd {
-    short_pwd="${PWD/#$HOME/~}"
-    local pwdmaxlen=$((${COLUMNS-80}/4))
-    [ ${#short_pwd} -gt $pwdmaxlen ] && short_pwd="...${short_pwd:3-$pwdmaxlen}"
-}
-
-function get_ip() {
-    if ! is_osx; then
-        ifconfig "${1:-eth0}" | sed -n '2s/.* inet addr:\([0-9.]*\) .*/\1/p';
+    #else
+        #ii=`parse_svn_rev`
+        #if [ -n "$ii" ]; then
+        #    echo -n " (r$ii)"
+        #fi
     fi
 }
 
 function wk {
     if [ -n "$1" ]; then
-        if [ $1 == d ] && [ -L ~/wk/.d ] && [ -d ~/wk/.d ]; then
-            cd `readlink -f ~/wk/.d`
-        else
-            cd ~/wk/$1
-        fi
+		cd ~/wk/$1
     else
         cd ~/wk
     fi
