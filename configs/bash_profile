@@ -29,22 +29,19 @@ fi
 if is_nvt; then
     #for CVT
     export PATH=$PATH:/opt/arm/sourcery_codebench_lite_for_arm_eabi/bin
-    #for CVT 64-bit
     export PATH=$PATH:/opt/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin
-    #for Linux 64-bit
-    export PATH=$PATH:/opt/arm/gcc-linaro-6.2.0-20161123-x86_64_aarch64-linux-gnu/bin
-    #for xboot
+    #for Linux/xboot 32-bit (4.9)
     export PATH=$PATH:/opt/arm/gcc-linaro-arm-linux-gnueabihf-4.9-2014.08_linux/bin
+    #for Linux/xboot 64-bit (6.1)
+    export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_aarch64-linux-gnu/bin/
     #for onboot
     export PATH=$PATH:/opt/arm/arm-v7a8v3r1-20121018/bin
+    export PATH=$PATH:/opt/arm/tizen4.0_cross_toolchain_vd_kant_target_armv7l_host_x86-64/bin
     #for eCos
-    #export ECOS_REPOSITORY=~/wk/nvt-ecos/ecos-2.0.6/packages
+    export ECOS_REPOSITORY=~/wk/nvt-ecos/ecos-2.0.6/packages
     export PATH=$PATH:/opt/mips/mips-sde-lite/bin
     export PATH=$PATH:/opt/mips-sde-lite/bin
     export PATH=$PATH:/opt/mips/mipsel-24kv3r1-20121018/bin
-    #for 673 xboot
-    export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_arm-linux-gnueabihf/bin
-    export PATH=$PATH:/opt/arm/tizen4.0_cross_toolchain_vd_kant_target_armv7l_host_x86-64/bin
 fi
 
 # ccache
@@ -64,5 +61,5 @@ export PROMPT_COMMAND='history -a' #update history after each command
 # tell AOSP lunch not to touch my PROMPT_COMMAND
 export STAY_OFF_MY_LAWN=true
 
-# load bashrc for interactive shell
+# load bashrc only for interactive shell
 case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
