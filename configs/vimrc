@@ -50,6 +50,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-vinegar'
 Plug 'fholgado/minibufexpl.vim'
 "Plug 'jnurmine/Zenburn'
 "Plug 'tpope/vim-commentary'
@@ -58,8 +59,8 @@ Plug 'fholgado/minibufexpl.vim'
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
-  Plug 'brookhong/cscope.vim'
-  Plug 'scrooloose/nerdtree'
+  "Plug 'brookhong/cscope.vim'
+  "Plug 'scrooloose/nerdtree'
 endif
 
 call plug#end()
