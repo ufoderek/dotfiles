@@ -119,6 +119,10 @@ alias fd='find . -name -type d'
 # cscope
 alias csr='cscope -R'
 
+# grep
+alias gp='grep -rn'
+alias gpi='grep -rni'
+
 # git
 alias gs='git status --column'
 alias gss='git status --untracked-files=no'
