@@ -55,8 +55,8 @@ cp $CONF_PATH/colordiffrc ~/.colordiffrc
 rm -rf ~/.dircolors
 cp $CONF_PATH/dircolors.ansi-dark ~/.dircolors
 
-rm -rf ~/.config/user-dir.dirs
-cp $CONF_PATH/user-dir.dirs ~/.config/
+rm -rf ~/.config/user-dirs.dirs
+cp $CONF_PATH/user-dirs.dirs ~/.config/
 
 if ! is_osx; then
     rm -rf ~/.terminfo
