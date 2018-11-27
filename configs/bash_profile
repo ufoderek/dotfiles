@@ -64,8 +64,8 @@ fi
 #(ccache -M 100G &) > /dev/null 2>&1 #using subshell to hide background response
 
 # bash parameters
-export HISTSIZE=1000000
-export HISTFILESIZE=1000000
+export HISTSIZE=100
+export HISTFILESIZE=200000
 export EDITOR=vim
 export HISTCONTROL=erasedups
 export HISTIGNORE='&:cd ~:cd ..:[bf]g:exit:h:history'
