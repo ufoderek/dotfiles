@@ -7,6 +7,7 @@ sudo dnf install adobe-source-han-sans-tw-fonts adobe-source-han-serif-tw-fonts
 sudo dnf install VirtualBox virtualbox-guest-additions-ogl
 sudo dnf install google-chrome-stable
 sudo dnf install gimp calibre HandBrake
+sudo dnf install cjkuni-uming-fonts
 
 # Laptops
 # sudo dnf install tlp
