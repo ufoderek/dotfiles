@@ -17,8 +17,8 @@ cp $CONF_PATH/gittemplate ~/.gittemplate
 rm -rf ~/.gitignore
 cp $CONF_PATH/gitignore ~/.gitignore
 
-rm -rf ~/.git-completion.bash
-cp $CONF_PATH/git-completion.bash ~/.git-completion.bash
+#rm -rf ~/.git-completion.bash
+#cp $CONF_PATH/git-completion.bash ~/.git-completion.bash
 
 rm -rf ~/.tmux.conf
 if is_tmux18; then
