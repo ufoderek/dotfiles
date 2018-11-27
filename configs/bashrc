@@ -1,7 +1,4 @@
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
 if [ -f $HOME/.bash_funcs ]; then
     . ~/.bash_funcs
 fi
