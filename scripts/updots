@@ -11,8 +11,10 @@ else
 	cp $CONF_PATH/gitconfig ~/.gitconfig
 fi
 
-rm -rf ~/.gittemplate
-cp $CONF_PATH/gittemplate ~/.gittemplate
+if is_nvt; then
+    rm -rf ~/.gittemplate
+    cp $CONF_PATH/gittemplate ~/.gittemplate
+fi
 
 rm -rf ~/.gitignore
 cp $CONF_PATH/gitignore ~/.gitignore
