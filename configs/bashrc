@@ -6,6 +6,12 @@ if [ -f $HOME/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
+    . /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+    . /usr/lib/git-core/git-sh-prompt
+fi
 source ~/dotfiles/scripts/bashmarks.sh
 
 # If not running interactively, don't do anything

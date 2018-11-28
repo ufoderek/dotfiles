@@ -1,5 +1,3 @@
-source /usr/share/git-core/contrib/completion/git-prompt.sh
-
 function cu {
     if [ -z "$1" ]; then
         #no argument, cd to git root, repo root or svn root or home
