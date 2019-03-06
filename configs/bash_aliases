@@ -49,12 +49,6 @@ alias lt='ll -rt' # sort by date
 alias grep='grep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=\.svn --color=always --binary-files=without-match'
 alias grepc='grep --include="*.[c|h|cpp|cxx|hpp|s|S]"'
 
-# reload bashrc
-alias refresh='. ~/.bashrc'
-
-# fix vim color issue inside tmux
-#alias tmux='tmux -2'
-
 # tmux shortcuts
 alias td='tmuxd.sh'
 alias tk='tmuxk.sh'
@@ -67,13 +61,6 @@ if ! is_osx; then
     alias benice='nice -n19 ionice -c3'
 else
     alias benice='nice -n19'
-fi
-
-# top
-if ! is_osx; then
-    alias top='top -u $USER'
-else
-    alias top='top -user $USER'
 fi
 
 # trash-cli
@@ -98,13 +85,6 @@ fi
 # local ccache for Android distribution
 alias lccache="./prebuilts/misc/linux-x86/ccache/ccache"
 
-# update package manager
-if ! is_osx; then
-    alias lupdate='sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
-else
-    alias lupdate='brew update && brew upgrade --all'
-fi
-
 # df
 alias df='df -h'
 
@@ -112,8 +92,10 @@ alias df='df -h'
 alias du='du -hd 1'
 
 # find
-alias ff='find . -name'
-alias fd='find . -name -type d'
+alias fn='find . -name'
+alias fp='find . -path'
+alias fdn='find . -type d -name'
+alias fdp='find . -type d -path'
 
 # cscope
 alias csr='cscope -R'
@@ -139,8 +121,8 @@ alias gob='git checkout -b'
 alias gcp='git cherry-pick'
 alias gl='git log'
 alias glp='git log -p'
-alias glo='git log --oneline -20'
-alias gloo='git log --oneline'
+alias glo='git log --oneline -10'
+alias gloo='git log --oneline . | less'
 alias gwc='git whatchanged'
 alias gcd='git clean -dfx'
 alias gfa='git fetch -p --all'
@@ -155,16 +137,6 @@ alias da='dastyle.sh'
 alias dc='dcheckpatch.sh'
 alias ga='git add'
 
-alias nda='dastyle.sh nt72*.c include/nt72*.h'
-alias ndc='dcheckpatch.sh nt72*.c include/nt72*.h'
-alias nga='git add nt72*.c include/nt72*.h'
-
-alias dda='dastyle.sh ddr_*.c include/ddr_*.h'
-alias ddc='dcheckpatch.sh ddr_*.c include/ddr_*.h'
-alias dga='git add ddr_*.c include/ddr_*.h'
-
 alias fda='dastyle.sh *.c include/*.h'
 alias fdc='dcheckpatch.sh *.c include/*.h'
 alias fga='git add *.c include/*.h'
-
-alias elb='vim ~/dotfiles/scripts/lb'

@@ -52,15 +52,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-vinegar'
 Plug 'fholgado/minibufexpl.vim'
-"Plug 'jnurmine/Zenburn'
-"Plug 'tpope/vim-commentary'
-"Plug 'wikitopian/hardmode'
 
 if !has("gui_win32") && !has("gui_win64")
   Plug 'terryma/vim-smooth-scroll'
   Plug 'airblade/vim-gitgutter'
-  "Plug 'brookhong/cscope.vim'
-  "Plug 'scrooloose/nerdtree'
 endif
 
 call plug#end()
@@ -137,7 +132,7 @@ set hidden "so any buffer can be hidden (keeping its changes) without first writ
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 "nmap <C-K> :bhiden<CR>
-"nmap <C-K> :bdelete<CR>
+nmap <C-D> :bdelete<CR>
 
 "" to make scrolling horizontally a bit more useful, try this: >
 set sidescroll=5
@@ -221,46 +216,6 @@ endif
 set background=dark
 "set background=light
 colorscheme solarized
-call togglebg#map("<leader>bg")
-
-"" cscope
-if has('cscope')
-  set cscopetag cscopeverbose
-
-  if has('quickfix')
-    set cscopequickfix=s-,c-,d-,i-,t-,e-
-  endif
-
-  "cnoreabbrev csa cs add
-  "cnoreabbrev csf cs find
-  "cnoreabbrev csk cs kill
-  "cnoreabbrev csr cs reset
-  "cnoreabbrev css cs show
-  "cnoreabbrev csh cs help
-
-  "command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
-  let g:cscope_silent=1
-endif
-
-"" cscove
-nnoremap <leader>c :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>cl :call ToggleLocationList()<CR>
-"s: Find this C symbol
-nnoremap  <leader>cs :call CscopeFind('s', expand('<cword>'))<CR>
-"g: Find this definition
-nnoremap  <leader>cg :call CscopeFind('g', expand('<cword>'))<CR>
-"d: Find functions called by this function
-nnoremap  <leader>cd :call CscopeFind('d', expand('<cword>'))<CR>
-"c: Find functions calling this function
-nnoremap  <leader>cc :call CscopeFind('c', expand('<cword>'))<CR>
-"t: Find this text string
-nnoremap  <leader>ct :call CscopeFind('t', expand('<cword>'))<CR>
-"e: Find this egrepattern
-nnoremap  <leader>ce :call CscopeFind('e', expand('<cword>'))<CR>
-"f: Find this file
-nnoremap  <leader>ce :call CscopeFind('f', expand('<cword>'))<CR>
-"i: Find files #including this file
-nnoremap  <leader>ci :call CscopeFind('i', expand('<cword>'))<CR>
 
 "" vim-airline
 let g:airline_theme='solarized'
@@ -289,34 +244,6 @@ let g:miniBufExplorerHideWhenDiff=1
 let g:miniBufExplStatusLineText=0
 let g:miniBufExplUseSingleClick=1
 
-"" NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-let NERDTreeNaturalSort=1
-let NERDTreeMouseMode=3
-let NERDTreeQuitOnOpen=1
-let NERDTreeWinPos="right"
-let NERDTreeMinimalUI=1
-
-""cscope
-nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
-" s: Find this C symbol
-nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-" g: Find this definition
-nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-" d: Find functions called by this function
-nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
-" c: Find functions calling this function
-nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-" t: Find this text string
-nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-" e: Find this egrep pattern
-nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-" f: Find this file
-nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-" i: Find files #including this file
-nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
-
 "" indent
 set autoindent "copy the indentation from the previous line
 set nosmartindent
@@ -338,7 +265,14 @@ function Tab4()
     set noexpandtab "don't use space to replace tab
     set shiftwidth=4 "width of shift
     set tabstop=4 "width of tab
-    set softtabstop=4 "width of tab, but insert spaces
+    set softtabstop=0 "width of tab, but insert spaces
+endfunction
+
+function Space8()
+    set expandtab "use space to replace tab
+    set shiftwidth=8 "width of shift
+    set tabstop=8 "width of tab
+    set softtabstop=8 "width of tab, but insert spaces
 endfunction
 
 function Space4()
@@ -347,8 +281,10 @@ function Space4()
     set tabstop=4 "width of tab
     set softtabstop=4 "width of tab, but insert spaces
 endfunction
+
 nmap <leader>t8 :execute Tab8()<cr>
 nmap <leader>t4 :execute Tab4()<cr>
+nmap <leader>s8 :execute Space8()<cr>
 nmap <leader>s4 :execute Space4()<cr>
 
 "" gitgutter
