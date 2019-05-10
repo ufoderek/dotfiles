@@ -5,7 +5,7 @@ sudo dnf erase gnome-maps
 sudo dnf erase gnome-user-docs
 sudo dnf erase gnome-user-share
 sudo dnf erase cheese 
-sudo dnf erase vlgothic-fonts
+# sudo dnf erase vlgothic-fonts
 
 # List system services
 # sudo systemctl -t service
