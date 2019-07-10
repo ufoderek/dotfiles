@@ -17,17 +17,18 @@ cp $CONF_PATH/gittemplate ~/.gittemplate
 rm -rf ~/.gitignore
 cp $CONF_PATH/gitignore ~/.gitignore
 
-#rm -rf ~/.git-completion.bash
-#cp $CONF_PATH/git-completion.bash ~/.git-completion.bash
-
 rm -rf ~/.tmux.conf
-if is_tmux18; then
+tmux_version="$(tmux -V | cut -c 6-8)"
+if [[ $(echo "$tmux_version >= 1.8" | bc) -eq 1 ]]; then
     cp $CONF_PATH/tmux-1.8.conf ~/.tmux.conf
-elif is_tmux21; then
+fi
+if [[ $(echo "$tmux_version >= 2.1" | bc) -eq 1 ]]; then
     cp $CONF_PATH/tmux-2.1.conf ~/.tmux.conf
-elif is_tmux26; then
+fi
+if [[ $(echo "$tmux_version >= 2.6" | bc) -eq 1 ]]; then
     cp $CONF_PATH/tmux-2.6.conf ~/.tmux.conf
-else
+fi
+if [[ $(echo "$tmux_version >= 2.9" | bc) -eq 1 ]]; then
     cp $CONF_PATH/tmux-2.9.conf ~/.tmux.conf
 fi
 
