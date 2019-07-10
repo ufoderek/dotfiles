@@ -23,12 +23,12 @@ cp $CONF_PATH/gitignore ~/.gitignore
 rm -rf ~/.tmux.conf
 if is_tmux18; then
     cp $CONF_PATH/tmux-1.8.conf ~/.tmux.conf
-fi
-if is_tmux21; then
+elif is_tmux21; then
     cp $CONF_PATH/tmux-2.1.conf ~/.tmux.conf
-fi
-if is_tmux26; then
+elif is_tmux26; then
     cp $CONF_PATH/tmux-2.6.conf ~/.tmux.conf
+else
+    cp $CONF_PATH/tmux-2.9.conf ~/.tmux.conf
 fi
 
 rm -rf ~/.bashrc
