@@ -49,9 +49,6 @@ cp $CONF_PATH/bash_funcs ~/.bash_funcs
 rm -rf ~/.inputrc
 cp $CONF_PATH/inputrc ~/.inputrc
 
-rm -rf ~/.vimrc
-cp $CONF_PATH/vimrc ~/.vimrc
-
 rm -rf ~/.colordiffrc
 cp $CONF_PATH/colordiffrc ~/.colordiffrc
 

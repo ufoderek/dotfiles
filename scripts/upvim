@@ -5,12 +5,17 @@ source ~/.bash_funcs
 CONF_PATH=$HOME/dotfiles/configs
 
 rm -rf ~/.vimrc
-cp $CONF_PATH/vimrc ~/.vimrc
+rm -rf ~/.vim
+rm -rf ~/.config/nvim
 
 if ! is_nvt; then
-    rm -rf ~/.vim
     cp -r $CONF_PATH/vim ~/.vim
+    cp -r $CONF_PATH/vim ~/.config/nvim
 else
-    rm -rf ~/.vim
     cp -r $HOME/dotfiles/vim-snapshot ~/.vim
+    cp -r $HOME/dotfiles/nvim-snapshot ~/.config/nvim
 fi
+
+cp $CONF_PATH/vimrc ~/.vimrc
+cp $CONF_PATH/vimrc ~/.config/nvim/init.vim
+cp $CONF_PATH/ginit.vim ~/.config/nvim/ginit.vim

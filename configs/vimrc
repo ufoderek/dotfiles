@@ -1,69 +1,31 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" GVIM configuration for Windows
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" From the default vimrc of GVIM
-if has("gui_win32") || has("gui_win64")
-    set nocompatible
-    "source $VIMRUNTIME/vimrc_example.vim
-    "source $VIMRUNTIME/mswin.vim
-    "behave mswin
-
-    set diffexpr=MyDiff()
-    function MyDiff()
-      let opt = '-a --binary '
-      if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-      if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-      let arg1 = v:fname_in
-      if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-      let arg2 = v:fname_new
-      if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-      let arg3 = v:fname_out
-      if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-      let eq = ''
-      if $VIMRUNTIME =~ ' '
-        if &sh =~ '\<cmd'
-          let cmd = '""' . $VIMRUNTIME . '\diff"'
-          let eq = '"'
-        else
-          let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-        endif
-      else
-        let cmd = $VIMRUNTIME . '\diff'
-      endif
-      silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-    endfunction
-endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" vim-plug configuration
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("gui_win32") || has("gui_win64")
-  "for gVim without Cream
-  call plug#begin('vimfiles/plugged')
+"" vim-plug
+if has("win32") || has("win64")
+    call plug#begin('$USERPROFILE\AppData\Local\nvim\plugged')
 else
-  call plug#begin('~/.vim/plugged')
+  if has("nvim")
+    call plug#begin('~/.config/nvim/plugged')
+  else
+    call plug#begin('~/.vim/plugged')
+  endif
 endif
 
+Plug 'icymind/NeoSolarized'
+Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-vinegar'
 Plug 'fholgado/minibufexpl.vim'
+Plug 'terryma/vim-smooth-scroll'
 
-if !has("gui_win32") && !has("gui_win64")
-  Plug 'terryma/vim-smooth-scroll'
+if !has("win32") && !has("win64")
   Plug 'airblade/vim-gitgutter'
+  Plug 'jsfaint/gen_tags.vim'
 endif
 
 call plug#end()
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Normal initialization
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" leader key
 let mapleader = ","
@@ -95,10 +57,9 @@ set mouse=a "support mouse in all modes so it won't copy line numbers
 set wildmenu "use wildmenu for command auto-complete
 set splitbelow "more natural
 set splitright "more natural
-syntax enable
 
 "" encoding
-if &encoding ==# 'latin1' && has('gui_running')
+if has("nvim") || (&encoding ==# 'latin1' && has("gui_running"))
   set encoding=utf-8
 endif
 
@@ -143,15 +104,6 @@ nnoremap <leader>L :set list listchars=tab:»·,trail:·,nbsp:+,eol:$,precedes:<
 "" clear keywords highlight and list chars
 nnoremap <leader><space> :noh<cr> :set nolist<cr>
 
-"" remove all trailing whitespaces
-nnoremap <leader>T :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
-"" convert to UNIX format
-nnoremap <leader>ffu :update<CR>:e ++fileformat=dos<CR>:setlocal fileformat=unix<CR>:w<CR>
-
-"" convert to DOS format
-nnoremap <leader>ffd :update<CR>:e ++fileformat=dos<CR>:w<CR>
-
 "" paste without re-indent
 set pastetoggle=<leader>p "toggle pastmode so you can paste without auto indent in putty
 
@@ -174,48 +126,33 @@ set hlsearch
 vnorem // y/<c-r>"<cr>
 
 "" using system clipboard for vim under terminal, need +xterm_clipboard
-if has("mac")
+if has("win32") || has("win64") || has("mac")
     set clipboard=unnamed
 elseif has("unix")
     set clipboard=unnamedplus
-elseif has("win32")
-    set clipboard=unnamed
 endif
 
-"" using system clipboard for GUI version of vim
-if has("gui_win32") || has("gui_win64") || has("gui_mac")
-    set clipboard=unnamed "Windows and Mac
-elseif has("gui_running")
-    set clipboard=unnamedplus "X Window
-endif
-
-"" set font for GUI version of vim
-if has("gui_win32") || has("gui_win64")
-    set guifont=Consolas:h16
-elseif has("gui_gtk2")
-    set guifont=Consolas\ 16
-elseif has("gui_macvim")
-    set guifont=Monaco:h18
-endif
-
-if has("gui_running") || &t_Co >= 256
-    syntax enable
-    let g:solarized_degrade=0
-    let g:solarized_termtrans=0
-    "use the precise 16 colors solarized colors from putty,
-    "instead of approx. 256 colors
-    let g:solarized_termcolors=16
-    let g:solarized_contrast="high"
+"" Colorscheme
+if &t_Co >= 256
+  syntax enable
+  let g:solarized_degrade=0
+  let g:solarized_termtrans=0
+  "use the precise 16 colors solarized colors from putty,
+  "instead of approx. 256 colors
+  let g:solarized_termcolors=16
+  let g:solarized_contrast="high"
 elseif &t_Co >= 8
-    syntax enable
-    let g:solarized_degrade=0
-    let g:solarized_termtrans=0
-    let g:solarized_termcolors=16
-    let g:solarized_contrast="high"
+  syntax enable
+  let g:solarized_degrade=0
+  let g:solarized_termtrans=0
+  let g:solarized_termcolors=16
+  let g:solarized_contrast="high"
 endif
 set background=dark
-"set background=light
-colorscheme solarized
+" For console only
+if !has("win32") && !has("win64")
+  colorscheme solarized
+endif
 
 "" vim-airline
 let g:airline_theme='solarized'
@@ -291,14 +228,10 @@ nmap <leader>s4 :execute Space4()<cr>
 highlight clear SignColumn
 
 "" vim smooth scroll
-if has("gui_win32") || has("gui_win64") || has("gui_mac")
-  " do nothing
-else
-  noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-  noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-  noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-  noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-endif
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 "" avoid accidental mouse middle clicks
 map <MiddleMouse> <Nop>
@@ -315,20 +248,6 @@ set mouse+=a
 if &term =~ '^screen'
   " tmux knows the extended mouse mode
   set ttymouse=xterm2
-endif
-
-"" Increase/decrease font size
-if has("gui_running")
-nnoremap <C-kPlus> :silent! let &guifont = substitute(
-\ &guifont,
-\ ':h\zs\d\+',
-\ '\=eval(submatch(0)+1)',
-\ '')<cr>
-nnoremap <C-kMinus> :silent! let &guifont = substitute(
-\ &guifont,
-\ ':h\zs\d\+',
-\ '\=eval(submatch(0)-1)',
-\ '')<cr>
 endif
 
 "" use real tab in makefiles
