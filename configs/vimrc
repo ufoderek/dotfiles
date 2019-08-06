@@ -182,12 +182,11 @@ endif
 
 "" vim-airline
 let g:airline_theme='solarized'
-"let g:airline_symbols_ascii = 1
 set laststatus=2 "always show status line
-let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
-let g:airline#extensions#quickfix#location_text = 'Location'
-let g:airline#extensions#gutentags#enabled = 1
-let g:airline#extensions#grepper#enabled = 1
+" reduce airline
+let g:airline#extensions#hunks#enabled = 0 "no need diff stats
+let g:airline#extensions#languageclient#enabled = 0 "no need to display current lang
+let g:airline#extensions#whitespace#enabled = 0
 
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
@@ -203,6 +202,28 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.spell = ''
 let g:airline_symbols.notexists = ''
 let g:airline_symbols.whitespace = ''
+
+" mode map
+"let g:airline_mode_map = {
+"  \ '__' : '------',
+"  \ 'c'  : 'COMMAND',
+"  \ 'i'  : 'INSERT',
+"  \ 'ic' : 'INSERT COMPL',
+"  \ 'ix' : 'INSERT COMPL',
+"  \ 'multi' : 'MULTI',
+"  \ 'n'  : 'NORMAL',
+"  \ 'ni' : '(INSERT)',
+"  \ 'no' : 'OP PENDING',
+"  \ 'R'  : 'REPLACE',
+"  \ 'Rv' : 'V REPLACE',
+"  \ 's'  : 'SELECT',
+"  \ 'S'  : 'S-LINE',
+"  \ '' : 'S-BLOCK',
+"  \ 't'  : 'TERMINAL',
+"  \ 'v'  : 'VISUAL',
+"  \ 'V'  : 'V-LINE',
+"  \ '' : 'V-BLOCK',
+"\ }
 
 "" MiniBufExpl
 let g:miniBufExplorerHideWhenDiff=1
