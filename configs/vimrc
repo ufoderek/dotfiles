@@ -21,7 +21,7 @@ Plug 'terryma/vim-smooth-scroll'
 
 if !has("win32") && !has("win64")
   Plug 'airblade/vim-gitgutter'
-  Plug 'jsfaint/gen_tags.vim'
+  Plug 'ludovicchabant/vim-gutentags'
 endif
 
 call plug#end()
@@ -160,6 +160,7 @@ let g:airline_theme='solarized'
 set laststatus=2 "always show status line
 let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
 let g:airline#extensions#quickfix#location_text = 'Location'
+let g:airline#extensions#gutentags#enabled = 1
 
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
