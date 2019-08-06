@@ -5,7 +5,7 @@
 	ui = auto
 	status = auto
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 	pager = less -x1,5
 [commit]
