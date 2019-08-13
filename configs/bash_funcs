@@ -92,6 +92,21 @@ function wk {
     ls
 }
 
+function grho {
+	echo "git reset --hard origin/$1"
+	git reset --hard origin/$1
+}
+
+function __git_branch_name {
+	__git_ps1 | sed -e 's/^..//' -e 's/.$//'
+}
+
+function grhoo {
+	local bname=`__git_branch_name`
+	echo "git reset --hard origin/$bname
+	git reset --hard origin/$bname
+}
+
 function en_usb {
 	echo "CONFIG_USB=y" >> .config
 	echo "CONFIG_USB_COMMON=y" >> .config
