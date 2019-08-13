@@ -70,18 +70,18 @@ function parse_git_branch {
 #    svn info 2> /dev/null | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p'
 #}
 
-function get_vcs_info {
-    local ii=`parse_git_branch`
-
-    if [ -n "$ii" ]; then
-        echo -n "$ii"
-    #else
-        #ii=`parse_svn_rev`
-        #if [ -n "$ii" ]; then
-        #    echo -n " (r$ii)"
-        #fi
-    fi
-}
+#function get_vcs_info {
+#    local ii=`parse_git_branch`
+#
+#    if [ -n "$ii" ]; then
+#        echo -n "$ii"
+#    #else
+#        #ii=`parse_svn_rev`
+#        #if [ -n "$ii" ]; then
+#        #    echo -n " (r$ii)"
+#        #fi
+#    fi
+#}
 
 function wk {
     if [ -n "$1" ]; then
@@ -97,13 +97,18 @@ function grho {
 	git reset --hard origin/$1
 }
 
+function gobo {
+	echo "git checkout --branch $1 origin/$1"
+	git checkout --branch $1 origin/$1
+}
+
 function __git_branch_name {
-	__git_ps1 | sed -e 's/^..//' -e 's/.$//'
+	__git_ps1 | sed -e "s/^..//" -e "s/.$//"
 }
 
 function grhoo {
 	local bname=`__git_branch_name`
-	echo "git reset --hard origin/$bname
+	echo "git reset --hard origin/$bname"
 	git reset --hard origin/$bname
 }
 
