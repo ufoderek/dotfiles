@@ -1,4 +1,4 @@
-sudo dnf install vim git tmux vlc pcmanx-gtk2 gnome-tweaks trash-cli smartmontools
+sudo dnf install vim neovim git tmux vlc pcmanx-gtk2 gnome-tweaks trash-cli smartmontools
 sudo dnf install exfat-utils fuse-exfat p7zip zip unzip unrar
 # sudo dnf install fcitx fcitx-table fcitx-table-extra fcitx-configtool fcitx-chewing
 sudo dnf group install "C Development Tools and Libraries"
