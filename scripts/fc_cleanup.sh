@@ -1,11 +1,4 @@
-sudo dnf erase simple-scan
-sudo dnf erase evolution
-# sudo dnf erase PackageKit
-sudo dnf erase gnome-maps
-sudo dnf erase gnome-user-docs
-sudo dnf erase gnome-user-share
-sudo dnf erase cheese 
-# sudo dnf erase vlgothic-fonts
+sudo dnf erase simple-scan evolution gnome-maps gnome-user-docs gnome-user-share cheese
 
 # List system services
 # sudo systemctl -t service
