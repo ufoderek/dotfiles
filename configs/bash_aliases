@@ -2,13 +2,6 @@ if [ -r ~/.bash_funcs ]; then
     source ~/.bash_funcs
 fi
 
-# neovim
-if is_nvt; then
-    alias vim='nvim.appimage'
-else
-    alias vim='nvim'
-fi
-
 # less
 alias less="less -mRXF"
 
