@@ -17,6 +17,11 @@ else
     alias diff2='diff -r --suppress-common-lines -y -p -d'
 fi
 
+# nvim
+alias vim='nvim'
+alias vimdiff='nvim -d'
+export EDITOR=nvim
+
 alias more='less'
 alias mkdir='mkdir -p -v'
 
