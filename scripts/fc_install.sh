@@ -3,6 +3,10 @@ sudo dnf group install "C Development Tools and Libraries"
 
 sudo dnf install gimp calibre HandBrake cjkuni-uming-fonts google-chrome-stable adobe-source-han-sans-tw-fonts adobe-source-han-serif-tw-fonts dconf-editor VirtualBox
 
+# Dropbox
+sudo dnf install nautilus-dropbox gnome-shell-extension-appindicator
+# dropbox start # and follow the suggestion to fix /etc/sysctl.conf
+
 # Laptops
 # sudo dnf install tlp
 
