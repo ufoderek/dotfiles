@@ -25,6 +25,9 @@ export EDITOR=nvim
 alias more='less'
 alias mkdir='mkdir -p -v'
 
+# ptt
+alias ptt='ssh bbsu@ptt.cc'
+
 # safty
 alias cp='cp -i'
 alias mv='mv -i'
