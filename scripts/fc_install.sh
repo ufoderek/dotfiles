@@ -13,6 +13,7 @@ sudo dnf group install Multimedia
 # Dropbox
 # sudo dnf install nautilus-dropbox gnome-shell-extension-appindicator
 # dropbox start # and follow the suggestion to fix /etc/sysctl.conf
+# echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf; sudo sysctl -p
 
 # Laptops
 # sudo dnf install tlp
