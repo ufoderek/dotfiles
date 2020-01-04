@@ -3,7 +3,8 @@ exfat-utils fuse-exfat \
 p7zip zip unzip unrar \
 gimp calibre HandBrake google-chrome-stable \
 cjkuni-uming-fonts adobe-source-han-sans-tw-fonts adobe-source-han-serif-tw-fonts \
-dconf-editor VirtualBox
+dconf-editor VirtualBox \
+pavucontrol
 
 # sudo dnf install pcmanx-gtk2
 sudo dnf group install "C Development Tools and Libraries"
