@@ -1,5 +1,2 @@
-/Dolphin Temp 0
-/Dolphin Temp 1
-/Dolphin Temp 2
-/Dolphin Temp 3
-/Dolphin Temp 4
+/Temp
+/.misc/Misc
