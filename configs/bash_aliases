@@ -43,9 +43,9 @@ alias cd..='cd ..'
 
 # ls
 if ! is_osx; then
-    alias ls='ls -hF --time-style=long-iso -v --color=always'
+    alias ls='ls -F --time-style=long-iso -v --color=always'
 else
-    alias ls='ls -hF --time-style=long-iso -v -G'
+    alias ls='ls -F --time-style=long-iso -v -G'
 fi
 alias ll='ls -l'
 alias la='ls -a'
