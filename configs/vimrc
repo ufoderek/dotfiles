@@ -161,8 +161,12 @@ let g:gutentags_plus_switch = 1
 
 "" gutentags
 let g:gutentags_project_root = ['.root', '.project']
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_cache_dir = expand('~/wk/gtags')
+let g:gutentags_ctags_tagfile = 'tags'
+let s:vim_tags = expand('~/wk/gtags')
+let g:gutentags_cache_dir = s:vim_tags
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
 
 " try to support gtags first
 let g:gutentags_modules = []
@@ -170,6 +174,9 @@ if executable('gtags-cscope') && executable('gtags')
   let g:gutentags_modules += ['gtags_cscope']
 elseif executable('ctags')
   let g:gutentags_modules += ['ctags']
+  if executable('cscope')
+    let g:gutentags_modules += ['cscope']
+  endif
 endif
 
 " arguments for ctags
