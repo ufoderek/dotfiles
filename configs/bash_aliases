@@ -53,10 +53,6 @@ alias lx='ll -X' # sort by extension
 alias lz='ll -rS' # sort by size
 alias lt='ll -rt' # sort by date
 
-# grep
-alias grep='grep --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=\.svn --color=always --binary-files=without-match'
-alias grepc='grep --include="*.[c|h|cpp|cxx|hpp|s|S]"'
-
 # tmux shortcuts
 alias td='tmuxd.sh'
 alias tk='tmuxk.sh'
@@ -109,8 +105,10 @@ alias fdp='find . -type d -path'
 alias csr='cscope -R'
 
 # grep
-alias gp='grep -rn'
-alias gpi='grep -rni'
+alias gp='grep -rnE --exclude-dir=\.git --exclude-dir=\.repo --exclude-dir=\.svn --color=always --binary-files=without-match'
+alias gpi='gp -i'
+alias gpc='gp --include="*.[c|h|cpp|cxx|hpp|s|S]"'
+alias gpic='gpi --include="*.[c|h|cpp|cxx|hpp|s|S]"'
 
 # git
 alias gs='git status --column'
