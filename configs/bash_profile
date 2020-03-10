@@ -21,15 +21,6 @@ fi
 if is_osx; then
     #for homebrew
     export PATH=/usr/local/sbin:$PATH
-    #for android-sdk installed from homebrew
-    export ANDROID_HOME="/usr/local/opt/android-sdk"
-    export PATH=$PATH:/usr/local/opt/android-sdk/tools
-    export PATH=$PATH:/usr/local/opt/android-sdk/platform-tools
-fi
-
-if is_osx; then
-    # to build AOSP
-    ulimit -S -n 1024
 fi
 
 if is_nvt; then
@@ -39,32 +30,19 @@ if is_nvt; then
     export PATH=$PATH:/opt/arm/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin
     #for Linux/xboot 32-bit (4.9)
     #export PATH=$PATH:/opt/arm/gcc-linaro-arm-linux-gnueabihf-4.9-2014.08_linux/bin
-    #for Linux/xboot 32-bit (6.1)
+    #for Linux/xboot (6.1)
     export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_arm-linux-gnueabihf/bin
-    #for Linux/xboot 64-bit (6.1)
     export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_aarch64-linux-gnu/bin/
     #for 17L onboot
     export PATH=$PATH:/opt/arm/arm-v7a8v3r1-20121018/bin
     #for SS kernel
-    #export PATH=$PATH:/opt/arm/tizen3.0_cross_toolchain_vd_jazzm_target_armv7l_host_x86-64_ga2.2016-09-21/bin
     export PATH=$PATH:/opt/arm/tizen4.0_cross_toolchain_vd_kant_target_armv7l_host_x86-64/bin
-    #for eCos
-    #export ECOS_REPOSITORY=~/wk/nvt-ecos/ecos-2.0.6/packages
-    #export PATH=$PATH:/opt/mips/mips-sde-lite/bin
-    #export PATH=$PATH:/opt/mips-sde-lite/bin
-    #export PATH=$PATH:/opt/mips/mipsel-24kv3r1-20121018/bin
     #for AOSP kernel
     export PATH=/opt/android/clang/r370808/bin:$PATH
     export PATH=$PATH:/opt/android/gcc/aarch64-linux-android-4.9/bin
     export PATH=$PATH:/opt/android/gcc/x86_64-linux-android-4.9/bin
     export LD_LIBRARY_PATH=/opt/android/clang/r370808/lib64
 fi
-
-# ccache
-#export CCACHE_COMPRESS=0
-#export CCACHE_DIR=~/wk/ccache
-#export USE_CCACHE=1
-#(ccache -M 100G &) > /dev/null 2>&1 #using subshell to hide background response
 
 # bash parameters
 export HISTSIZE=100

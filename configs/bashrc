@@ -95,6 +95,4 @@ RESET_ALL="\[\e[m\]"
 export PS1="${BASE1}[${GREEN}\u${BASE1}@${VIOLET}\h ${YELLOW}\$PWD${YELLOW}\$(__git_ps1)${BASE1}]\n${RESET_ALL}\$ "
 
 #solarized ls color
-if ! is_osx; then
-	eval `dircolors ~/.dircolors`
-fi
+eval `dircolors ~/.dircolors`
