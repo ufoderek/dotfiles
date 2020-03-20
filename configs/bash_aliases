@@ -26,7 +26,7 @@ alias more='less'
 alias mkdir='mkdir -p -v'
 
 # ptt
-alias ptt='ssh bbsu@ptt.cc'
+alias ptt='ssh -o ServerAliveInterval=3600 bbsu@ptt.cc'
 
 # safty
 alias cp='cp -i'
