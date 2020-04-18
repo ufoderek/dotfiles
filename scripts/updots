@@ -64,3 +64,13 @@ if ! is_osx; then
     rm -rf ~/.terminfo
     cp -r $CONF_PATH/terminfo ~/.terminfo
 fi
+
+if ! is_nvt; then
+    mkdir -p ~/.config/mpv/script-opts/
+    rm -f ~/.config/mpv/mpv.conf
+    rm -f ~/.config/mpv/input.conf
+    rm -f ~/.config/mpv/osc.conf
+    cp -r $CONF_PATH/mpv/mpv.conf  ~/.config/mpv/
+    cp -r $CONF_PATH/mpv/input.conf  ~/.config/mpv/
+    cp -r $CONF_PATH/mpv/osc.conf  ~/.config/mpv/script-opts/
+fi
