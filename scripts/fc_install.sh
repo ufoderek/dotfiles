@@ -1,29 +1,17 @@
-sudo dnf install vim neovim git tmux vlc gnome-tweaks trash-cli smartmontools \
+sudo dnf install neovim git tmux mpv vlc gnome-tweaks trash-cli ibus-rime \
 exfat-utils fuse-exfat \
 p7zip zip unzip unrar \
-gimp calibre HandBrake google-chrome-stable gnome-music VirtualBox \
+gimp calibre VirtualBox \
 cjkuni-uming-fonts adobe-source-han-sans-tw-fonts adobe-source-han-serif-tw-fonts \
-dconf-editor
+dconf-editor chromium-browser-privacy gnome-music
 # pavucontrol
+# HandBrake
+# chrome
 
 # sudo dnf install pcmanx-gtk2
 sudo dnf group install "C Development Tools and Libraries"
-sudo dnf group install Multimedia
-
-
-# Dropbox
-# sudo dnf install nautilus-dropbox gnome-shell-extension-appindicator
-# dropbox start # and follow the suggestion to fix /etc/sysctl.conf
-# echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf; sudo sysctl -p
+# sudo dnf group install Multimedia
+# sudo dnf groupupdate Multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
 # Laptops
-# sudo dnf install tlp
-
-# ibus-rime
-sudo dnf install ibus-rime
-
-# fcitx
-# sudo dnf install fcitx fcitx-table fcitx-table-extra fcitx-configtool fcitx-chewing
-
-# SSD trim for FC31
-# sudo systemctl enable fstrim.timer
+sudo dnf install tlp smartmontools
