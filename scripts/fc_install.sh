@@ -3,8 +3,12 @@ exfat-utils fuse-exfat \
 blivet-gui \
 p7zip zip unzip unrar \
 gimp calibre VirtualBox \
-cjkuni-uming-fonts adobe-source-han-sans-tw-fonts adobe-source-han-serif-tw-fonts \
+cjkuni-uming-fonts \
 chromium-browser-privacy gnome-music vocal
+
+sudo dnf install ccid pcsc-tools # for EasyATM GT2
+
+# adobe-source-han-sans-tw-fonts adobe-source-han-serif-tw-fonts
 # dconf-editor
 # pavucontrol
 # HandBrake
