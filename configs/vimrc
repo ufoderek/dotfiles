@@ -16,12 +16,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-vinegar'
-Plug 'fholgado/minibufexpl.vim'
+"Plug 'fholgado/minibufexpl.vim'
 Plug 'terryma/vim-smooth-scroll'
+Plug 'ap/vim-buftabline'
 
 if !has("win32") && !has("win64")
   Plug 'airblade/vim-gitgutter'
-  Plug 'mhinz/vim-grepper'
+  "Plug 'mhinz/vim-grepper'
   Plug 'joereynolds/gtags-scope'
 endif
 
@@ -204,6 +205,12 @@ let g:airline_symbols.whitespace = ''
 let g:miniBufExplorerHideWhenDiff=1
 let g:miniBufExplStatusLineText=0
 let g:miniBufExplUseSingleClick=1
+
+"" buftabline
+let g:buftabline_show=1
+let g:buftabline_numbers=1
+let g:buftabline_indicators=1
+let g:buftabline_separators=0
 
 "" indent
 set autoindent "copy the indentation from the previous line
