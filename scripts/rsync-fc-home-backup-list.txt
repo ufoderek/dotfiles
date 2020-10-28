@@ -1,7 +1,7 @@
 /Ani
-/Desktop
+/Ani Music
+/Cherry Data
 /Dramas
-/Dropbox
-/Music
 /Music Old
-/UnTagged Music
+/Nextcloud
+/Temp
