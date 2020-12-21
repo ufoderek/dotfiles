@@ -9,21 +9,22 @@ else
   endif
 endif
 
-Plug 'icymind/NeoSolarized' "For nvim-qt.exe
-Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-vinegar'
 "Plug 'fholgado/minibufexpl.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'ap/vim-buftabline'
 
 if !has("win32") && !has("win64")
+  Plug 'altercation/vim-colors-solarized'
   Plug 'airblade/vim-gitgutter'
   "Plug 'mhinz/vim-grepper'
+  Plug 'tpope/vim-sleuth'
   Plug 'joereynolds/gtags-scope'
+else
+  Plug 'icymind/NeoSolarized' "For nvim-qt.exe
 endif
 
 call plug#end()
@@ -134,25 +135,24 @@ elseif has("unix")
     set clipboard=unnamedplus
 endif
 
-"" Colorscheme
-if &t_Co >= 256
-  syntax enable
-  let g:solarized_degrade=0
-  let g:solarized_termtrans=0
-  "use the precise 16 colors solarized colors from putty,
-  "instead of approx. 256 colors
-  let g:solarized_termcolors=16
-  let g:solarized_contrast="high"
-elseif &t_Co >= 8
-  syntax enable
-  let g:solarized_degrade=0
-  let g:solarized_termtrans=0
-  let g:solarized_termcolors=16
-  let g:solarized_contrast="high"
-endif
-set background=dark
-" For console only
+"" Colorscheme for console
 if !has("win32") && !has("win64")
+  if &t_Co >= 256
+    syntax enable
+    let g:solarized_degrade=0
+    let g:solarized_termtrans=0
+    "use the precise 16 colors solarized colors from putty,
+    "instead of approx. 256 colors
+    let g:solarized_termcolors=16
+    let g:solarized_contrast="high"
+  elseif &t_Co >= 8
+    syntax enable
+    let g:solarized_degrade=0
+    let g:solarized_termtrans=0
+    let g:solarized_termcolors=16
+    let g:solarized_contrast="high"
+  endif
+  set background=dark
   colorscheme solarized
 endif
 
