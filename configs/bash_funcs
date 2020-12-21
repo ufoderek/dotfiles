@@ -84,17 +84,19 @@ function parse_git_branch {
 #}
 
 function wk {
-    if [ -n "$1" ]; then
-		cd ~/wk/$1
-    else
-        cd ~/wk
-    fi
-    ls
+	if [ -n "$1" ]; then
+		if [ -n "$2" ]; then
+			cd ~/wk/$1/$2 && ls -F --time-style=long-iso -v --color=auto
+		else
+			cd ~/wk/$1 && ls -F --time-style=long-iso -v --color=auto
+		fi
+	else
+		cd ~/wk && ls -F --time-style=long-iso -v --color=auto
+	fi
 }
 
-function grho {
-	echo "git reset --hard origin/$1"
-	git reset --hard origin/$1
+function __git_branch_name {
+	__git_ps1 | sed -e "s/^..//" -e "s/.$//"
 }
 
 function gobo {
@@ -102,14 +104,26 @@ function gobo {
 	git checkout --branch $1 origin/$1
 }
 
-function __git_branch_name {
-	__git_ps1 | sed -e "s/^..//" -e "s/.$//"
+function grho {
+	local bname
+	if [[ "$1" == "" ]]; then
+		bname=`__git_branch_name`
+	else
+		bname=$1
+	fi
+	echo "git rebase origin/$bname"
+	git reset --hard origin/$bname
 }
 
-function grhoo {
-	local bname=`__git_branch_name`
-	echo "git reset --hard origin/$bname"
-	git reset --hard origin/$bname
+function grbo {
+	local bname
+	if [[ "$1" == "" ]]; then
+		bname=`__git_branch_name`
+	else
+		bname=$1
+	fi
+	echo "git rebase origin/$bname"
+	git rebase origin/$bname
 }
 
 function en_usb {

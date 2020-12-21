@@ -25,6 +25,13 @@ export EDITOR=nvim
 alias more='less'
 alias mkdir='mkdir -p -v'
 
+# wk
+alias ss='wk ss'
+alias tmp='wk tmp'
+alias ecode='wk ecode'
+alias tk='wk tk'
+alias aosp='wk aosp'
+
 # ptt
 alias ptt='ssh -o ServerAliveInterval=3600 bbsu@ptt.cc'
 
@@ -43,22 +50,19 @@ alias cd..='cd ..'
 
 # ls
 if ! is_osx; then
-    alias ls='ls -F --time-style=long-iso -v --color=always'
+    alias ls='ls -F --time-style=long-iso -v --color=auto'
 else
     alias ls='ls -F --time-style=long-iso -v -G'
 fi
 alias ll='ls -l'
-alias la='ls -a'
+alias la='ll -a'
+alias lh='ll -h'
 alias lx='ll -X' # sort by extension
 alias lz='ll -rS' # sort by size
 alias lt='ll -rt' # sort by date
 
 # tmux shortcuts
 alias td='tmuxd.sh'
-alias tk='tmuxk.sh'
-alias tl='tmuxl.sh'
-alias ttl='tmux-light.sh'
-alias ttd='tmux-dark.sh'
 
 # to lower process priority
 if ! is_osx; then
