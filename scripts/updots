@@ -17,7 +17,7 @@ if is_nvt; then
     cp $NVT_CONF_PATH/gittemplate ~/.gittemplate
 else
     rm -rf ~/.gittemplate
-    touch ~/.gittemplate
+    cp $CONF_PATH/gittemplate ~/.gittemplate
 fi
 
 rm -rf ~/.gitignore
