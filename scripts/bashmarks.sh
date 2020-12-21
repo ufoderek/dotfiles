@@ -34,7 +34,11 @@
 
 # setup file to store bookmarks
 if [ ! -n "$SDIRS" ]; then
-    SDIRS=~/dotfiles/configs/bashmarks.txt
+    if is_nvt; then
+        SDIRS=~/dotnvt/configs/bashmarks.txt
+    else
+        SDIRS=~/dotfiles/configs/bashmarks.txt
+    fi
 fi
 touch $SDIRS
 

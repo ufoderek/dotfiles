@@ -23,27 +23,6 @@ if is_osx; then
     export PATH=/usr/local/sbin:$PATH
 fi
 
-if is_nvt; then
-    #for CVT
-    export PATH=$PATH:/opt/arm/sourcery_codebench_lite_for_arm_eabi/bin
-    export PATH=$PATH:/opt/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin
-    export PATH=$PATH:/opt/arm/gcc-linaro-aarch64-none-elf-4.9-2014.09_linux/bin
-    #for Linux/xboot 32-bit (4.9)
-    #export PATH=$PATH:/opt/arm/gcc-linaro-arm-linux-gnueabihf-4.9-2014.08_linux/bin
-    #for Linux/xboot (6.1)
-    export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_arm-linux-gnueabihf/bin
-    export PATH=$PATH:/opt/arm/gcc-linaro-6.1.1-2016.08-x86_64_aarch64-linux-gnu/bin/
-    #for 17L onboot
-    export PATH=$PATH:/opt/arm/arm-v7a8v3r1-20121018/bin
-    #for SS kernel
-    export PATH=$PATH:/opt/arm/tizen4.0_cross_toolchain_vd_kant_target_armv7l_host_x86-64/bin
-    #for AOSP kernel
-    export PATH=/opt/android/clang/r370808/bin:$PATH
-    export PATH=$PATH:/opt/android/gcc/aarch64-linux-android-4.9/bin
-    export PATH=$PATH:/opt/android/gcc/x86_64-linux-android-4.9/bin
-    export LD_LIBRARY_PATH=/opt/android/clang/r370808/lib64
-fi
-
 # bash parameters
 export HISTSIZE=100
 export HISTFILESIZE=200000
@@ -57,3 +36,7 @@ export STAY_OFF_MY_LAWN=true
 
 # load bashrc only for interactive shell
 case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
+
+if is_nvt; then
+	source ~/dotnvt/configs/bash_profile
+fi

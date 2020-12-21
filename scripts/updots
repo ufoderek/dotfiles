@@ -3,18 +3,20 @@
 source ~/.bash_funcs
 
 CONF_PATH=$HOME/dotfiles/configs
+NVT_CONF_PATH=$HOME/dotnvt/configs
 
 rm -rf ~/.gitconfig
 if is_nvt; then
-	cp $CONF_PATH/gitconfig.nvt ~/.gitconfig
+	cp $NVT_CONF_PATH/gitconfig ~/.gitconfig
 else
 	cp $CONF_PATH/gitconfig ~/.gitconfig
 fi
 
 if is_nvt; then
     rm -rf ~/.gittemplate
-    cp $CONF_PATH/gittemplate ~/.gittemplate
+    cp $NVT_CONF_PATH/gittemplate ~/.gittemplate
 else
+    rm -rf ~/.gittemplate
     touch ~/.gittemplate
 fi
 
