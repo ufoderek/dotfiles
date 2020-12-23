@@ -28,6 +28,7 @@ source ~/dotfiles/scripts/bashmarks.sh
 #bash parameters
 shopt -s histappend
 shopt -s checkwinsize
+shopt -s cdspell #guess best target to cd when typo
 
 #enable vi mode
 set -o vi
