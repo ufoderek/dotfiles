@@ -30,6 +30,9 @@ shopt -s histappend
 shopt -s checkwinsize
 shopt -s cdspell #guess best target to cd when typo
 
+# better cd auto-complete
+complete -d cd
+
 #enable vi mode
 set -o vi
 set editing-mode vi
