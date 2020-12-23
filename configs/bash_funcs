@@ -19,35 +19,21 @@ function bd {
 }
 
 function cu {
+	local CURDIR=$PWD
 	if [ -z "$1" ]; then
-		#no argument, cd to git root, repo root or svn root or home
-		pushd . > /dev/null
-		if [ "${PWD}" != "$HOME" ]; then
-			cd ..
-			until [ -d .git -o -d .repo -o -d .svn -o "${PWD}" == "$HOME" ]; do
-				cd ..
-			done
-		fi
-	else
-		if [ $1 -eq $1 2> /dev/null ]; then
-			#argument is integer, go to upper directory
-			for (( i=$1; i>=1; i-- )) do
-				cd ..
-			done
-		else
-			#argument is string (directory name)
-			for ((;;)) do
-				cd ..
-				#shell parameter expansion
-				if [ "$1" == "${PWD##*/}" -o "${PWD}" == "$HOME" ]; then
-					break
-				fi
-			done
-		fi
+		#no argument, cd to git/svn/repo root, root or home
+		until [ -d "$CURDIR/.git" ] || [ -d "$CURDIR/.repo" ] || \
+		      [ -d "$CURDIR/.svn" ] || [ "$CURDIR" == "$HOME" ] || \
+		      [ "$CURDIR" == "/" ]; do
+			CURDIR=$(dirname $CURDIR)
+		done
+	elif [ $1 -eq $1 2> /dev/null ]; then
+		#argument is integer, cd to upper ($1-level) directory
+		for i in $(seq $1); do
+			CURDIR=$(dirname $CURDIR)
+		done
 	fi
-	local new_pwd=`pwd`
-	popd > /dev/null
-	cd $new_pwd
+	cd $CURDIR
 }
 
 function is_osx {
@@ -81,10 +67,10 @@ function is_nvt {
 	fi
 }
 
-function parse_git_branch {
-	git branch --no-color 2> /dev/null | \
-	sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
-}
+#function parse_git_branch {
+#	git branch --no-color 2> /dev/null | \
+#	sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
+#}
 
 #function parse_svn_rev {
 #	svn info 2> /dev/null | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p'
