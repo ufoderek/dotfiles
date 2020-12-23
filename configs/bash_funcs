@@ -1,86 +1,73 @@
 function cu {
-    if [ -z "$1" ]; then
-        #no argument, cd to git root, repo root or svn root or home
-        pushd . > /dev/null
-        if [ "${PWD}" != "$HOME" ]; then
-            cd ..
-            until [ -d .git -o -d .repo -o -d .svn -o "${PWD}" == "$HOME" ]; do
-                cd ..
-            done
-        fi
-    else
-        #argument is integer, go to upper directory
-        if [ $1 -eq $1 2> /dev/null ]; then
-            for (( i=$1; i>=1; i-- )) do
-                cd ..
-            done
-        #argument is string (directory name)
-        else
-            for ((;;)) do
-                cd ..
+	if [ -z "$1" ]; then
+		#no argument, cd to git root, repo root or svn root or home
+		pushd . > /dev/null
+		if [ "${PWD}" != "$HOME" ]; then
+			cd ..
+			until [ -d .git -o -d .repo -o -d .svn -o "${PWD}" == "$HOME" ]; do
+				cd ..
+			done
+		fi
+	else
+		if [ $1 -eq $1 2> /dev/null ]; then
+			#argument is integer, go to upper directory
+			for (( i=$1; i>=1; i-- )) do
+				cd ..
+			done
+		else
+			#argument is string (directory name)
+			for ((;;)) do
+				cd ..
 				#shell parameter expansion
-                if [ "$1" == "${PWD##*/}" -o "${PWD}" == "$HOME" ]; then
-                    break
-                fi
-            done
-        fi
-    fi
-    local new_pwd=`pwd`
-    popd > /dev/null
-    cd $new_pwd
+				if [ "$1" == "${PWD##*/}" -o "${PWD}" == "$HOME" ]; then
+					break
+				fi
+			done
+		fi
+	fi
+	local new_pwd=`pwd`
+	popd > /dev/null
+	cd $new_pwd
 }
 
 function is_osx {
-    local uname_str=`uname`
-    if [[ "$uname_str" == Darwin ]]; then
-        return 0 #success
-    else
-        return 1
-    fi
+	local uname_str=`uname`
+	if [[ "$uname_str" == Darwin ]]; then
+		return 0 #success
+	else
+		return 1
+	fi
 }
 
 function is_linux {
-    local uname_str=`uname`
-    if [[ "$uname_str" == Linux ]]; then
-        return 0 #success
-    else
-        return 1
-    fi
+	local uname_str=`uname`
+	if [[ "$uname_str" == Linux ]]; then
+		return 0 #success
+	else
+		return 1
+	fi
 }
 
 function is_nvt {
-    local my_host=`hostname`
-    if [[ "$my_host" == oaalnx* ]]; then
-        return 0 #success
-    elif [[ "$my_host" == oaplnx* ]]; then
-        return 0 #success
-    elif [[ "$my_host" == oaplnx*vm ]]; then
-        return 0 #success
-    else
-        return 1
-    fi
+	local my_host=`hostname`
+	if [[ "$my_host" == oaalnx* ]]; then
+		return 0 #success
+	elif [[ "$my_host" == oaplnx* ]]; then
+		return 0 #success
+	elif [[ "$my_host" == oaplnx*vm ]]; then
+		return 0 #success
+	else
+		return 1
+	fi
 }
 
 function parse_git_branch {
-    git branch --no-color 2> /dev/null | \
-    sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
+	git branch --no-color 2> /dev/null | \
+	sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1)/" -e "s/(no branch)/?/"
 }
 
 #function parse_svn_rev {
-#    svn info 2> /dev/null | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p'
-#}
-
-#function get_vcs_info {
-#    local ii=`parse_git_branch`
-#
-#    if [ -n "$ii" ]; then
-#        echo -n "$ii"
-#    #else
-#        #ii=`parse_svn_rev`
-#        #if [ -n "$ii" ]; then
-#        #    echo -n " (r$ii)"
-#        #fi
-#    fi
+#	svn info 2> /dev/null | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p'
 #}
 
 function wk {
