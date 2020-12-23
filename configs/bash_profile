@@ -9,7 +9,6 @@ if [ -f $HOME/.bash_funcs ]; then
 fi
 
 # path
-export PATH=$PATH:$HOME/dotnvt/bin64
 export PATH=$PATH:$HOME/dotfiles/scripts
 
 if is_linux; then
