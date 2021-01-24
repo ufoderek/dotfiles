@@ -3,8 +3,9 @@ ibus-rime \
 exfat-utils fuse-exfat \
 blivet-gui \
 p7zip zip unzip unrar \
-gimp calibre VirtualBox \
+gimp calibre libheif \
 chromium-browser-privacy \
+VirtualBox \
 thunderbird-wayland nextcloud-client
 
 sudo dnf install -y tlp
