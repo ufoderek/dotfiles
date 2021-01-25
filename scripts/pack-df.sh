@@ -8,4 +8,4 @@ rm -rf ~/dotfiles/nvim-snapshot
 cp -r ~/.config/nvim ~/dotfiles/nvim-snapshot
 rm -rf `find ~/dotfiles/nvim-snapshot -name \.git`
 
-tar -C ~ -czf ~/dotfiles-$MY_DATE.tar.xz dotfiles
+XZ_OPT="-9" tar -C ~ -cJf ~/dotfiles-$MY_DATE.tar.xz dotfiles
