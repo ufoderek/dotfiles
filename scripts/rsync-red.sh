@@ -2,8 +2,8 @@
 
 DATE_TIME=`date +%Y_%m%d_%H%M_%S`
 
-SRC_DIR=/mnt/ufoderek
-BASE=/run/media/ufoderek/Toshiba15T
+SRC_DIR=/run/media/ufoderek/Misc
+BASE=/run/media/ufoderek/RedToshiba
 
 DEST_MAIN_DIR=$BASE/MainBackup
 DEST_DIFF_DIR=$BASE/DiffBackup/$DATE_TIME
@@ -18,13 +18,15 @@ mkdir -p $DEST_DIFF_DIR
 
 OPTS=" \
 	--archive \
+	--checksum \
+	--inplace \
 	--recursive \
 	--relative \
 	--backup \
 	--backup-dir=$DEST_DIFF_DIR \
 	--links \
 	--keep-dirlinks \
-	--hard-links\
+	--hard-links \
 	--perms \
 	--executability \
 	--acls \
@@ -34,13 +36,12 @@ OPTS=" \
 	--times \
 	--whole-file \
 	--delete \
-	--ignore-errors \
 	--force \
 	--files-from=$SRC_LIST_FILE \
 	--human-readable \
-	--progress \
 	--itemize-changes \
 	--log-file=$LOG_FILE \
+	--quiet \
 	"
 
 nice -n 19 rsync $OPTS $SRC_DIR $DEST_MAIN_DIR

@@ -1,7 +1,6 @@
 /Ani
 /Ani Music
-/Cherry Data
+/Cherry Offline
 /Dramas
 /Music Old
 /Nextcloud
-/Temp
