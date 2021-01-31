@@ -98,11 +98,3 @@ function grbo {
 	echo "git rebase origin/$bname"
 	git rebase origin/$bname
 }
-
-function en_usb {
-	echo "CONFIG_USB=y" >> .config
-	echo "CONFIG_USB_COMMON=y" >> .config
-	echo "CONFIG_USB_EHCI_HCD=y" >> .config
-	echo "CONFIG_USB_STORAGE=y" >> .config
-	echo "CONFIG_USB_SERIAL=n" >> .config
-}
