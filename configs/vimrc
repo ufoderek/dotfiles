@@ -16,6 +16,7 @@ Plug 'tpope/vim-vinegar'
 "Plug 'fholgado/minibufexpl.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'ap/vim-buftabline'
+Plug 'jyelloz/vim-dts-indent'
 
 if !has("win32") && !has("win64")
   Plug 'altercation/vim-colors-solarized'
