@@ -1,8 +1,8 @@
 # Source global definitions
-if [ -f $HOME/.bash_funcs ]; then
+if [ -f ~/.bash_funcs ]; then
     . ~/.bash_funcs
 fi
-if [ -f $HOME/.bash_aliases ]; then
+if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 

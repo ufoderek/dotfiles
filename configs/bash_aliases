@@ -1,5 +1,5 @@
 if [ -r ~/.bash_funcs ]; then
-    source ~/.bash_funcs
+    . ~/.bash_funcs
 fi
 
 # less
@@ -143,3 +143,7 @@ alias ga='git add'
 alias fda='dastyle.sh *.c include/*.h'
 alias fdc='dcheckpatch.sh *.c include/*.h'
 alias fga='git add *.c include/*.h'
+
+if [ -f ~/dotnvt/configs/bash_aliases ]; then
+    . ~/dotnvt/configs/bash_aliases
+fi
