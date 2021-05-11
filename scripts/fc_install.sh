@@ -9,7 +9,7 @@ apostrophe \
 VirtualBox \
 thunderbird-wayland nextcloud-client
 
-sudo dnf install -y tlp
+sudo dnf install -y tlp smartmontools
 
 sudo dnf group install -y "C Development Tools and Libraries"
 
