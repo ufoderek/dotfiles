@@ -98,3 +98,20 @@ function grbo {
 	echo "git rebase origin/$bname"
 	git rebase origin/$bname
 }
+
+function path_del {
+	eval NEW_PATH="$1"
+	if [ -n "$NEW_PATH" ]; then
+		PATH=${PATH//"$NEW_PATH:"}
+	fi
+	export PATH
+}
+
+function path_add {
+	eval NEW_PATH="$1"
+	if [ -n "$NEW_PATH" ]; then
+		PATH=${PATH//"$NEW_PATH:"}
+		PATH=$NEW_PATH:$PATH
+	fi
+	export PATH
+}
