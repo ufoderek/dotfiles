@@ -72,7 +72,17 @@ if ! is_nvt; then
     rm -f ~/.config/mpv/mpv.conf
     rm -f ~/.config/mpv/input.conf
     rm -f ~/.config/mpv/osc.conf
-    cp -r $CONF_PATH/mpv/mpv.conf  ~/.config/mpv/
-    cp -r $CONF_PATH/mpv/input.conf  ~/.config/mpv/
-    cp -r $CONF_PATH/mpv/osc.conf  ~/.config/mpv/script-opts/
+    cp $CONF_PATH/mpv/mpv.conf  ~/.config/mpv/
+    cp $CONF_PATH/mpv/input.conf  ~/.config/mpv/
+    cp $CONF_PATH/mpv/osc.conf  ~/.config/mpv/script-opts/
+fi
+
+if ! is_nvt; then
+    src=$CONF_PATH/desktop
+    dst=~/.local/share/applications
+    mkdir -p $dst
+    rm -f $dst/firefox-incognito.desktop
+    rm -f $dst/chromium-browser-privacy-incognito.desktop
+    cp $src/firefox-incognito.desktop $dst/
+    cp $src/chromium-browser-privacy-incognito.desktop $dst/
 fi
