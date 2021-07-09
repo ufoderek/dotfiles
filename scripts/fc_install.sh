@@ -5,7 +5,7 @@ blivet-gui \
 p7zip zip unzip unrar \
 gimp calibre libheif \
 chromium-browser-privacy \
-apostrophe \
+ghostwriter \
 VirtualBox \
 thunderbird-wayland nextcloud-client
 
