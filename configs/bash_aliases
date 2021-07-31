@@ -107,6 +107,28 @@ alias gpi='gp -i'
 alias gpc='gp --include="*.[c|h|cpp|cxx|hpp|s|S]"'
 alias gpic='gpi --include="*.[c|h|cpp|cxx|hpp|s|S]"'
 
+# rsync
+alias drsync='rsync \
+                --archive \
+                --checksum \
+                --recursive \
+                --relative \
+                --links \
+                --keep-dirlinks \
+                --hard-links \
+                --perms \
+                --executability \
+                --acls \
+                --xattrs \
+                --owner \
+                --group \
+                --times \
+                --whole-file \
+                --delete \
+                --force \
+                --human-readable \
+                --itemize-changes'
+
 # git
 alias gs='git status --column'
 alias gss='git status --untracked-files=no'
