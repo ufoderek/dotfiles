@@ -9,4 +9,4 @@ cp -r ~/.config/nvim ~/dotfiles/nvim-snapshot
 rm -rf `find ~/dotfiles/nvim-snapshot -name \.git`
 
 XZ_OPT="-9" tar -C ~ -cJf ~/dotfiles-$MY_DATE.tar.xz dotfiles
-split ~/dotfiles-$MY_DATE.tar.xz -b 2M dotfiles-$MY_DATE.tar.xz.split-
+(cd ~ && split ~/dotfiles-$MY_DATE.tar.xz -b 2M dotfiles-$MY_DATE.tar.xz.split-)
