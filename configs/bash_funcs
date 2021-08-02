@@ -115,3 +115,7 @@ function path_add {
 	fi
 	export PATH
 }
+
+function cl {
+	echo "scale=5; $@" | bc
+}
