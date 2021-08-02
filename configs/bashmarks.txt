@@ -1,4 +1,3 @@
-export DIR_t="$HOME/wk/tmp"
 export DIR_ds="$HOME/dotfiles/scripts"
 export DIR_dc="$HOME/dotfiles/configs"
 export DIR_d="$HOME/dotfiles"
