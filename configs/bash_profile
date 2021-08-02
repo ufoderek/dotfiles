@@ -1,12 +1,6 @@
 if [ -f /etc/profile ]; then
 	. /etc/profile
 fi
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-if [ -f ~/.bash_funcs ]; then
-	. ~/.bash_funcs
-fi
 
 # path
 export PATH=$PATH:~/dotfiles/scripts
@@ -22,19 +16,17 @@ if is_osx; then
 fi
 
 # bash parameters
+export EDITOR=nvim
 export HISTSIZE=100
 export HISTFILESIZE=200000
-export EDITOR=vim
 export HISTCONTROL=erasedups
 export HISTIGNORE='&:cd ~:cd ..:[bf]g:exit:h:history'
 export PROMPT_COMMAND='history -a' #update history after each command
 
-# tell AOSP lunch not to touch my PROMPT_COMMAND
-export STAY_OFF_MY_LAWN=true
-
-# load bashrc only for interactive shell
-case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
-
 if [ -f ~/dotnvt/configs/bash_profile ]; then
 	. ~/dotnvt/configs/bash_profile
+fi
+
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
 fi

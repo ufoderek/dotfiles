@@ -18,12 +18,12 @@ else
 fi
 
 # nvim
+alias vi='nvim'
 alias vim='nvim'
 alias vimdiff='nvim -d'
-export EDITOR=nvim
 
+# more
 alias more='less'
-alias mkdir='mkdir -p -v'
 
 # wk
 alias tmp='wk tmp'
@@ -76,16 +76,6 @@ else # is_osx
     alias tre='benice trash -e'
 fi
 
-# terminal notification
-if is_linux; then
-    alias kwarn='notify-send -u normal -i "dialog-warning" "Konsole" "Task completed"'
-elif is_osx; then
-    alias kwarn='terminal-notifier -title "iTerm" -message "Task Completed"'
-fi
-
-# local ccache for Android distribution
-alias lccache="./prebuilts/misc/linux-x86/ccache/ccache"
-
 # df
 alias df='df -h'
 
@@ -95,8 +85,8 @@ alias du='du -hd 1'
 # find
 alias fn='find . -name'
 alias fp='find . -path'
-alias fdn='find . -type d -name'
-alias fdp='find . -type d -path'
+alias fnd='find . -type d -name'
+alias fpd='find . -type d -path'
 
 # cscope
 alias csr='cscope -R'
@@ -146,8 +136,8 @@ alias gob='git checkout -b'
 alias gcp='git cherry-pick'
 alias gl='git log'
 alias glp='git log -p'
-alias glo='git log --oneline -10'
-alias gloo='git log --oneline . | less'
+alias glo='git log --oneline -20'
+alias gloo='git log --oneline'
 alias gwc='git whatchanged'
 alias gcd='git clean -dfx'
 alias gfa='git fetch -p --all'
@@ -155,17 +145,10 @@ alias grb='git rebase'
 alias grbi='git rebase -i'
 alias gpo='git push origin'
 alias gpof='git push origin -f'
-alias ggcall='for dir in ./*; do (cd "$dir" && pwd && git gc ; cd ..); done'
 
 #misc
 alias da='dastyle.sh'
 alias dc='dcheckpatch.sh'
-alias ga='git add'
 
-alias fda='dastyle.sh *.c include/*.h'
-alias fdc='dcheckpatch.sh *.c include/*.h'
-alias fga='git add *.c include/*.h'
-
-if [ -f ~/dotnvt/configs/bash_aliases ]; then
-    . ~/dotnvt/configs/bash_aliases
-fi
+alias fda='dastyle.sh *.c *.h include/*.h'
+alias fdc='dcheckpatch.sh *.c *.h include/*.h'

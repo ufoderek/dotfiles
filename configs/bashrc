@@ -1,3 +1,9 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # Source global definitions
 if [ -f ~/.bash_funcs ]; then
     . ~/.bash_funcs
@@ -5,12 +11,12 @@ fi
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+if [ -f ~/dotnvt/configs/bash_funcs ]; then
+    . ~/dotnvt/configs/bash_funcs
+fi
+if [ -f ~/dotnvt/configs/bash_aliases ]; then
+    . ~/dotnvt/configs/bash_aliases
+fi
 
 # for __git_ps1 command
 if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
