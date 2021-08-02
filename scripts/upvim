@@ -7,10 +7,10 @@ CONF_PATH=$HOME/dotfiles/configs
 rm -rf ~/.config/nvim
 
 if ! is_nvt; then
-    cp -r $CONF_PATH/vim ~/.config/nvim
+    cp -r $CONF_PATH/nvim ~/.config/nvim
 else
     cp -r $HOME/dotfiles/nvim-snapshot ~/.config/nvim
 fi
 
-cp $CONF_PATH/vimrc ~/.config/nvim/init.vim
+cp $CONF_PATH/init.vim ~/.config/nvim/init.vim
 cp $CONF_PATH/ginit.vim ~/.config/nvim/ginit.vim
