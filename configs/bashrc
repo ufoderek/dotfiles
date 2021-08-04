@@ -4,29 +4,26 @@ case $- in
       *) return;;
 esac
 
-# Source global definitions
-if [ -f ~/.bash_funcs ]; then
-    . ~/.bash_funcs
-fi
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-if [ -f ~/dotnvt/configs/bash_funcs ]; then
-    . ~/dotnvt/configs/bash_funcs
-fi
-if [ -f ~/dotnvt/configs/bash_aliases ]; then
-    . ~/dotnvt/configs/bash_aliases
-fi
+function fsource {
+    if [ -f "$1" ]; then
+        . "$1"
+    fi
+}
+
+# bash related
+fsource ~/.bash_funcs
+fsource ~/.bash_aliases
+fsource ~/dotnvt/configs/bash_funcs
+fsource ~/dotnvt/configs/bash_aliases
+fsource ~/dotnvt/configs/bash_funcs
+fsource ~/dotnvt/configs/bash_aliases
 
 # for __git_ps1 command
-if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
-    . /usr/share/git-core/contrib/completion/git-prompt.sh
-fi
-if [ -f /usr/lib/git-core/git-sh-prompt ]; then
-    . /usr/lib/git-core/git-sh-prompt
-fi
+fsource /usr/share/git-core/contrib/completion/git-prompt.sh
+fsource /usr/lib/git-core/git-sh-prompt
 
-source ~/dotfiles/scripts/bashmarks.sh
+# bashmark
+fsource ~/dotfiles/scripts/bashmarks.sh
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"

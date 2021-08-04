@@ -1,19 +1,17 @@
-if [ -f /etc/profile ]; then
-	. /etc/profile
-fi
+function fsource {
+    if [ -f "$1" ]; then
+        . "$1"
+    fi
+}
+
+fsource /etc/profile
 
 # path
 export PATH=$PATH:~/dotfiles/scripts
-
-if is_linux; then
-	#for trash-cli
-	export PATH=$PATH:~/.local/bin
-fi
-
-if is_osx; then
-	#for homebrew
-	export PATH=/usr/local/sbin:$PATH
-fi
+#for trash-cli
+export PATH=$PATH:~/.local/bin
+#for homebrew
+export PATH=/usr/local/sbin:$PATH
 
 # bash parameters
 export EDITOR=nvim
@@ -23,10 +21,5 @@ export HISTCONTROL=erasedups
 export HISTIGNORE='&:cd ~:cd ..:[bf]g:exit:h:history'
 export PROMPT_COMMAND='history -a' #update history after each command
 
-if [ -f ~/dotnvt/configs/bash_profile ]; then
-	. ~/dotnvt/configs/bash_profile
-fi
-
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+fsource ~/dotnvt/configs/bash_profile
+fsource /etc/bashrc
