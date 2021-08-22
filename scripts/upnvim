@@ -1,0 +1,18 @@
+#!/bin/bash
+
+source ~/.bash_funcs
+
+CONF_PATH=$HOME/dotfiles/configs
+
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+mkdir -p ~./.config/nvim
+mkdir -p ~./.local/share/nvim
+
+if is_nvt; then
+	cp -r $HOME/dotfiles/nvim-snapshot/nvim ~/.config/
+	cp -r $HOME/dotfiles/nvim-snapshot/site ~/.local/share/nvim/
+fi
+
+cp $CONF_PATH/init.lua ~/.config/nvim/init.lua
+cp $CONF_PATH/ginit.vim ~/.config/nvim/ginit.vim
