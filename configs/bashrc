@@ -99,7 +99,9 @@ fi
 RESET_ALL="\[\e[m\]"
 
 #solarized command prompt
-export PS1="${BASE1}[${GREEN}\u${BASE1}@${VIOLET}\h ${YELLOW}\$PWD${YELLOW}\$(__git_ps1)${BASE1}]\n${RESET_ALL}\$ "
+#export PS1="${BASE1}[${GREEN}\u${BASE1}@${VIOLET}\h ${YELLOW}\$PWD${YELLOW}\$(__git_ps1)${BASE1}]\n${RESET_ALL}\$ "
+SGR0="\[$(tput sgr0)\]"
+export PS1="${SGR0}[\u@\h \w\$(__git_ps1)]\n\\$ ${SGR0}"
 
 #solarized ls color
 eval `dircolors ~/.dircolors`
