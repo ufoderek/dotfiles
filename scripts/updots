@@ -57,7 +57,7 @@ rm -rf ~/.colordiffrc
 cp $CONF_PATH/colordiffrc ~/.colordiffrc
 
 rm -rf ~/.dircolors
-cp $CONF_PATH/dircolors.ansi-dark ~/.dircolors
+cp $CONF_PATH/dircolors.gruvbox ~/.dircolors
 
 rm -rf ~/.config/user-dirs.dirs
 cp $CONF_PATH/user-dirs.dirs ~/.config/
