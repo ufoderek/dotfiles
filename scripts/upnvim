@@ -3,15 +3,15 @@
 source ~/.bash_funcs
 
 CONF_PATH=$HOME/dotfiles/configs
+SNAPSHOT=$HOME/dotfiles/nvim-snapshot
 
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
-mkdir -p ~./.config/nvim
-mkdir -p ~./.local/share/nvim
+mkdir -p ~/.config/nvim
+mkdir -p ~/.local/share/nvim/site
 
 if is_nvt; then
-	cp -r $HOME/dotfiles/nvim-snapshot/nvim ~/.config/
-	cp -r $HOME/dotfiles/nvim-snapshot/site ~/.local/share/nvim/
+	cp -r $SNAPSHOT/site ~/.local/share/nvim/site
 fi
 
 cp $CONF_PATH/init.lua ~/.config/nvim/init.lua
