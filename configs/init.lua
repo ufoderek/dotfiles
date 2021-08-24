@@ -52,8 +52,7 @@ require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 	use 'lifepillar/vim-solarized8'
 	use 'christoomey/vim-tmux-navigator'
-	--use 'fholgado/minibufexpl.vim'
-	use 'akinsho/bufferline.nvim'
+	use 'ap/vim-buftabline'
 	use {
 		'hoob3rt/lualine.nvim'
 	}
@@ -187,25 +186,8 @@ require'lualine'.setup {
 	extensions = {}
 }
 
---[[ BUFFERLINE ]]--
-vim.o.termguicolors = true
-vim.o.hidden = true -- switch buffer without saving
-require('bufferline').setup {
-  options = {
-    numbers = "buffer_id",
-    number_style = "",
-    close_command = "bdelete! %d",
-    left_mouse_command = "buffer %d",
-    right_mouse_command = nil,
-    middle_mouse_command = "bdelete! %d",
-    show_buffer_icons = false,
-    show_buffer_close_icons = false,
-    show_close_icon = false,
-    show_tab_indicators = false,
-    persist_buffer_sort = false,
-    separator_style = "thin",
-    enforce_regular_tabs = true,
-    always_show_bufferline = false,
-    sort_by = 'id'
-  }
-}
+--[[ BUFTABLINE ]]--
+vim.g.buftabline_show = 1
+vim.g.buftabline_numbers = 1
+vim.g.buftabline_indicators = true
+vim.g.buftabline_separators = false
