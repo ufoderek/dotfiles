@@ -56,8 +56,11 @@ require('packer').startup(function(use)
 	use {
 		'hoob3rt/lualine.nvim'
 	}
+	-- Linux only
+	use 'airblade/vim-gitgutter'
+	use 'tpope/vim-sleuth'
+	use 'joereynolds/gtags-scope'
 end)
--- vim.cmd('autocmd BufWritePost plugins.lua source <afile> | PackerCompile')
 
 --[[ VARIALBES ]]--
 vim.g.mapleader = ','
