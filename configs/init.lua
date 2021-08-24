@@ -50,7 +50,7 @@ end
 
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
-	use 'gruvbox-community/gruvbox'
+	use 'lifepillar/vim-solarized8'
 	use 'christoomey/vim-tmux-navigator'
 	--use 'fholgado/minibufexpl.vim'
 	use 'akinsho/bufferline.nvim'
@@ -64,9 +64,10 @@ end)
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
---[[ COLOR ]]--
-vim.g.termguicolor = true
-vim.cmd('colorscheme gruvbox')
+--[[ SOLARIZED8 ]]--
+vim.o.termguicolors = true
+vim.o.background = 'dark'
+vim.cmd('colorscheme solarized8_flat')
 
 --[[ OPTIONS ]]--
 vim.o.swapfile = false
@@ -159,9 +160,11 @@ vim.g.loaded_rrhelper = 1
 require'lualine'.setup {
 	options = {
 		icons_enabled = false,
-		theme = 'gruvbox',
-		component_separators = {'', ''},
-		section_separators = {'', ''},
+		theme = 'auto',
+		--component_separators = {'', ''},
+		--section_separators = {'', ''},
+		component_separators = {},
+		section_separators = {},
 		disabled_filetypes = {},
 	},
 	sections = {
@@ -185,14 +188,15 @@ require'lualine'.setup {
 }
 
 --[[ BUFFERLINE ]]--
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
+vim.o.hidden = true -- switch buffer without saving
 require('bufferline').setup {
   options = {
-    numbers = "ordinal",
-    number_style = "none",
+    numbers = "buffer_id",
+    number_style = "",
     close_command = "bdelete! %d",
     left_mouse_command = "buffer %d",
-    right_mouse_command = "",
+    right_mouse_command = nil,
     middle_mouse_command = "bdelete! %d",
     show_buffer_icons = false,
     show_buffer_close_icons = false,
