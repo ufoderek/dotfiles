@@ -11,7 +11,7 @@ mkdir -p ~/.config/nvim
 mkdir -p ~/.local/share/nvim/site
 
 if is_nvt; then
-	cp -r $SNAPSHOT/site ~/.local/share/nvim/site
+	cp -r $SNAPSHOT/site ~/.local/share/nvim/
 fi
 
 cp $CONF_PATH/init.lua ~/.config/nvim/init.lua
