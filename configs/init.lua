@@ -53,13 +53,25 @@ require('packer').startup(function(use)
 	use 'lifepillar/vim-solarized8'
 	use 'christoomey/vim-tmux-navigator'
 	use 'ap/vim-buftabline'
+	use 'tpope/vim-sleuth'
 	use {
 		'hoob3rt/lualine.nvim'
 	}
 	-- Linux only
-	use 'airblade/vim-gitgutter'
-	use 'tpope/vim-sleuth'
+	use {
+		'lewis6991/gitsigns.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim'
+		}
+	}
+	use 'kyazdani42/nvim-tree.lua'
 	use 'neovim/nvim-lspconfig'
+	use {
+		'nvim-telescope/telescope.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim'
+		}
+	}
 end)
 
 --[[ VARIALBES ]]--
@@ -199,3 +211,9 @@ vim.g.buftabline_show = 1
 vim.g.buftabline_numbers = 1
 vim.g.buftabline_indicators = true
 vim.g.buftabline_separators = false
+
+--[[ GITSIGNS ]]--
+require('gitsigns').setup()
+
+--[[ TELESCOPE ]]--
+require('telescope').setup()
