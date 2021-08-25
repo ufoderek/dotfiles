@@ -6,9 +6,10 @@ CONF_PATH=$HOME/dotfiles/configs
 SNAPSHOT=$HOME/dotfiles/nvim-snapshot
 
 rm -rf ~/.config/nvim
-rm -rf ~/.local/share/nvim
 mkdir -p ~/.config/nvim
-mkdir -p ~/.local/share/nvim/site
+
+rm -rf ~/.local/share/nvim
+mkdir -p ~/.local/share/nvim
 
 if is_nvt; then
 	cp -r $SNAPSHOT/site ~/.local/share/nvim/
