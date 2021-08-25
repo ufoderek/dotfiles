@@ -134,6 +134,10 @@ d.vnoremap_ns('?', '?\\c', { silent = false })
 -- Search with yanked text
 d.vnoremap('//', 'y/<C-r>"<Cr>')
 
+
+-- Macro
+d.nnoremap('<Space>', '@q')
+
 -- Use real tab in makefiles
 vim.api.nvim_command('autocmd FileType make setlocal noexpandtab')
 
