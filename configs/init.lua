@@ -69,6 +69,7 @@ vim.g.maplocalleader = ','
 --[[ SOLARIZED8 ]]--
 vim.o.termguicolors = true
 vim.o.background = 'dark'
+vim.g.solarized_extra_hi_groups = 1
 vim.cmd('colorscheme solarized8_flat')
 
 --[[ OPTIONS ]]--
