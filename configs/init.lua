@@ -59,7 +59,7 @@ require('packer').startup(function(use)
 	-- Linux only
 	use 'airblade/vim-gitgutter'
 	use 'tpope/vim-sleuth'
-	use 'joereynolds/gtags-scope'
+	use 'neovim/nvim-lspconfig'
 end)
 
 --[[ VARIALBES ]]--
