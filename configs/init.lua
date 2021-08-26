@@ -91,6 +91,7 @@ vim.o.showmatch = true			-- show matching brackets
 vim.o.cursorline = true			-- highlight current line
 vim.o.splitbelow = true
 vim.o.splitright = true
+vim.o.colorcolumn = '80,100'		-- Linux standard
 vim.o.sidescroll = 5			-- speedup horizontal scroll
 vim.o.timeoutlen = 500
 vim.o.shada = ''
