@@ -8,6 +8,7 @@ chromium-browser-privacy \
 gthumb darktable \
 ghostwriter \
 VirtualBox \
+clang clang-tools-extra \
 thunderbird-wayland nextcloud-client
 
 sudo dnf install -y tlp smartmontools
