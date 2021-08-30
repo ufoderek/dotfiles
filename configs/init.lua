@@ -1,4 +1,4 @@
-local d = {}
+d = {}
 
 function d.nmap(lhs, rhs)
 	return vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = false, silent = true })
