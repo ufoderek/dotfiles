@@ -72,6 +72,13 @@ require('packer').startup(function(use)
 			'nvim-lua/plenary.nvim'
 		}
 	}
+	use {
+		'ojroques/nvim-lspfuzzy',
+		requires = {
+			{'junegunn/fzf'},
+			{'junegunn/fzf.vim'},  -- to enable preview (optional)
+		},
+	}
 end)
 
 --[[ VARIALBES ]]--
@@ -218,3 +225,9 @@ require('gitsigns').setup()
 
 --[[ TELESCOPE ]]--
 require('telescope').setup()
+
+--[[ LSP ]]--
+require'lspconfig'.clangd.setup{}
+
+--[[ LSPFUZZY ]]--
+require('lspfuzzy').setup{}
