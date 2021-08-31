@@ -61,7 +61,7 @@ require('packer').startup(function(use)
 	use {
 		'lewis6991/gitsigns.nvim',
 		requires = {
-			'nvim-lua/plenary.nvim'
+			{'nvim-lua/plenary.nvim'}
 		}
 	}
 	use 'kyazdani42/nvim-tree.lua'
@@ -69,7 +69,10 @@ require('packer').startup(function(use)
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {
-			'nvim-lua/plenary.nvim'
+			{'nvim-lua/plenary.nvim'},
+			{'RishabhRD/popfix'},
+			{'RishabhRD/nvim-lsputils'},
+			{'ray-x/lsp_signature.nvim'}
 		}
 	}
 	use {
@@ -78,6 +81,10 @@ require('packer').startup(function(use)
 			{'junegunn/fzf'},
 			{'junegunn/fzf.vim'},  -- to enable preview (optional)
 		},
+	}
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate'
 	}
 end)
 
@@ -184,7 +191,7 @@ vim.g.loaded_rrhelper = 1
 -- vim.g.loaded_netrwSettings = 1
 
 --[[ LUALINE ]]--
-require'lualine'.setup {
+require('lualine').setup {
 	options = {
 		icons_enabled = false,
 		theme = 'auto',
@@ -265,6 +272,22 @@ local on_attach = function(client, bufnr)
 end
 
 --[[ CLANGD ]]--
-require('lspconfig').clangd.setup{
-	on_attach = on_attach,
+require('lspconfig').clangd.setup {
+	on_attach = on_attach
 }
+
+--[[ TREESITTER ]]--
+require('nvim-treesitter.configs').setup {}
+
+--[[ NVIM-LSPUTILS ]]--
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+
+--[[ LSP_SIGNATURE ]]--
+require "lsp_signature".setup()
