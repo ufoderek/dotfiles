@@ -146,7 +146,17 @@ alias grbi='git rebase -i'
 alias gpo='git push origin'
 alias gpof='git push origin -f'
 
-#misc
+# docker
+alias db='docker build'
+alias di='docker images'
+alias dr='docker run'
+alias drit='docker run -it'
+alias drm='docker rm'
+alias drmi='docker rmi'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+
+# misc
 alias da='dastyle.sh'
 alias dc='dcheckpatch.sh'
 
