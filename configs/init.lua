@@ -82,6 +82,7 @@ require('packer').startup(function(use)
 			{'junegunn/fzf.vim'},  -- to enable preview (optional)
 		},
 	}
+	use 'nvim-lua/completion-nvim'
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
@@ -190,6 +191,12 @@ vim.g.loaded_rrhelper = 1
 -- vim.g.loaded_netrwPlugin = 1
 -- vim.g.loaded_netrwSettings = 1
 
+--[[ BUFTABLINE ]]--
+vim.g.buftabline_show = 1
+vim.g.buftabline_numbers = 1
+vim.g.buftabline_indicators = true
+vim.g.buftabline_separators = false
+
 --[[ LUALINE ]]--
 require('lualine').setup {
 	options = {
@@ -221,25 +228,27 @@ require('lualine').setup {
 	extensions = {}
 }
 
---[[ BUFTABLINE ]]--
-vim.g.buftabline_show = 1
-vim.g.buftabline_numbers = 1
-vim.g.buftabline_indicators = true
-vim.g.buftabline_separators = false
-
 --[[ GITSIGNS ]]--
 require('gitsigns').setup()
 
 --[[ TELESCOPE ]]--
 require('telescope').setup()
 
---[[ LSPFUZZY ]]--
-require('lspfuzzy').setup{}
+--[[ NVIM-LSPUTILS ]]--
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+
+--[[ LSP_SIGNATURE ]]--
+require "lsp_signature".setup()
 
 --[[ LSP ]]--
 local on_attach = function(client, bufnr)
-	require('completion').on_attach()
-
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -276,18 +285,13 @@ require('lspconfig').clangd.setup {
 	on_attach = on_attach
 }
 
+--[[ LSPFUZZY ]]--
+require('lspfuzzy').setup{}
+
+--[[ NVIM-COMPLETION ]]--
+require('lspconfig').clangd.setup {
+	on_attach=require('completion').on_attach
+}
+
 --[[ TREESITTER ]]--
 require('nvim-treesitter.configs').setup {}
-
---[[ NVIM-LSPUTILS ]]--
-vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
-vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
-vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
-vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
-vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
-vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
-vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
-vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
-
---[[ LSP_SIGNATURE ]]--
-require "lsp_signature".setup()
