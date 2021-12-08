@@ -162,3 +162,5 @@ alias dc='dcheckpatch.sh'
 
 alias fda='dastyle.sh *.c *.h include/*.h'
 alias fdc='dcheckpatch.sh *.c *.h include/*.h'
+
+alias dnas='ssh 192.168.1.10'
