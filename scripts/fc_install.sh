@@ -4,11 +4,10 @@ exfat-utils fuse-exfat \
 blivet-gui \
 p7zip zip unzip unrar \
 gimp calibre libheif \
-chromium-browser-privacy \
+chromium-freeworld \
 ghostwriter \
 VirtualBox \
-clang clang-tools-extra \
-thunderbird-wayland nextcloud-client
+evolution nextcloud-client
 
 sudo dnf install -y tlp smartmontools
 
