@@ -5,7 +5,6 @@ blivet-gui \
 p7zip zip unzip unrar \
 gimp calibre libheif \
 chromium-browser-privacy \
-gthumb darktable \
 ghostwriter \
 VirtualBox \
 clang clang-tools-extra \
