@@ -7,7 +7,7 @@ gimp calibre libheif \
 chromium-freeworld \
 ghostwriter \
 VirtualBox \
-evolution nextcloud-client
+thunderbird-wayland nextcloud-client
 
 sudo dnf install -y tlp smartmontools
 
