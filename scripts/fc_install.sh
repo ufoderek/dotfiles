@@ -1,5 +1,5 @@
 sudo dnf install -y neovim git tmux mpv gnome-tweaks trash-cli \
-ibus-rime \
+ibus-rime sqlite \
 exfat-utils fuse-exfat \
 blivet-gui \
 p7zip zip unzip unrar \
