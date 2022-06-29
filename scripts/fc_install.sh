@@ -1,5 +1,6 @@
-sudo dnf install -y neovim git tmux mpv gnome-tweaks trash-cli \
+sudo dnf install -y neovim git tmux mpv trash-cli \
 ibus-rime sqlite \
+gnome-tweaks gnome-extensions-app \
 exfat-utils fuse-exfat \
 blivet-gui \
 p7zip zip unzip unrar \
@@ -9,9 +10,9 @@ ghostwriter \
 VirtualBox \
 thunderbird-wayland nextcloud-client
 
-sudo dnf install -y tlp smartmontools
-
 sudo dnf group install -y "C Development Tools and Libraries"
+
+#sudo dnf -y tlp
 
 #sudo dnf -y install ccid pcsc-tools # for EasyATM GT2
 
