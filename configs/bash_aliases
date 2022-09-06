@@ -86,7 +86,9 @@ alias du='du -hd 1'
 alias fn='find . -name'
 alias fp='find . -path'
 alias fnd='find . -type d -name'
+alias fnf='find . -type f -name'
 alias fpd='find . -type d -path'
+alias fpf='find . -type f -path'
 
 # cscope
 alias csr='cscope -R'
