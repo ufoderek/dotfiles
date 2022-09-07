@@ -43,7 +43,6 @@ return packer.startup(function(use)
 	use ({'wbthomason/packer.nvim'})
 	use ({'lifepillar/vim-solarized8'})
 	use ({'christoomey/vim-tmux-navigator'})
-	use ({'ap/vim-buftabline'})
 	use ({'tpope/vim-sleuth'})
 	use ({
 		'hoob3rt/lualine.nvim',
