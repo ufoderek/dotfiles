@@ -6,7 +6,7 @@ CONF_PATH=$HOME/dotfiles/configs
 SNAPSHOT=$HOME/dotfiles/nvim-snapshot
 
 rm -rf ~/.config/nvim
-mkdir -p ~/.config/nvim
+cp -r $CONF_PATH/nvim ~/.config/
 
 rm -rf ~/.local/share/nvim
 mkdir -p ~/.local/share/nvim
@@ -14,6 +14,3 @@ mkdir -p ~/.local/share/nvim
 if is_nvt; then
 	cp -r $SNAPSHOT/site ~/.local/share/nvim/
 fi
-
-cp $CONF_PATH/init.lua ~/.config/nvim/init.lua
-cp $CONF_PATH/ginit.vim ~/.config/nvim/ginit.vim
