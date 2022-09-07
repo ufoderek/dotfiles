@@ -29,14 +29,14 @@ function d.vnoremap_ns(lhs, rhs)
 end
 
 function d.indent(indent, width)
-	vim.o.shiftwidth = width
-	vim.o.tabstop = width
+	vim.opt.shiftwidth = width
+	vim.opt.tabstop = width
 	if indent == 'tab' then
-		vim.o.expandtab = false
-		vim.o.softtabstop = 0
+		vim.opt.expandtab = false
+		vim.opt.softtabstop = 0
 	else
-		vim.o.expandtab = true
-		vim.o.softtabstop = width
+		vim.opt.expandtab = true
+		vim.opt.softtabstop = width
 	end
 end
 
@@ -71,29 +71,29 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
 --[[ SOLARIZED8 ]]--
-vim.o.termguicolors = true
-vim.o.background = 'dark'
+vim.opt.termguicolors = true
+vim.opt.background = 'dark'
 vim.g.solarized_extra_hi_groups = 1
 vim.cmd('colorscheme solarized8_flat')
 
 --[[ OPTIONS ]]--
-vim.o.swapfile = false
-vim.o.autochdir = true			-- set working dir to current file
-vim.o.showmatch = true			-- show matching brackets
-vim.o.cursorline = true			-- highlight current line
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.colorcolumn = '80,100'		-- Linux standard
-vim.o.sidescroll = 5			-- speedup horizontal scroll
-vim.o.timeoutlen = 500
-vim.o.shada = ''
-vim.o.shadafile = ''
-vim.o.mouse = 'a'			-- support mouse in all modes so it won't copy line numbers
-vim.o.fileformats = 'unix,dos,mac'
-vim.o.backspace = 'indent,eol,start'	-- let backspace delete over line breaks and tabs
-vim.o.whichwrap = 'b,s,<,>,h,l,~,[,]'	-- let h and l keys to wrap when used at beginning or end of lines
-vim.o.listchars = 'tab:> ,trail:-,nbsp:+,eol:$'
-vim.o.pastetoggle = '<Leader>p'		-- paste without re-indent
+vim.opt.swapfile = false
+vim.opt.autochdir = true			-- set working dir to current file
+vim.opt.showmatch = true			-- show matching brackets
+vim.opt.cursorline = true			-- highlight current line
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.colorcolumn = {'80', '100'}		-- Linux standard
+vim.opt.sidescroll = 5				-- speedup horizontal scroll
+vim.opt.timeoutlen = 500
+vim.opt.shada = ''
+vim.opt.shadafile = ''
+vim.opt.mouse = 'a'				-- support mouse in all modes so it won't copy line numbers
+vim.opt.fileformats = {'unix', 'dos', 'mac'}
+vim.opt.backspace = {'indent', 'eol', 'start'}	-- let backspace delete over line breaks and tabs
+vim.opt.whichwrap = 'b,s,<,>,h,l,~,[,]'		-- let h and l keys to wrap when used at beginning or end of lines
+vim.opt.listchars = 'tab:> ,trail:-,nbsp:+,eol:$'
+vim.opt.pastetoggle = '<Leader>p'		-- paste without re-indent
 
 --[[ KEYMAPS ]]--
 
@@ -125,7 +125,7 @@ d.nnoremap('<C-p>', ':bprev<Cr>')
 d.nnoremap('.', '.`[')
 
 -- Toggle listchars
-d.nnoremap('<Leader>l', ':lua vim.o.list = not vim.o.list<Cr>')
+d.nnoremap('<Leader>l', ':lua vim.opt.list = not vim.opt.list<Cr>')
 
 -- Clear search highlight
 d.nnoremap('<Leader><Space>', ':nohlsearch<Cr>')
