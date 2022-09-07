@@ -1,34 +1,12 @@
-d = {}
-
-function d.nmap(lhs, rhs)
-	return vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = false, silent = true })
+local function snoremap(mode, lhs, rhs, opts)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend('force', options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-function d.nnoremap(lhs, rhs)
-	return vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = true, silent = true })
-end
-
-function d.nnoremap_ns(lhs, rhs)
-	return vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = true })
-end
-
-function d.inoremap(lhs, rhs)
-	return vim.api.nvim_set_keymap('i', lhs, rhs, { noremap = true, silent = true })
-end
-
-function d.cnoremap(lhs, rhs)
-	return vim.api.nvim_set_keymap('c', lhs, rhs, { noremap = true, silent = true })
-end
-
-function d.vnoremap(lhs, rhs)
-	return vim.api.nvim_set_keymap('v', lhs, rhs, { noremap = true, silent = true })
-end
-
-function d.vnoremap_ns(lhs, rhs)
-	return vim.api.nvim_set_keymap('v', lhs, rhs, { noremap = true })
-end
-
-function d.indent(indent, width)
+local function lazy_indent(indent, width)
 	vim.opt.shiftwidth = width
 	vim.opt.tabstop = width
 	if indent == 'tab' then
@@ -98,50 +76,50 @@ vim.opt.pastetoggle = '<Leader>p'		-- paste without re-indent
 --[[ KEYMAPS ]]--
 
 -- Indent
-d.nnoremap('<Leader>t8', ':lua d.indent("tab", 8)<Cr>')
-d.nnoremap('<Leader>t4', ':lua d.indent("tab", 4)<Cr>')
-d.nnoremap('<Leader>s8', ':lua d.indent("space", 8)<Cr>')
-d.nnoremap('<Leader>s4', ':lua d.indent("space", 4)<Cr>')
+snoremap('n', '<Leader>t8', ':lua lazy_indent("tab", 8)<Cr>')
+snoremap('n', '<Leader>t4', ':lua lazy_indent("tab", 4)<Cr>')
+snoremap('n', '<Leader>s8', ':lua lazy_indent("space", 8)<Cr>')
+snoremap('n', '<Leader>s4', ':lua lazy_indent("space", 4)<Cr>')
 
 -- Replace <Esc>
-d.inoremap('jk', '<Esc>')
-d.vnoremap('q', '<Esc>')
-d.vnoremap('v', '<Esc>')
-d.cnoremap('jk', '<C-c>')
+snoremap('i', 'jk', '<Esc>')
+snoremap('v', 'q', '<Esc>')
+snoremap('v', 'v', '<Esc>')
+snoremap('c', 'jk', '<C-c>')
 
 -- Reselect visual blox after indent/outdent
-d.vnoremap('<', '<gv')
-d.vnoremap('>', '>gv')
+snoremap('v', '<', '<gv')
+snoremap('v', '>', '>gv')
 
 -- Goto next displayed line instead of physical line when long line is wrapped
-d.nnoremap('j', 'gj')
-d.nnoremap('k', 'gk')
+snoremap('n', 'j', 'gj')
+snoremap('n', 'k', 'gk')
 
 -- Switching buffers
-d.nnoremap('<C-n>', ':bnext<Cr>')
-d.nnoremap('<C-p>', ':bprev<Cr>')
+snoremap('n', '<C-n>', ':bnext<Cr>')
+snoremap('n', '<C-p>', ':bprev<Cr>')
 
 -- Return cursor to original position after .
-d.nnoremap('.', '.`[')
+snoremap('n', '.', '.`[')
 
 -- Toggle listchars
-d.nnoremap('<Leader>l', ':lua vim.opt.list = not vim.opt.list<Cr>')
+snoremap('n', '<Leader>l', ':lua vim.opt.list = not vim.opt.list<Cr>')
 
 -- Clear search highlight
-d.nnoremap('<Leader><Space>', ':nohlsearch<Cr>')
+snoremap('n', '<Leader><Space>', ':nohlsearch<Cr>')
 
 -- Search in case-sensitive by default
-d.nnoremap_ns('/', '/\\c', { silent = false })
-d.vnoremap_ns('/', '/\\c', { silent = false })
-d.nnoremap_ns('?', '?\\c', { silent = false })
-d.vnoremap_ns('?', '?\\c', { silent = false })
+snoremap('n', '/', '/\\c', { silent = false })
+snoremap('s', '/', '/\\c', { silent = false })
+snoremap('n', '?', '?\\c', { silent = false })
+snoremap('s', '?', '?\\c', { silent = false })
 
 -- Search with yanked text
-d.vnoremap('//', 'y/<C-r>"<Cr>')
+snoremap('v', '//', 'y/<C-r>"<Cr>')
 
 
 -- Macro
-d.nnoremap('<Space>', '@q')
+snoremap('n', '<Space>', '@q')
 
 -- Use real tab in makefiles
 vim.api.nvim_command('autocmd FileType make setlocal noexpandtab')
