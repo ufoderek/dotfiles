@@ -6,26 +6,35 @@ function _G.nvim_tabline()
         local buf_nr = buf_list[win_nr]
         local buf_name = vim.fn.bufname(buf_nr)
         local active = index == vim.fn.tabpagenr()
-        local modified = vim.fn.getbufvar(buf_nr, '&mod')
 
-        s = s .. '%' .. index .. 'T'
+        -- highlight current tab
         if active then
-            s = s .. '%#TabLineSel#' --high light color of current tab
+            s = s .. '%#TabLineSel#'
         else
             s = s .. '%#TabLine#'
         end
+
         -- index
         s = s .. index .. ':'
-        -- buf name
+
+        -- start of tab page N label
+        s = s .. '[%' .. index .. 'T'
+        -- buf name with modified indicator
         if buf_name ~= '' then
-            s = s .. '[' .. vim.fn.fnamemodify(buf_name, ':t') .. ']'
+            s = s .. vim.fn.fnamemodify(buf_name, ':t') .. '%M'
         else
-            s = s .. '[No Name]'
+            s = s .. 'No Name%M'
         end
-        -- modify indicator
-        if modified == 1 then
-            s = s .. '+'
+        -- end of tab page N label
+        s = s ..']%T'
+
+        -- start and end of close button
+        if active then
+            s = s .. '[%' .. '999' .. 'Xx%X]'
+        else
+            s = s .. '[%' .. index .. 'Xx%X]'
         end
+
         -- separator
         s = s .. '  '
     end
