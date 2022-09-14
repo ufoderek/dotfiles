@@ -7,7 +7,7 @@ local snoremap = function(mode, lhs, rhs, opts)
 	return
 end
 
-local lazy_indent = function(indent, width)
+function _G.lazy_indent(indent, width)
 	vim.opt.shiftwidth = width
 	vim.opt.tabstop = width
 	if indent == 'tab' then
