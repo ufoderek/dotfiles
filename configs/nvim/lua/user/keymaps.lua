@@ -40,10 +40,6 @@ snoremap('v', '>', '>gv')
 snoremap('n', 'j', 'gj')
 snoremap('n', 'k', 'gk')
 
--- Switching buffers
-snoremap('n', '<C-n>', ':bnext<Cr>')
-snoremap('n', '<C-p>', ':bprev<Cr>')
-
 -- Return cursor to original position after .
 snoremap('n', '.', '.`[')
 
@@ -64,3 +60,31 @@ snoremap('v', '//', 'y/<C-r>"<Cr>')
 
 -- Macro
 snoremap('n', '<Space>', '@q')
+
+-- Buffer navigation
+snoremap('n', '<Leader>b', ':ls<Cr>:b<Space>', { silent = false })
+snoremap('n', '<Leader>n', ':bnext<Cr>')
+snoremap('n', '<Leader>p', ':bprevious<Cr>')
+snoremap('n', '<Leader>d', ':bdelete<Cr>')
+snoremap('n', '<Leader>u', '<C-^>') -- toggle between last two buffers
+
+-- Tab navigation
+snoremap('n', '<Leader>1', '1gt')
+snoremap('n', '<Leader>2', '2gt')
+snoremap('n', '<Leader>3', '3gt')
+snoremap('n', '<Leader>4', '4gt')
+snoremap('n', '<Leader>5', '5gt')
+snoremap('n', '<Leader>6', '6gt')
+snoremap('n', '<Leader>7', '7gt')
+snoremap('n', '<Leader>8', '8gt')
+snoremap('n', '<Leader>9', '9gt')
+snoremap('n', '<Leader>0', '10gt')
+snoremap('n', 'tl', ':tabnext<Cr>')
+snoremap('n', 'th', ':tabprev<Cr>')
+snoremap('n', 'tj', ':tabfirst<Cr>')
+snoremap('n', 'tk', ':tablast<Cr>')
+snoremap('n', 'tt', ':tabedit<Space>', { silent = false })
+snoremap('n', 'tm', ':tabmove<Space>', { silent = false })
+snoremap('n', 'td', ':tabclose<Cr>')
+snoremap('n', 'tu', 'g<Tab>') -- toggle between last two tabs
+snoremap('n', '<MiddleMouse>', ':tabclose<Cr>')
