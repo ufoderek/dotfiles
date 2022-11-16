@@ -8,6 +8,7 @@ gimp calibre libheif \
 chromium-freeworld \
 ghostwriter \
 VirtualBox \
+printer-driver-brlaser \
 thunderbird-wayland nextcloud-client
 
 sudo dnf group install -y "C Development Tools and Libraries"
