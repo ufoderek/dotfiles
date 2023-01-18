@@ -1,6 +1,5 @@
 /Ani
 /Ani Music
-/Cherry Offline
 /Dramas
 /Music Old
 /Nextcloud

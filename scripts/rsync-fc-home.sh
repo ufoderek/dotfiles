@@ -2,7 +2,7 @@
 
 DATE_TIME=`date +%Y_%m%d_%H%M_%S`
 
-SRC_DIR=/home/ufoderek/ufoderek
+SRC_DIR=/mnt/dnas
 BASE=/run/media/ufoderek/SamsungM3
 
 DEST_MAIN_DIR=$BASE/MainBackup
