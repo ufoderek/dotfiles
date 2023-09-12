@@ -4,7 +4,7 @@ gnome-tweaks gnome-extensions-app \
 exfat-utils fuse-exfat \
 blivet-gui \
 p7zip zip unzip unrar \
-gimp calibre libheif \
+calibre gimp gimp-heif-plugin libheif libheif-freeworld heif-pixbuf-loader \
 chromium-freeworld \
 ghostwriter \
 VirtualBox \
