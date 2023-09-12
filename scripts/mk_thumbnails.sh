@@ -1,18 +1,48 @@
 #!/bin/bash
 
-base=/mnt/dnas/Nextcloud/Cherry
-src_base=Cherry\ 1990
-dst_base=Cherry\ 1990\ JPG
+top=/mnt/dnas/Nextcloud/Autumn
+src_base=iPhone\ Photos
+dst_base=iPhone\ Thumbnails
 
-params="-sampling-factor 4:2:0 -quality 85 -interlace JPEG -resize 50%"
+params="-sampling-factor 4:2:0 -quality 85"
 
-(cd "$base/$src_base" && find . -type f -iname *_a.tif -print0) |
+(cd "$top/$src_base" && find * -type f -print0) |
 while IFS= read -r -d '' src_name; do
-	src_path="$src_base/$src_name"
-	dst_path="$dst_base/${src_name%.tif}.jpg"
-	dst_dir="$(dirname "$dst_path")"
+	src="$top/$src_base/$src_name"
+	dst="$top/$dst_base/$src_name"
 
-	echo "$src_name"
-	#echo "(cd $base && mkdir -p \"$dst_dir\" && convert \"$src_path\" $params \"$dst_path\")"
-	(cd $base && mkdir -p "$dst_dir" && convert "$src_path" $params "$dst_path")
+	echo "-----"
+	if file "$src" | grep -qi HEIF; then
+		dst="${dst%.*}.JPG"
+		action="convert"
+		echo "[I-HEIF] $src"
+		echo "[O-JPEG] $dst"
+	elif file "$src" | grep -qi JPEG; then
+		dst="${dst%.*}.JPG"
+		action="convert"
+		echo "[I-JPEG] $src"
+		echo "[O-JPEG] $dst"
+	elif file "$src" | grep -qi PNG; then
+		dst="${dst%.*}.JPG"
+		action="convert"
+		echo "[I-PNG ] $src"
+		echo "[O-JPEG] $dst"
+	elif file "$src" | grep -qi AAE; then
+		dst="$dst"
+		action="skip"
+		echo "[I-OTHR] $src"
+		echo "[O-OTHR] SKIP"
+	else
+		dst="$dst"
+		action="copy"
+		echo "[I-OTHR] $src"
+		echo "[O-OTHR] $dst"
+	fi
+
+	mkdir -p "$(dirname "$dst")"
+	if [ "$action" = "convert" ]; then
+		/home/ufoderek/Downloads/ImageMagick.AppImage convert "$src" $params "$dst"
+	elif [ "$action" = "copy" ]; then
+		cp "$src" "$dst"
+	fi
 done
