@@ -27,7 +27,22 @@ while IFS= read -r -d '' src_name; do
 		action="convert"
 		echo "[I-PNG ] $src"
 		echo "[O-JPEG] $dst"
-	elif file "$src" | grep -qi AAE; then
+	elif file "$src" | grep -qi TIFF; then
+		dst="${dst%.*}.TIF"
+		action="convert"
+		echo "[I-TIFF] $src"
+		echo "[O-JPEG] $dst"
+	elif file "$src" | grep -qi XML; then #AAE
+		dst="$dst"
+		action="skip"
+		echo "[I-OTHR] $src"
+		echo "[O-OTHR] SKIP"
+	elif file "$src" | grep -qi QuickTime; then
+		dst="$dst"
+		action="skip"
+		echo "[I-OTHR] $src"
+		echo "[O-OTHR] SKIP"
+	elif file "$src" | grep -qi MPEG; then
 		dst="$dst"
 		action="skip"
 		echo "[I-OTHR] $src"
