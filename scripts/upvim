@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source ~/.bash_funcs
+
+CONF_PATH=$HOME/dotfiles/configs
+
+rm -rf ~/.vimrc
+rm -rf ~/.vim
+
+if ! is_nvt; then
+    cp -r $CONF_PATH/vim ~/.vim
+else
+    cp -r $HOME/dotfiles/vim-snapshot ~/.vim
+fi
+
+cp $CONF_PATH/vimrc ~/.vimrc

@@ -1,0 +1,295 @@
+"" vim-plug
+if has("win32") || has("win64")
+    call plug#begin('$USERPROFILE\AppData\Local\nvim\plugged')
+else
+  if has("nvim")
+    call plug#begin('~/.config/nvim/plugged')
+  else
+    call plug#begin('~/.vim/plugged')
+  endif
+endif
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-vinegar'
+"Plug 'fholgado/minibufexpl.vim'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'ap/vim-buftabline'
+Plug 'jyelloz/vim-dts-indent'
+
+if !has("win32") && !has("win64")
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'airblade/vim-gitgutter'
+  "Plug 'mhinz/vim-grepper'
+  Plug 'tpope/vim-sleuth'
+  Plug 'joereynolds/gtags-scope'
+else
+  Plug 'icymind/NeoSolarized' "For nvim-qt.exe
+endif
+
+call plug#end()
+
+
+"" leader key
+let mapleader = ","
+let g:mapleader = ","
+
+"" basic configs
+set nocompatible
+set showmode
+set showcmd "show virtual mode selection area
+set ttyfast "fast scroll in small files
+set nobackup
+set noswapfile
+set autochdir "set dir to current file
+"set wrap "wrap lines
+set ruler "always show current position
+set hid "change buffer without saving buffer
+set nolazyredraw "don't redraw while executing macros
+set showmatch "show matching brackets when text indicator is over them
+set ffs=unix,dos,mac
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500 "time out length
+set colorcolumn=80
+set cursorline "highlight current line
+set backspace=indent,eol,start "let backspace delete over line breaks, tabs...
+set whichwrap+=<,>,h,l,[,] "let h and l keys to wrap when used at beginning or end of lines
+set mouse=a "support mouse in all modes so it won't copy line numbers
+set wildmenu "use wildmenu for command auto-complete
+set splitbelow "more natural
+set splitright "more natural
+
+"" encoding
+if has("nvim") || (&encoding ==# 'latin1' && has("gui_running"))
+  set encoding=utf-8
+endif
+
+"" viminfo
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+
+"" some useful remappings
+inoremap jk <Esc>
+cnoremap jk <C-c>
+vnoremap q <Esc>
+vnoremap v <Esc>
+
+"" about split
+nnoremap <silent> vv <C-w>v
+
+"" reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+"" return the cursor to the original location after .
+nmap . .`[
+
+"" goto next displayed line instead of physical line when long line is wrapped
+nnoremap j gj
+nnoremap k gk
+
+"" switching buffers
+set hidden "so any buffer can be hidden (keeping its changes) without first writing the buffer to a file
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+"nmap <C-K> :bhiden<CR>
+nmap <C-D> :bdelete<CR>
+
+"" to make scrolling horizontally a bit more useful, try this: >
+set sidescroll=5
+
+"" set listchars
+nnoremap <leader>L :set list listchars=tab:»·,trail:·,nbsp:+,eol:$,precedes:<,extends:><cr>
+
+"" clear keywords highlight and list chars
+nnoremap <leader><space> :noh<cr> :set nolist<cr>
+
+"" paste without re-indent
+set pastetoggle=<leader>p "toggle pastmode so you can paste without auto indent in putty
+
+"" display as much as possible of the last line in a window will be displayed.
+"" when not included, a last line that doesn't fit is replaced with "@" lines.
+set display+=lastline
+
+"" search in case-insensitive
+nnoremap / /\c
+vnoremap / /\c
+nnoremap ? ?\c
+vnoremap ? ?\c
+
+"" search
+set incsearch
+set showmatch
+set hlsearch
+
+"" search yanked text
+vnorem // y/<c-r>"<cr>
+
+"" using system clipboard for vim under terminal, need +xterm_clipboard
+if has("win32") || has("win64") || has("mac")
+    set clipboard=unnamed
+elseif has("unix")
+    set clipboard=unnamedplus
+endif
+
+"" Colorscheme for console
+if !has("win32") && !has("win64")
+  if &t_Co >= 256
+    syntax enable
+    let g:solarized_degrade=0
+    let g:solarized_termtrans=0
+    "use the precise 16 colors solarized colors from putty,
+    "instead of approx. 256 colors
+    let g:solarized_termcolors=16
+    let g:solarized_contrast="high"
+  elseif &t_Co >= 8
+    syntax enable
+    let g:solarized_degrade=0
+    let g:solarized_termtrans=0
+    let g:solarized_termcolors=16
+    let g:solarized_contrast="high"
+  endif
+  set background=dark
+  colorscheme solarized
+endif
+
+"" vim-airline
+let g:airline_theme='solarized'
+set laststatus=2 "always show status line
+" reduce airline
+let g:airline#extensions#hunks#enabled = 0 "no need diff stats
+let g:airline#extensions#languageclient#enabled = 0 "no need to display current lang
+let g:airline#extensions#whitespace#enabled = 0
+
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = ''
+let g:airline_symbols.crypt = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.spell = ''
+let g:airline_symbols.notexists = ''
+let g:airline_symbols.whitespace = ''
+
+" mode map
+"let g:airline_mode_map = {
+"  \ '__' : '------',
+"  \ 'c'  : 'COMMAND',
+"  \ 'i'  : 'INSERT',
+"  \ 'ic' : 'INSERT COMPL',
+"  \ 'ix' : 'INSERT COMPL',
+"  \ 'multi' : 'MULTI',
+"  \ 'n'  : 'NORMAL',
+"  \ 'ni' : '(INSERT)',
+"  \ 'no' : 'OP PENDING',
+"  \ 'R'  : 'REPLACE',
+"  \ 'Rv' : 'V REPLACE',
+"  \ 's'  : 'SELECT',
+"  \ 'S'  : 'S-LINE',
+"  \ '' : 'S-BLOCK',
+"  \ 't'  : 'TERMINAL',
+"  \ 'v'  : 'VISUAL',
+"  \ 'V'  : 'V-LINE',
+"  \ '' : 'V-BLOCK',
+"\ }
+
+"" MiniBufExpl
+let g:miniBufExplorerHideWhenDiff=1
+let g:miniBufExplStatusLineText=0
+let g:miniBufExplUseSingleClick=1
+
+"" buftabline
+let g:buftabline_show=1
+let g:buftabline_numbers=1
+let g:buftabline_indicators=1
+let g:buftabline_separators=0
+
+"" indent
+set autoindent "copy the indentation from the previous line
+set nosmartindent
+set nocindent
+"set cinoptions=t0
+"set shiftround "indent/outdent to nearest tabstops
+filetype plugin on
+filetype indent on
+
+"" indent (leave default setting for vim-sleuth)
+function Tab8()
+    set noexpandtab "don't use space to replace tab
+    set shiftwidth=8 "width of shift
+    set tabstop=8 "width of tab
+    set softtabstop=0 "width of tab, but insert spaces
+endfunction
+
+function Tab4()
+    set noexpandtab "don't use space to replace tab
+    set shiftwidth=4 "width of shift
+    set tabstop=4 "width of tab
+    set softtabstop=0 "width of tab, but insert spaces
+endfunction
+
+function Space8()
+    set expandtab "use space to replace tab
+    set shiftwidth=8 "width of shift
+    set tabstop=8 "width of tab
+    set softtabstop=8 "width of tab, but insert spaces
+endfunction
+
+function Space4()
+    set expandtab "use space to replace tab
+    set shiftwidth=4 "width of shift
+    set tabstop=4 "width of tab
+    set softtabstop=4 "width of tab, but insert spaces
+endfunction
+
+nmap <leader>t8 :execute Tab8()<cr>
+nmap <leader>t4 :execute Tab4()<cr>
+nmap <leader>s8 :execute Space8()<cr>
+nmap <leader>s4 :execute Space4()<cr>
+
+"" gitgutter
+highlight clear SignColumn
+
+"" cscope
+set cscopetag "Enabel Ctrl-\ and Ctrl-t
+
+"" Use gtags-cscope as cscope backend
+let GtagsCscope_Auto_Map = 1
+let GtagsCscope_Auto_Load = 1
+let GtagsCscope_Quiet = 1
+let GtagsCscope_Absolute_Path = 1
+
+"" vim smooth scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+"" avoid accidental mouse middle clicks
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+map <2-MiddleMouse> <Nop>
+imap <2-MiddleMouse> <Nop>
+map <3-MiddleMouse> <Nop>
+imap <3-MiddleMouse> <Nop>
+map <4-MiddleMouse> <Nop>
+imap <4-MiddleMouse> <Nop>
+
+"" to resize vim split using mouse inside tmux
+set mouse+=a
+if &term =~ '^screen'
+  " tmux knows the extended mouse mode
+  set ttymouse=xterm2
+endif
+
+"" use real tab in makefiles
+autocmd FileType make setlocal noexpandtab
