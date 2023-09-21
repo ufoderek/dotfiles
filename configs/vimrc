@@ -16,14 +16,14 @@ Plug 'tpope/vim-vinegar'
 "Plug 'fholgado/minibufexpl.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'ap/vim-buftabline'
-Plug 'jyelloz/vim-dts-indent'
+"Plug 'jyelloz/vim-dts-indent'
 
 if !has("win32") && !has("win64")
   Plug 'altercation/vim-colors-solarized'
   Plug 'airblade/vim-gitgutter'
   "Plug 'mhinz/vim-grepper'
   Plug 'tpope/vim-sleuth'
-  Plug 'joereynolds/gtags-scope'
+  "Plug 'joereynolds/gtags-scope'
 else
   Plug 'icymind/NeoSolarized' "For nvim-qt.exe
 endif
@@ -203,9 +203,9 @@ let g:airline_symbols.whitespace = ''
 "\ }
 
 "" MiniBufExpl
-let g:miniBufExplorerHideWhenDiff=1
-let g:miniBufExplStatusLineText=0
-let g:miniBufExplUseSingleClick=1
+"let g:miniBufExplorerHideWhenDiff=1
+"let g:miniBufExplStatusLineText=0
+"let g:miniBufExplUseSingleClick=1
 
 "" buftabline
 let g:buftabline_show=1
@@ -260,13 +260,13 @@ nmap <leader>s4 :execute Space4()<cr>
 highlight clear SignColumn
 
 "" cscope
-set cscopetag "Enabel Ctrl-\ and Ctrl-t
+"set cscopetag "Enabel Ctrl-\ and Ctrl-t
 
 "" Use gtags-cscope as cscope backend
-let GtagsCscope_Auto_Map = 1
-let GtagsCscope_Auto_Load = 1
-let GtagsCscope_Quiet = 1
-let GtagsCscope_Absolute_Path = 1
+"let GtagsCscope_Auto_Map = 1
+"let GtagsCscope_Auto_Load = 1
+"let GtagsCscope_Quiet = 1
+"let GtagsCscope_Absolute_Path = 1
 
 "" vim smooth scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
