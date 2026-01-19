@@ -1,17 +1,24 @@
-sudo dnf install -y neovim git tmux mpv trash-cli \
-ibus-rime sqlite \
-gnome-tweaks gnome-extensions-app \
-exfat-utils fuse-exfat \
+sudo dnf install -y \
+neovim git tmux \
+trash-cli \
 blivet-gui \
 p7zip zip unzip unrar \
-calibre gimp gimp-heif-plugin libheif libheif-freeworld heif-pixbuf-loader \
-chromium-freeworld \
-ghostwriter \
-VirtualBox \
-printer-driver-brlaser \
-thunderbird-wayland nextcloud-client
+duperemove \
+gnome-tweaks gnome-extensions-app \
+nextcloud-client \
 
-sudo dnf group install -y "C Development Tools and Libraries"
+
+#ibus-rime sqlite \
+#exfat-utils fuse-exfat \
+#calibre gimp gimp-heif-plugin libheif libheif-freeworld heif-pixbuf-loader \
+#chromium-freeworld \
+#mpv \
+#ghostwriter \
+#VirtualBox \
+#printer-driver-brlaser \
+#thunderbird-wayland \
+
+sudo dnf group install -y c-development
 
 #sudo dnf -y tlp
 
